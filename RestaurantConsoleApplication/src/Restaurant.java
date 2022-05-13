@@ -1,15 +1,18 @@
 public class Restaurant implements DisplayInformation {
-    private int restaurantUniqueNumber;
+    private String restaurantUniqueNumber;
     private String restaurantName;
+    private String restaurantType;
+    private String restaurantLocation;
+    private double restaurantAvgCost;
     private String restaurantLoginId;
     private String restaurantLoginPassword;
 
     //Getters Setters for private attributes
-    public int getRestaurantUniqueNumber() {
+    public String getRestaurantUniqueNumber() {
         return this.restaurantUniqueNumber;
     }
 
-    public void setRestaurantUniqueNumber(int restaurantUniqueNumber) {
+    public void setRestaurantUniqueNumber(String restaurantUniqueNumber) {
         this.restaurantUniqueNumber = restaurantUniqueNumber;
     }
 
@@ -19,6 +22,30 @@ public class Restaurant implements DisplayInformation {
 
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
+    }
+
+    public String getRestaurantType() {
+        return this.restaurantType;
+    }
+
+    public void setRestaurantType(String restaurantType) {
+        this.restaurantType = restaurantType;
+    }
+
+    public String getRestaurantLocation() {
+        return this.restaurantLocation;
+    }
+
+    public void setRestaurantLocation(String restaurantLocation) {
+        this.restaurantLocation = restaurantLocation;
+    }
+
+    public double getRestaurantAvgCost() {
+        return this.restaurantAvgCost;
+    }
+
+    public void setRestaurantAvgCost(double restaurantAvgCost) {
+        this.restaurantAvgCost = restaurantAvgCost;
     }
 
     public String getrestaurantLoginId() {
@@ -38,9 +65,13 @@ public class Restaurant implements DisplayInformation {
     }
 
     //Constructor for Restaurant
-    public Restaurant(int restaurantUniqueNumber, String restaurantName, String restaurantLoginId, String restaurantLoginPassword) {
+    public Restaurant(String restaurantUniqueNumber, String restaurantName, String retaurantType, 
+    String restaurantLocation, double restaurantAvgCost, String restaurantLoginId, String restaurantLoginPassword) {
         this.restaurantUniqueNumber = restaurantUniqueNumber;
         this.restaurantName = restaurantName;
+        this.restaurantType = retaurantType;
+        this.restaurantLocation = restaurantLocation;
+        this.restaurantAvgCost = restaurantAvgCost;
         this.restaurantLoginId = restaurantLoginId;
         this.restaurantLoginPassword = restaurantLoginPassword;
     }
@@ -48,6 +79,9 @@ public class Restaurant implements DisplayInformation {
     public Restaurant() {
         this.restaurantUniqueNumber = getRestaurantUniqueNumber();
         this.restaurantName = getRestaurantName();
+        this.restaurantType = getRestaurantType();
+        this.restaurantLocation = getRestaurantLocation();
+        this.restaurantAvgCost = getRestaurantAvgCost();
         this.restaurantLoginId = getrestaurantLoginId();
         this.restaurantLoginPassword = getrestaurantLoginPassword();
     }
@@ -56,7 +90,9 @@ public class Restaurant implements DisplayInformation {
     @Override
     public void displayInfo() {
         System.out.println("Restaurant ID Number: " + restaurantUniqueNumber
-                        + " | Restaurant Name: " + restaurantName);
+                        + " | Restaurant Name: " + restaurantName
+                        + " | Restaurant Type: " + restaurantType
+                        + " | Restaurant Location: " + restaurantLocation
+                        + " | Avg Cost for 2: ₹ " + restaurantAvgCost);
     }
-
 }
