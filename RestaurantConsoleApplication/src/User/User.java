@@ -1,3 +1,4 @@
+package User;
 public class User {
     private String uniqueUserId;
     private String nameOfuser;
@@ -56,12 +57,11 @@ public class User {
     }
 
     //Constructor for user
-    public User(String uniqueUserId, String nameOfUser, String phoneNumberofUser, String userLoginId, 
+    public User(String uniqueUserId, String nameOfUser, String phoneNumberofUser, 
     String userLoginPassword, boolean premiumUser) {
         this.uniqueUserId = uniqueUserId;
         this.nameOfuser = nameOfUser;
         this.phoneNumberOfUser = phoneNumberofUser;
-        this.userLoginId = userLoginId;
         this.userLoginPassword = userLoginPassword;
         this.premiumUser = premiumUser;
     }
@@ -70,7 +70,6 @@ public class User {
         this.uniqueUserId = getUniqueUserId();
         this.nameOfuser = getNameOfuser();
         this.phoneNumberOfUser = getPhoneNumberOfUser();
-        this.userLoginId = getUserLoginId();
         this.userLoginPassword = getUserLoginPassword();
         this.premiumUser = isPremiumUser();
     }
