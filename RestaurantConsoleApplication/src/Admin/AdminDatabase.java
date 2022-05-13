@@ -18,7 +18,7 @@ public class AdminDatabase {
         adminMap.put("admin2@abc.com", admin2);
     }
 
-    public void printAdminMap() {
+    public void printAdminData() {
         System.out.println(Arrays.asList(adminMap));
     }
     
