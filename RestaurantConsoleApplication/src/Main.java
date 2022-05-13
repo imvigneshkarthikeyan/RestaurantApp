@@ -1,5 +1,10 @@
+import static Utilities.UiUtils.*;
+
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        // drawDoubleLine();
+        displayLineTitleAndUser("Welcome", "Super Admin");
+        displayLineWithTitle("Order History");
+        // drawLine();
     }
 }
