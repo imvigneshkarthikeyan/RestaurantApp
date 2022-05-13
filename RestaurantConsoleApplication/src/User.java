@@ -1,4 +1,4 @@
-public class User implements DisplayInformation {
+public class User {
     private String uniqueUserId;
     private String nameOfuser;
     private String phoneNumberOfUser;
@@ -75,12 +75,13 @@ public class User implements DisplayInformation {
         this.premiumUser = isPremiumUser();
     }
 
+    // To display user information
     @Override
-    public void displayInfo() {
-        System.out.println("User ID Number: " + uniqueUserId
-                        + " | User Name: " + nameOfuser
-                        + " | User Ph No: " + phoneNumberOfUser
-                        + " | Premium User: " + premiumUser);
+    public String toString() {
+        return "User ID Number: " + uniqueUserId
+                + " | User Name: " + nameOfuser
+                + " | User Ph No: " + phoneNumberOfUser
+                + " | Premium User: " + premiumUser;
     }
 
 }

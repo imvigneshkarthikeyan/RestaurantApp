@@ -1,4 +1,4 @@
-public class Admin implements DisplayInformation {
+public class Admin {
     private String adminUniqueId;
     private String adminName;
     private String adminContactNumber;
@@ -47,11 +47,10 @@ public class Admin implements DisplayInformation {
     }
 
     //Constructor for Admin
-    public Admin(String adminUniqueId, String adminName, String adminContactNumber, String adminLoginId, String adminLoginPassword) {
+    public Admin(String adminUniqueId, String adminName, String adminContactNumber, String adminLoginPassword) {
         this.adminUniqueId = adminUniqueId;
         this.adminName = adminName;
         this.adminContactNumber = adminContactNumber;
-        this.adminLoginId = adminLoginId;
         this.adminLoginPassword = adminLoginPassword;
     }
 
@@ -59,15 +58,14 @@ public class Admin implements DisplayInformation {
         this.adminUniqueId = getAdminUniqueId();
         this.adminName = getAdminName();
         this.adminContactNumber = getAdminContactNumber();
-        this.adminLoginId = getAdminLoginId();
         this.adminLoginPassword = getAdminLoginPassword();
     }
 
+    //To display admin information
     @Override
-    public void displayInfo() {
-        System.out.println("Admin Unique ID: " + adminUniqueId
-                    + " | Admin Name: " + adminName
-                    + " | Admin Ph Num: " + adminContactNumber
-                    + " | Admin Login ID: " + adminLoginId);
+    public String toString() {
+        return "Admin Unique ID: " + adminUniqueId 
+                + " | Admin Name: " + adminName
+                + " | Admin Ph Num: " + adminContactNumber;
     }
 }

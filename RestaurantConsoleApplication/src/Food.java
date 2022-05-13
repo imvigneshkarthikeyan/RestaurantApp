@@ -1,4 +1,4 @@
-public class Food implements DisplayInformation {
+public class Food {
     private String foodUniqueNumber;
     private String foodName;
     private String foodType;
@@ -60,11 +60,11 @@ public class Food implements DisplayInformation {
 
     //To display food information
     @Override
-    public void displayInfo() {
-        System.out.println("Food ID: " + foodUniqueNumber 
-                    + " | Food Name: " + foodName
-                    + " | Food Type: " + foodType
-                    + " | Food Cost: ₹ " + foodCost
-                    + " | Is Veg: " + veg);  
+    public String toString() {
+        return "Food ID: " + foodUniqueNumber
+                + " | Food Name: " + foodName
+                + " | Food Type: " + foodType
+                + " | Food Cost: ₹ " + foodCost
+                + " | Is Veg: " + veg;
     }
 }

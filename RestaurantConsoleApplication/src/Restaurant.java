@@ -1,4 +1,4 @@
-public class Restaurant implements DisplayInformation {
+public class Restaurant {
     private String restaurantUniqueNumber;
     private String restaurantName;
     private String restaurantType;
@@ -98,14 +98,14 @@ public class Restaurant implements DisplayInformation {
         this.restaurantLoginPassword = getrestaurantLoginPassword();
     }
 
-    //To display restaurant information
+    // To display restaurant information
     @Override
-    public void displayInfo() {
-        System.out.println("Restaurant ID Number: " + restaurantUniqueNumber
-                        + " | Restaurant Name: " + restaurantName
-                        + " | Restaurant Type: " + restaurantType
-                        + " | Restaurant Location: " + restaurantLocation
-                        + " | Restaurant Conatct: " + restaurantPhoneNumber
-                        + " | Avg Cost for 2: ₹ " + restaurantAvgCost);
+    public String toString() {
+        return "Restaurant ID Number: " + restaurantUniqueNumber
+                + " | Restaurant Name: " + restaurantName
+                + " | Restaurant Type: " + restaurantType
+                + " | Restaurant Location: " + restaurantLocation
+                + " | Restaurant Conatct: " + restaurantPhoneNumber
+                + " | Avg Cost for 2: ₹ " + restaurantAvgCost;
     }
 }
