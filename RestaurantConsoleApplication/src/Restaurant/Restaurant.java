@@ -1,3 +1,4 @@
+package Restaurant;
 public class Restaurant {
     private String restaurantUniqueNumber;
     private String restaurantName;
