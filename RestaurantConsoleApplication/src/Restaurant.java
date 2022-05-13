@@ -3,6 +3,7 @@ public class Restaurant implements DisplayInformation {
     private String restaurantName;
     private String restaurantType;
     private String restaurantLocation;
+    private String restaurantPhoneNumber;
     private double restaurantAvgCost;
     private String restaurantLoginId;
     private String restaurantLoginPassword;
@@ -40,6 +41,14 @@ public class Restaurant implements DisplayInformation {
         this.restaurantLocation = restaurantLocation;
     }
 
+    public String getRestaurantPhoneNumber() {
+        return this.restaurantPhoneNumber;
+    }
+
+    public void setRestaurantPhoneNumber(String restaurantPhoneNumber) {
+        this.restaurantPhoneNumber = restaurantPhoneNumber;
+    }
+
     public double getRestaurantAvgCost() {
         return this.restaurantAvgCost;
     }
@@ -66,11 +75,13 @@ public class Restaurant implements DisplayInformation {
 
     //Constructor for Restaurant
     public Restaurant(String restaurantUniqueNumber, String restaurantName, String retaurantType, 
-    String restaurantLocation, double restaurantAvgCost, String restaurantLoginId, String restaurantLoginPassword) {
+    String restaurantLocation, String retaurantPhoneNumber, double restaurantAvgCost, 
+    String restaurantLoginId, String restaurantLoginPassword) {
         this.restaurantUniqueNumber = restaurantUniqueNumber;
         this.restaurantName = restaurantName;
         this.restaurantType = retaurantType;
         this.restaurantLocation = restaurantLocation;
+        this.restaurantPhoneNumber = retaurantPhoneNumber;
         this.restaurantAvgCost = restaurantAvgCost;
         this.restaurantLoginId = restaurantLoginId;
         this.restaurantLoginPassword = restaurantLoginPassword;
@@ -81,6 +92,7 @@ public class Restaurant implements DisplayInformation {
         this.restaurantName = getRestaurantName();
         this.restaurantType = getRestaurantType();
         this.restaurantLocation = getRestaurantLocation();
+        this.restaurantPhoneNumber = getRestaurantPhoneNumber();
         this.restaurantAvgCost = getRestaurantAvgCost();
         this.restaurantLoginId = getrestaurantLoginId();
         this.restaurantLoginPassword = getrestaurantLoginPassword();
@@ -93,6 +105,7 @@ public class Restaurant implements DisplayInformation {
                         + " | Restaurant Name: " + restaurantName
                         + " | Restaurant Type: " + restaurantType
                         + " | Restaurant Location: " + restaurantLocation
+                        + " | Restaurant Conatct: " + restaurantPhoneNumber
                         + " | Avg Cost for 2: ₹ " + restaurantAvgCost);
     }
 }
