@@ -1,5 +1,5 @@
-public class Food {
-    private int foodIdNumber;
+public class Food implements DisplayInformation {
+    private int foodUniqueNumber;
     private String foodName;
     private String foodType;
     private double foodCost;
@@ -7,10 +7,10 @@ public class Food {
 
     // Getters Setters for private attributes
 	public int getFoodIdNumber() {
-		return this.foodIdNumber;
+		return this.foodUniqueNumber;
 	}
-	public void setFoodIdNumber(int foodIdNumber) {
-		this.foodIdNumber = foodIdNumber;
+	public void setFoodIdNumber(int foodUniqueNumber) {
+		this.foodUniqueNumber = foodUniqueNumber;
 	}
 
 	public String getFoodName() {
@@ -42,19 +42,29 @@ public class Food {
 	}
 
     //Constructor for Food
-    Food(int foodIdNumber, String foodName, String foodType, double foodCost, boolean veg) {
-        this.foodIdNumber = foodIdNumber;
+    public Food(int foodUniqueNumber, String foodName, String foodType, double foodCost, boolean veg) {
+        this.foodUniqueNumber = foodUniqueNumber;
         this.foodName = foodName;
         this.foodType = foodType;
         this.foodCost = foodCost;
         this.veg = veg;
     }
 
-    Food() {
-        this.foodIdNumber = getFoodIdNumber();
+    public Food() {
+        this.foodUniqueNumber = getFoodIdNumber();
         this.foodName = getFoodName();
         this.foodType = getFoodType();
         this.foodCost = getFoodCost();
         this.veg = isVeg();
+    }
+
+    //To display food information
+    @Override
+    public void displayInfo() {
+        System.out.println("Food ID: " + foodUniqueNumber 
+                    + " | Food Name: " + foodName
+                    + " | Food Type: " + foodType
+                    + " | Food Cost: ₹ " + foodCost
+                    + " | Is Veg: " + veg);        
     }
 }
