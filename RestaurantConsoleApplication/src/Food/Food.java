@@ -1,3 +1,4 @@
+package Food;
 public class Food {
     private String foodUniqueNumber;
     private String foodName;
@@ -42,9 +43,8 @@ public class Food {
 	}
 
     //Constructor for Food
-    public Food(String foodUniqueNumber, String foodName, String foodType, double foodCost, boolean veg) {
+    public Food(String foodUniqueNumber, String foodType, double foodCost, boolean veg) {
         this.foodUniqueNumber = foodUniqueNumber;
-        this.foodName = foodName;
         this.foodType = foodType;
         this.foodCost = foodCost;
         this.veg = veg;
@@ -52,7 +52,6 @@ public class Food {
 
     public Food() {
         this.foodUniqueNumber = getFoodIdNumber();
-        this.foodName = getFoodName();
         this.foodType = getFoodType();
         this.foodCost = getFoodCost();
         this.veg = isVeg();
@@ -62,7 +61,6 @@ public class Food {
     @Override
     public String toString() {
         return "Food ID: " + foodUniqueNumber
-                + " | Food Name: " + foodName
                 + " | Food Type: " + foodType
                 + " | Food Cost: ₹ " + foodCost
                 + " | Is Veg: " + veg;
