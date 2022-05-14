@@ -2,26 +2,21 @@ package Admin;
 
 import Restaurant.Restaurant;
 import Restaurant.RestaurantDatabase;
-import Utilities.Operations;
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
 import Customer.CustomerDatabase;
 
-public class AdminFunctions implements Operations {
+public class AdminFunctions {
 
-    @Override
-    public void viewData() {
+    public void viewData(RestaurantDatabase restaurantDatabase) {
         // View Restaurant Details
-        RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
         restaurantDatabase.printRestaurantData();        
     }
 
-    @Override
-    public void addData() {
+    public void addData(RestaurantDatabase restaurantDatabase) {
         // Adding new restaurant
         Restaurant restaurant = new Restaurant();
-        RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
         System.out.println("Enter the Restaurant Login ID: ");
         restaurant.setLoginID(scanner.next());
         System.out.println("Enter the password for restaurant: ");
@@ -40,23 +35,19 @@ public class AdminFunctions implements Operations {
         
     }
 
-    @Override
-    public void deleteData() {
+    public void deleteData(RestaurantDatabase restaurantDatabase) {
         // Delete restaurant
-        RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
         restaurantDatabase.printRestaurantDataWithIndex();
         System.out.println("Enter the index of the restaurant that has to be removed: ");
         int index = scanner.nextInt();
         restaurantDatabase.getRestaurantList().remove(index);
     }
 
-    public void viewCustomerData() {
-        CustomerDatabase customerDatabase = new CustomerDatabase();
+    public void viewCustomerData(CustomerDatabase customerDatabase) {
         customerDatabase.printCustomerData();
     }
 
-    public void removeCustomerData() {
-        CustomerDatabase customerDatabase = new CustomerDatabase();
+    public void removeCustomerData(CustomerDatabase customerDatabase) {
         System.out.println("Enter the login ID to be removed: ");
         String IDtoBeRemoved = scanner.next();
         customerDatabase.getCustomerMap().remove(IDtoBeRemoved);
@@ -67,7 +58,7 @@ public class AdminFunctions implements Operations {
         drawLine();
     }
 
-    public void executeAdminFunction() {
+    public void executeAdminFunction(RestaurantDatabase restaurantDatabase, CustomerDatabase  customerDatabase) {
         int option = 1;
         while (option == 1 || option == 2 || option == 3 || option == 4 || option == 5) {
             displayOptionsForAdmin();
@@ -75,19 +66,19 @@ public class AdminFunctions implements Operations {
             optionValidator(option, 1, 6);
             switch (option) {
                 case 1:
-                    viewData();
+                    viewData(restaurantDatabase);
                     break;
                 case 2:
-                    addData();
+                    addData(restaurantDatabase);
                     break;
                 case 3:
-                    deleteData();
+                    deleteData(restaurantDatabase);
                     break;
                 case 4:
-                    viewCustomerData();
+                    viewCustomerData(customerDatabase);
                     break;
                 case 5:
-                    removeCustomerData();
+                    removeCustomerData(customerDatabase);
                     break;
                 case 6:
                     System.out.println("Logging out from Super admin portal");

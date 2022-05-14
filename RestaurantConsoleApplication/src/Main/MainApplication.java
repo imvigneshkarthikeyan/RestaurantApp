@@ -16,6 +16,9 @@ public class MainApplication {
     public void selectUserType() {
         drawLine();
         int option = 1;
+        AdminDatabase adminDatabase = new AdminDatabase();
+        RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
+        CustomerDatabase customerDatabase = new CustomerDatabase();
         while (option == 1 || option == 2 || option == 3 || option ==4) {
             System.out.println("Enter to Login as: \n1. SuperAdmin \n2. Admin \n3. Restaurant \n4. Customer \n5. Quit");
             drawLine();
@@ -24,20 +27,17 @@ public class MainApplication {
             switch (option) {
                 case 1:
                     SuperAdmin superAdmin = new SuperAdmin();
-                    superAdmin.loginAsSuperAdmin();
+                    superAdmin.loginAsSuperAdmin(adminDatabase);
                     break;
                 case 2:
-                    AdminDatabase adminDatabase = new AdminDatabase();
                     AdminAuthenticator adminAuthenticator = new AdminAuthenticator();
-                    adminAuthenticator.authenticateAdmin(adminDatabase);
+                    adminAuthenticator.authenticateAdmin(adminDatabase, restaurantDatabase, customerDatabase);
                     break;
                 case 3:
-                    RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
                     RestaurantAuthenticator restaurantAuthenticator = new RestaurantAuthenticator();
                     restaurantAuthenticator.authenticateRestaurant(restaurantDatabase);
                     break;
                 case 4:
-                    CustomerDatabase customerDatabase = new CustomerDatabase();
                     CustomerAuthenticator customerAuthenticator = new CustomerAuthenticator();
                     customerAuthenticator.authenticateCustomer(customerDatabase);
                     break;

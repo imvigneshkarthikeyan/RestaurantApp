@@ -1,25 +1,21 @@
 package SuperAdmin;
-import Utilities.Operations;
 import Admin.Admin;
 import Admin.AdminDatabase;
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
-public class SuperAdminFunctions implements Operations {
+public class SuperAdminFunctions {
 
-    @Override
-    public void viewData() {
+    public void viewData(AdminDatabase adminDatabase) {
         // View Admins available from admin map
-        AdminDatabase adminDatabase = new AdminDatabase();
         adminDatabase.printAdminData(); 
         drawDoubleLine();       
     }
 
-    @Override
-    public void addData() {
+    
+    public void addData(AdminDatabase adminDatabase) {
         // Add new admin to admin map
         Admin admin = new Admin();
-        AdminDatabase adminDatabase = new AdminDatabase();
         drawDoubleLine();
         System.out.println("Set new admin login id: ");
         admin.setLoginID(scanner.next());
@@ -40,10 +36,9 @@ public class SuperAdminFunctions implements Operations {
         drawDoubleLine();
     }
 
-    @Override
-    public void deleteData() {
+    
+    public void deleteData(AdminDatabase adminDatabase) {
         // Delete admin from admin map
-        AdminDatabase adminDatabase = new AdminDatabase();
         System.out.println("Enter the login id of the admin that has to be removed: ");
         adminDatabase.getAdminMap().remove(scanner.next());
         System.out.println("The admin DB after deleting: ");
@@ -60,7 +55,7 @@ public class SuperAdminFunctions implements Operations {
         drawLine();
     }
     
-    public void executeSuperAdminFunction() {
+    public void executeSuperAdminFunction(AdminDatabase adminDatabase) {
         int option = 1;
         while (option == 1 || option == 2 || option == 3) {
             displayOptionsForSuperAdmin();
@@ -68,13 +63,13 @@ public class SuperAdminFunctions implements Operations {
             optionValidator(option, 1, 4);
             switch (option) {
                 case 1:
-                    viewData();
+                    viewData(adminDatabase);
                     break;
                 case 2:
-                    addData();
+                    addData(adminDatabase);
                     break;
                 case 3:
-                    deleteData();
+                    deleteData(adminDatabase);
                     break;
                 case 4:
                     System.out.println("Logging out from Super admin portal");
