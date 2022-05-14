@@ -1,3 +1,4 @@
+package SuperAdmin;
 import static Utilities.ValidatorUtils.*;
 
 public class SuperAdmin {
