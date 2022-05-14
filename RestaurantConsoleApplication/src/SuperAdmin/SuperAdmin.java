@@ -16,7 +16,6 @@ public class SuperAdmin {
                 System.out.println("The password is correct....Entering into SuperAdminPanel");
                 SuperAdminFunctions superAdminFunctions = new SuperAdminFunctions();
                 superAdminFunctions.welcomeSuperAdmin();
-                superAdminFunctions.displayOptionsForSuperAdmin();
                 superAdminFunctions.executeSuperAdminFunction();
             } else {
                 System.out.println("Login password is wrong");

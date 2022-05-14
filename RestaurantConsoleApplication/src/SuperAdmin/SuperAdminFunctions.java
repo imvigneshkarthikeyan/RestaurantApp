@@ -12,7 +12,8 @@ public class SuperAdminFunctions implements Operations {
     public void viewData() {
         // View Admins available from admin map
         AdminDatabase adminDatabase = new AdminDatabase();
-        adminDatabase.printAdminData();        
+        adminDatabase.printAdminData(); 
+        drawDoubleLine();       
     }
 
     @Override
@@ -47,7 +48,8 @@ public class SuperAdminFunctions implements Operations {
         System.out.println("Enter the login id of the admin that has to be removed: ");
         adminDatabase.getAdminMap().remove(scanner.next());
         System.out.println("The admin DB after deleting: ");
-        adminDatabase.printAdminData();        
+        adminDatabase.printAdminData();    
+        drawDoubleLine();    
     }
 
     public void welcomeSuperAdmin() {
@@ -55,24 +57,31 @@ public class SuperAdminFunctions implements Operations {
     }
 
     public void displayOptionsForSuperAdmin() {
-        System.out.println("Enter the option: \n1. View All Admins \n2. Add new Admin \n3. Delete an admin");
+        System.out.println("Enter the option: \n1. View All Admins \n2. Add new Admin \n3. Delete an admin \n4. Logout");
+        drawLine();
     }
     
     public void executeSuperAdminFunction() {
-        int option = scanner.nextInt();
-        optionValidator(option, 1, 3);
-        switch (option) {
-            case 1:
-                viewData();
-                break;
-            case 2:
-                addData();
-                break;
-            case 3:
-                deleteData();
-                break;
-            default:
-                break;
+        int option = 1;
+        while (option == 1 || option == 2 || option == 3) {
+            displayOptionsForSuperAdmin();
+            option = scanner.nextInt();
+            optionValidator(option, 1, 4);
+            switch (option) {
+                case 1:
+                    viewData();
+                    break;
+                case 2:
+                    addData();
+                    break;
+                case 3:
+                    deleteData();
+                    break;
+                case 4:
+                    System.out.println("Logging out from Super admin portal");
+                default:
+                    break;
+            }
         }
     }
 }
