@@ -1,10 +1,11 @@
 package Admin;
-public class Admin {
+
+import User.User;
+
+public class Admin extends User {
     private String adminUniqueId;
     private String adminName;
     private String adminContactNumber;
-    private String adminLoginId;
-    private String adminLoginPassword;
 
     //Getters setters for private attributes
     public String getAdminUniqueId() {
@@ -31,35 +32,18 @@ public class Admin {
         this.adminContactNumber = adminContactNumber;
     }
 
-    public String getAdminLoginId() {
-        return this.adminLoginId;
-    }
-
-    public void setAdminLoginId(String adminLoginId) {
-        this.adminLoginId = adminLoginId;
-    }
-
-    public String getAdminLoginPassword() {
-        return this.adminLoginPassword;
-    }
-
-    public void setAdminLoginPassword(String adminLoginPassword) {
-        this.adminLoginPassword = adminLoginPassword;
-    }
-
     //Constructor for Admin
     public Admin(String adminUniqueId, String adminName, String adminContactNumber, String adminLoginPassword) {
+        super(adminLoginPassword);
         this.adminUniqueId = adminUniqueId;
         this.adminName = adminName;
         this.adminContactNumber = adminContactNumber;
-        this.adminLoginPassword = adminLoginPassword;
     }
 
     public Admin() {
         this.adminUniqueId = getAdminUniqueId();
         this.adminName = getAdminName();
         this.adminContactNumber = getAdminContactNumber();
-        this.adminLoginPassword = getAdminLoginPassword();
     }
 
     //To display admin information

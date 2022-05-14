@@ -11,7 +11,7 @@ public class CustomerAuthenticator {
         if (userDatabase.getUserMap().containsKey(enteredID)) {
             System.out.println("ID is crt, now enter the password.");
             String enteredPassword = readPassword();
-            if (userDatabase.getUserMap().get(enteredID).getUserLoginPassword().equals(enteredPassword)) {
+            if (userDatabase.getUserMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
             } else {
                 System.out.println("Password is wrong");

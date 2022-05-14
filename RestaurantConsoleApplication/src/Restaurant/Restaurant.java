@@ -1,13 +1,14 @@
 package Restaurant;
-public class Restaurant {
+
+import User.User;
+
+public class Restaurant extends User {
     private String restaurantUniqueNumber;
     private String restaurantName;
     private String restaurantType;
     private String restaurantLocation;
     private String restaurantPhoneNumber;
     private double restaurantAvgCost;
-    private String restaurantLoginId;
-    private String restaurantLoginPassword;
 
     //Getters Setters for private attributes
     public String getRestaurantUniqueNumber() {
@@ -58,34 +59,17 @@ public class Restaurant {
         this.restaurantAvgCost = restaurantAvgCost;
     }
 
-    public String getrestaurantLoginId() {
-        return this.restaurantLoginId;
-    }
-
-    public void setrestaurantLoginId(String restaurantLoginId) {
-        this.restaurantLoginId = restaurantLoginId;
-    }
-
-    public String getrestaurantLoginPassword() {
-        return this.restaurantLoginPassword;
-    }
-
-    public void setrestaurantLoginPassword(String restaurantLoginPassword) {
-        this.restaurantLoginPassword = restaurantLoginPassword;
-    }
-
     //Constructor for Restaurant
     public Restaurant(String restaurantUniqueNumber, String restaurantName, String retaurantType, 
     String restaurantLocation, String retaurantPhoneNumber, double restaurantAvgCost, 
     String restaurantLoginId, String restaurantLoginPassword) {
+        super(restaurantLoginId, restaurantLoginPassword);
         this.restaurantUniqueNumber = restaurantUniqueNumber;
         this.restaurantName = restaurantName;
         this.restaurantType = retaurantType;
         this.restaurantLocation = restaurantLocation;
         this.restaurantPhoneNumber = retaurantPhoneNumber;
         this.restaurantAvgCost = restaurantAvgCost;
-        this.restaurantLoginId = restaurantLoginId;
-        this.restaurantLoginPassword = restaurantLoginPassword;
     }
 
     public Restaurant() {
@@ -95,8 +79,6 @@ public class Restaurant {
         this.restaurantLocation = getRestaurantLocation();
         this.restaurantPhoneNumber = getRestaurantPhoneNumber();
         this.restaurantAvgCost = getRestaurantAvgCost();
-        this.restaurantLoginId = getrestaurantLoginId();
-        this.restaurantLoginPassword = getrestaurantLoginPassword();
     }
 
     // To display restaurant information

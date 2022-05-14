@@ -1,10 +1,10 @@
 package Customer;
-public class Customer {
+import User.User;
+
+public class Customer extends User {
     private String uniqueUserId;
     private String nameOfuser;
     private String phoneNumberOfUser;
-    private String userLoginId;
-    private String userLoginPassword;
     private boolean premiumUser;
 
     //Getters setters for private attributes
@@ -32,22 +32,6 @@ public class Customer {
         this.phoneNumberOfUser = phoneNumberOfUser;
     }
 
-    public String getUserLoginId() {
-        return this.userLoginId;
-    }
-
-    public void setUserLoginId(String userLoginId) {
-        this.userLoginId = userLoginId;
-    }
-
-    public String getUserLoginPassword() {
-        return this.userLoginPassword;
-    }
-
-    public void setUserLoginPassword(String userLoginPassword) {
-        this.userLoginPassword = userLoginPassword;
-    }
-
     public boolean isPremiumUser() {
         return this.premiumUser;
     }
@@ -59,10 +43,10 @@ public class Customer {
     //Constructor for user
     public Customer(String uniqueUserId, String nameOfUser, String phoneNumberofUser, 
     String userLoginPassword, boolean premiumUser) {
+        super(userLoginPassword);
         this.uniqueUserId = uniqueUserId;
         this.nameOfuser = nameOfUser;
         this.phoneNumberOfUser = phoneNumberofUser;
-        this.userLoginPassword = userLoginPassword;
         this.premiumUser = premiumUser;
     }
 
@@ -70,7 +54,6 @@ public class Customer {
         this.uniqueUserId = getUniqueUserId();
         this.nameOfuser = getNameOfuser();
         this.phoneNumberOfUser = getPhoneNumberOfUser();
-        this.userLoginPassword = getUserLoginPassword();
         this.premiumUser = isPremiumUser();
     }
 

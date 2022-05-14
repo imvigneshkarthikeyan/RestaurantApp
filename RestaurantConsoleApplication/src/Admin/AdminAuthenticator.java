@@ -11,7 +11,7 @@ public class AdminAuthenticator {
         if (adminDatabase.getAdminMap().containsKey(enteredID)) {
             System.out.println("ID is crt, now enter the password.");
             String enteredPassword = readPassword();
-            if (adminDatabase.getAdminMap().get(enteredID).getAdminLoginPassword().equals(enteredPassword)) {
+            if (adminDatabase.getAdminMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
             } else {
                 System.out.println("Password is wrong");
