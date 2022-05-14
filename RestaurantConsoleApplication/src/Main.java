@@ -8,6 +8,7 @@ import Restaurant.RestaurantDatabase;
 import User.UserAuthenticator;
 import User.UserDatabase;
 
+import static Utilities.ValidatorUtils.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {

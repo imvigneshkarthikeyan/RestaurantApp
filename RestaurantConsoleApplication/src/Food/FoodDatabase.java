@@ -4,11 +4,11 @@ import java.util.*;
 public class FoodDatabase {
     private Map<String, Food> foodMap = new HashMap<String, Food>();
 
-    public void setfoodMap(Map<String, Food> foodMap) {
+    public void setFoodMap(Map<String, Food> foodMap) {
         this.foodMap = foodMap;
     }
 
-    public Map<String, Food> getfoodMap() {
+    public Map<String, Food> getFoodMap() {
         return foodMap;
     }
     

@@ -1,6 +1,7 @@
 package Order;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import Food.Food;
 
@@ -10,7 +11,7 @@ public class Order {
     private String userName;
     private String restaurantID;
     private String restaurantName;
-    private ArrayList<Food> orderedFoodList;
+    private Map<Food, Integer> orderedFoodList;
 
     public String getOrderID() {
         return this.orderID;
@@ -52,22 +53,22 @@ public class Order {
         this.restaurantName = restaurantName;
     }
 
-    public ArrayList<Food> getOrderedFoodList() {
+    public Map<Food, Integer> getOrderedFoodList() {
         return orderedFoodList;
     }
 
-    public void setOrderedFoodList(ArrayList<Food> orderedFoodList) {
+    public void setOrderedFoodList(Map<Food, Integer> orderedFoodList) {
         this.orderedFoodList = orderedFoodList;
     }
 
     //Constructor for Order
-    public Order(String orderID, String userID, String userName, String restaurantID, String restaurantName, ArrayList<Food> orderedFoodList) {
+    public Order(String orderID, String userID, String userName, String restaurantID, String restaurantName, Map<Food, Integer> cartMap) {
         this.orderID = orderID;
         this.userID = userID;
         this.userName = userName;
         this.restaurantID = restaurantID;
         this.restaurantName = restaurantName;
-        this.orderedFoodList = orderedFoodList;
+        this.orderedFoodList = cartMap;
     }
 
     public Order() {

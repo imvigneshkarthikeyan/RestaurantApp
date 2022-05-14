@@ -6,7 +6,7 @@ import Food.Food;
 
 public class OrderDatabase {
     private ArrayList<Order> orderList = new ArrayList<>();
-    private ArrayList<Food> foods; //Check and change this!!!
+    private Map<Food, Integer> cartMap;
 
     public void setOrderList(ArrayList<Order> orderList) {
         this.orderList = orderList;
@@ -16,8 +16,8 @@ public class OrderDatabase {
         return orderList;
     }
 
-    Order order1 = new Order("O001", "vicky@abc", "Vicky", "a2bmad", "A2B", foods);
-    Order order2 = new Order("O002", "raj@abc", "Raj", "kfcnag", "KFC", foods);
+    Order order1 = new Order("O001", "vicky@abc", "Vicky", "a2bmad", "A2B", cartMap);
+    Order order2 = new Order("O002", "raj@abc", "Raj", "kfcnag", "KFC", cartMap);
 
     public void addOrderData() {
         Collections.addAll(orderList, order1, order2);

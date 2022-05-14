@@ -8,8 +8,8 @@ public class FoodSearch {
         drawDoubleLine();
         System.out.println("Enter food to search: ");
         String enteredFood = scanner.next();
-        if (foodDatabase.getfoodMap().containsKey(enteredFood)) {
-            System.out.println("Food found " + foodDatabase.getfoodMap().get(enteredFood));
+        if (foodDatabase.getFoodMap().containsKey(enteredFood)) {
+            System.out.println("Food found " + foodDatabase.getFoodMap().get(enteredFood));
         }
     }
 }
