@@ -1,10 +1,10 @@
-package User;
+package Customer;
 
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
-public class UserAuthenticator {
-    public void authenticateUser(UserDatabase userDatabase) {
+public class CustomerAuthenticator {
+    public void authenticateUser(CustomerDatabase userDatabase) {
         drawDoubleLine();
         System.out.println("Enter the Login Id: ");
         String enteredID = scanner.next();

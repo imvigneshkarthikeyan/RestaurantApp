@@ -1,5 +1,5 @@
-package User;
-public class User {
+package Customer;
+public class Customer {
     private String uniqueUserId;
     private String nameOfuser;
     private String phoneNumberOfUser;
@@ -57,7 +57,7 @@ public class User {
     }
 
     //Constructor for user
-    public User(String uniqueUserId, String nameOfUser, String phoneNumberofUser, 
+    public Customer(String uniqueUserId, String nameOfUser, String phoneNumberofUser, 
     String userLoginPassword, boolean premiumUser) {
         this.uniqueUserId = uniqueUserId;
         this.nameOfuser = nameOfUser;
@@ -66,7 +66,7 @@ public class User {
         this.premiumUser = premiumUser;
     }
 
-    public User() {
+    public Customer() {
         this.uniqueUserId = getUniqueUserId();
         this.nameOfuser = getNameOfuser();
         this.phoneNumberOfUser = getPhoneNumberOfUser();

@@ -1,12 +1,12 @@
 import Admin.AdminDatabase;
+import Customer.CustomerAuthenticator;
+import Customer.CustomerDatabase;
 import Admin.AdminAuthenticator;
 import Food.FoodDatabase;
 import Food.FoodSearch;
 import Restaurant.Restaurant;
 import Restaurant.RestaurantAuthenticator;
 import Restaurant.RestaurantDatabase;
-import User.UserAuthenticator;
-import User.UserDatabase;
 
 import static Utilities.ValidatorUtils.*;
 
