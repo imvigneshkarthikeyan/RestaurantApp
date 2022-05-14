@@ -1,7 +1,8 @@
 package Order;
 
-import Food.Food;
 import java.util.*;
+
+import Restaurant.Food;
 
 public class Cart {
     private Map<Food, Integer> cartMap = new HashMap<Food, Integer>();

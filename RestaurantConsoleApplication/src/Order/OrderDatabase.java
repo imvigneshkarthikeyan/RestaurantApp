@@ -2,7 +2,7 @@ package Order;
 
 import java.util.*;
 
-import Food.Food;
+import Restaurant.Food;
 
 public class OrderDatabase {
     private ArrayList<Order> orderList = new ArrayList<>();

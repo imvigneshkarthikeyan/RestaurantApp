@@ -1,5 +1,6 @@
 package Restaurant;
 
+import java.util.*;
 import User.User;
 
 public class Restaurant extends User {
@@ -8,6 +9,15 @@ public class Restaurant extends User {
     private String restaurantLocation;
     private String restaurantPhoneNumber;
     private double restaurantAvgCost;
+    private Map<String, Food> menuCard;
+
+    public Map<String, Food> getMenuCard() {
+        return menuCard;
+    }
+
+    public void setMenuCard(Map<String, Food> menuCard) {
+        this.menuCard = menuCard;
+    }
 
     //Getters Setters for private attributes
     public String getRestaurantName() {
@@ -50,16 +60,36 @@ public class Restaurant extends User {
         this.restaurantAvgCost = restaurantAvgCost;
     }
 
+    @Override
+    public void setLoginID(String loginID) {
+        super.setLoginID(loginID);
+    }
+    @Override
+    public String getLoginID() {
+        return super.getLoginID();
+    }
+
+    @Override
+    public void setLoginPassword(String loginPassword) {
+        super.setLoginPassword(loginPassword);
+    }
+    @Override
+    public String getLoginPassword() {
+        return super.getLoginPassword();
+    }
+
+
     //Constructor for Restaurant
     public Restaurant(String restaurantName, String retaurantType, 
     String restaurantLocation, String retaurantPhoneNumber, double restaurantAvgCost, 
-    String restaurantLoginId, String restaurantLoginPassword) {
+    String restaurantLoginId, String restaurantLoginPassword, Map<String, Food> menuCard) {
         super(restaurantLoginId, restaurantLoginPassword);
         this.restaurantName = restaurantName;
         this.restaurantType = retaurantType;
         this.restaurantLocation = restaurantLocation;
         this.restaurantPhoneNumber = retaurantPhoneNumber;
         this.restaurantAvgCost = restaurantAvgCost;
+        this.menuCard = menuCard;
     }
 
     public Restaurant() {
@@ -68,6 +98,7 @@ public class Restaurant extends User {
         this.restaurantLocation = getRestaurantLocation();
         this.restaurantPhoneNumber = getRestaurantPhoneNumber();
         this.restaurantAvgCost = getRestaurantAvgCost();
+        this.menuCard = getMenuCard();
     }
 
     // To display restaurant information
