@@ -7,7 +7,6 @@ import static Utilities.ValidatorUtils.*;
 
 public class SuperAdminFunctions implements Operations {
 
-
     @Override
     public void viewData() {
         // View Admins available from admin map
