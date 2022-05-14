@@ -39,7 +39,7 @@ public class MainApplication {
                     break;
                 case 4:
                     CustomerAuthenticator customerAuthenticator = new CustomerAuthenticator();
-                    customerAuthenticator.authenticateCustomer(customerDatabase);
+                    customerAuthenticator.showSignUpSignIn(customerDatabase);
                     break;
                 case 5:
                     System.out.println("Quitting the application");
