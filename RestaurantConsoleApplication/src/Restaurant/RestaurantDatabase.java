@@ -3,6 +3,7 @@ package Restaurant;
 import java.util.*;
 
 public class RestaurantDatabase {
+    Restaurant restaurant = new Restaurant();
     private ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>() {{
         add(new Restaurant("A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2bmad@abc.com", "123", a2bMenu));
         add(new Restaurant("KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfcnag@abc.com", "123", kfcMenu));

@@ -81,7 +81,7 @@ public class AdminFunctions {
                     removeCustomerData(customerDatabase);
                     break;
                 case 6:
-                    System.out.println("Logging out from Super admin portal");
+                    System.out.println("Logging out from Admin portal");
                 default:
                     break;
             }
