@@ -26,7 +26,6 @@ public class MainApplication {
                 break;
             case 2:
                 AdminDatabase adminDatabase = new AdminDatabase();
-                adminDatabase.addAdminData();
                 AdminAuthenticator adminAuthenticator = new AdminAuthenticator();
                 adminAuthenticator.authenticateAdmin(adminDatabase);
                 break;

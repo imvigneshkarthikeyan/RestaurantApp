@@ -14,6 +14,10 @@ public class SuperAdmin {
             String enteredLoginPassword = readPassword();
             if (enteredLoginPassword.equals(SUPER_ADMIN_LOGIN_PASS)) {
                 System.out.println("The password is correct....Entering into SuperAdminPanel");
+                SuperAdminFunctions superAdminFunctions = new SuperAdminFunctions();
+                superAdminFunctions.welcomeSuperAdmin();
+                superAdminFunctions.displayOptionsForSuperAdmin();
+                superAdminFunctions.executeSuperAdminFunction();
             } else {
                 System.out.println("Login password is wrong");
             }
