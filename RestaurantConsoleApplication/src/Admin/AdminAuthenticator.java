@@ -13,6 +13,8 @@ public class AdminAuthenticator {
             String enteredPassword = readPassword();
             if (adminDatabase.getAdminMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
+                AdminFunctions adminFunctions = new AdminFunctions();
+                adminFunctions.executeAdminFunction();
             } else {
                 System.out.println("Password is wrong");
             }

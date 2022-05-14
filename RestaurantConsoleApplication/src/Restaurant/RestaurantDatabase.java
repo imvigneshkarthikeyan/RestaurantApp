@@ -1,10 +1,12 @@
 package Restaurant;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class RestaurantDatabase {
-    private ArrayList<Restaurant> restaurantList = new ArrayList<>();
+    private ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>() {{
+        add(new Restaurant("A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2bmad@abc.com", "123"));
+        add(new Restaurant("KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfcnag@abc.com", "123"));
+    }};
 
     public void setRestaurantList(ArrayList<Restaurant> restaurantList) {
         this.restaurantList = restaurantList;
@@ -14,15 +16,16 @@ public class RestaurantDatabase {
         return restaurantList;
     }
 
-    Restaurant restaurant1 = new Restaurant("A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2bmad@abc.com", "123");
-    Restaurant restaurant2 = new Restaurant("KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfcnag@abc.com", "123");
-
-    public void addRestaurantData() {
-        Collections.addAll(restaurantList, restaurant1,restaurant2);
-    }
-
     public void printRestaurantData() {
         for (Restaurant restaurant : restaurantList) {
+            System.out.println(restaurant);
+        }
+    }
+
+    public void printRestaurantDataWithIndex() {
+        int index = 0;
+        for (Restaurant restaurant : restaurantList) {
+            System.out.print("Index Number: " + index++ + "| ");
             System.out.println(restaurant);
         }
     }

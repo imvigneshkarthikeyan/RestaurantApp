@@ -33,13 +33,11 @@ public class MainApplication {
                     break;
                 case 3:
                     RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
-                    restaurantDatabase.addRestaurantData();
                     RestaurantAuthenticator restaurantAuthenticator = new RestaurantAuthenticator();
                     restaurantAuthenticator.authenticateRestaurant(restaurantDatabase);
                     break;
                 case 4:
                     CustomerDatabase customerDatabase = new CustomerDatabase();
-                    customerDatabase.addCustomerData();
                     CustomerAuthenticator customerAuthenticator = new CustomerAuthenticator();
                     customerAuthenticator.authenticateCustomer(customerDatabase);
                     break;

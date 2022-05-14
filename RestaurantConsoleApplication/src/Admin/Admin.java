@@ -7,6 +7,24 @@ public class Admin extends User {
     private String adminContactNumber;
 
     //Getters setters for private attributes
+    @Override
+    public void setLoginID(String loginID) {
+        super.setLoginID(loginID);
+    }
+    @Override
+    public String getLoginID() {
+        return super.getLoginID();
+    }
+
+    @Override
+    public void setLoginPassword(String loginPassword) {
+        super.setLoginPassword(loginPassword);
+    }
+    @Override
+    public String getLoginPassword() {
+        return super.getLoginPassword();
+    }
+
     public String getAdminName() {
         return this.adminName;
     }
