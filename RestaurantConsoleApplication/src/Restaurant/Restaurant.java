@@ -3,7 +3,6 @@ package Restaurant;
 import User.User;
 
 public class Restaurant extends User {
-    private String restaurantUniqueNumber;
     private String restaurantName;
     private String restaurantType;
     private String restaurantLocation;
@@ -11,14 +10,6 @@ public class Restaurant extends User {
     private double restaurantAvgCost;
 
     //Getters Setters for private attributes
-    public String getRestaurantUniqueNumber() {
-        return this.restaurantUniqueNumber;
-    }
-
-    public void setRestaurantUniqueNumber(String restaurantUniqueNumber) {
-        this.restaurantUniqueNumber = restaurantUniqueNumber;
-    }
-
     public String getRestaurantName() {
         return this.restaurantName;
     }
@@ -60,11 +51,10 @@ public class Restaurant extends User {
     }
 
     //Constructor for Restaurant
-    public Restaurant(String restaurantUniqueNumber, String restaurantName, String retaurantType, 
+    public Restaurant(String restaurantName, String retaurantType, 
     String restaurantLocation, String retaurantPhoneNumber, double restaurantAvgCost, 
     String restaurantLoginId, String restaurantLoginPassword) {
         super(restaurantLoginId, restaurantLoginPassword);
-        this.restaurantUniqueNumber = restaurantUniqueNumber;
         this.restaurantName = restaurantName;
         this.restaurantType = retaurantType;
         this.restaurantLocation = restaurantLocation;
@@ -73,7 +63,6 @@ public class Restaurant extends User {
     }
 
     public Restaurant() {
-        this.restaurantUniqueNumber = getRestaurantUniqueNumber();
         this.restaurantName = getRestaurantName();
         this.restaurantType = getRestaurantType();
         this.restaurantLocation = getRestaurantLocation();
@@ -84,8 +73,7 @@ public class Restaurant extends User {
     // To display restaurant information
     @Override
     public String toString() {
-        return "Restaurant ID Number: " + restaurantUniqueNumber
-                + " | Restaurant Name: " + restaurantName
+        return "Restaurant Name: " + restaurantName
                 + " | Restaurant Type: " + restaurantType
                 + " | Restaurant Location: " + restaurantLocation
                 + " | Restaurant Conatct: " + restaurantPhoneNumber

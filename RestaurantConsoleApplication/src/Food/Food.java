@@ -1,19 +1,11 @@
 package Food;
 public class Food {
-    private String foodUniqueNumber;
     private String foodName;
     private String foodType;
     private double foodCost;
     private boolean veg;
 
     // Getters Setters for private attributes
-	public String getFoodIdNumber() {
-		return this.foodUniqueNumber;
-	}
-	public void setFoodIdNumber(String foodUniqueNumber) {
-		this.foodUniqueNumber = foodUniqueNumber;
-	}
-
 	public String getFoodName() {
 		return this.foodName;
 	}
@@ -43,15 +35,13 @@ public class Food {
 	}
 
     //Constructor for Food
-    public Food(String foodUniqueNumber, String foodType, double foodCost, boolean veg) {
-        this.foodUniqueNumber = foodUniqueNumber;
+    public Food(String foodType, double foodCost, boolean veg) {
         this.foodType = foodType;
         this.foodCost = foodCost;
         this.veg = veg;
     }
 
     public Food() {
-        this.foodUniqueNumber = getFoodIdNumber();
         this.foodType = getFoodType();
         this.foodCost = getFoodCost();
         this.veg = isVeg();
@@ -60,8 +50,7 @@ public class Food {
     //To display food information
     @Override
     public String toString() {
-        return "Food ID: " + foodUniqueNumber
-                + " | Food Type: " + foodType
+        return "Food Type: " + foodType
                 + " | Food Cost: ₹ " + foodCost
                 + " | Is Veg: " + veg;
     }

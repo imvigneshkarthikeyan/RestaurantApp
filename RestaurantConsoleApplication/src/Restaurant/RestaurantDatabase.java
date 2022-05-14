@@ -14,8 +14,8 @@ public class RestaurantDatabase {
         return restaurantList;
     }
 
-    Restaurant restaurant1 = new Restaurant("RES001", "A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2bmad@abc.com", "123");
-    Restaurant restaurant2 = new Restaurant("RES002", "KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfcnag@abc.com", "123");
+    Restaurant restaurant1 = new Restaurant("A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2bmad@abc.com", "123");
+    Restaurant restaurant2 = new Restaurant("KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfcnag@abc.com", "123");
 
     public void addRestaurantData() {
         Collections.addAll(restaurantList, restaurant1,restaurant2);

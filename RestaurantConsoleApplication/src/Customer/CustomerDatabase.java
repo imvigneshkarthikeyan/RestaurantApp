@@ -14,9 +14,9 @@ public class CustomerDatabase {
     }
 
     public void addCustomerData() {
-        Customer customer1 = new Customer("ABC34578", "Vicky", "9791674810", "123", true);
+        Customer customer1 = new Customer("Vicky", "9791674810", "123", true);
         customerMap.put("vicky@gmail.com", customer1);
-        Customer customer2 = new Customer("ABC97812", "Rahul", "8791327891", "123", false);
+        Customer customer2 = new Customer("Rahul", "8791327891", "123", false);
         customerMap.put("rahul@gmail.com", customer2);
     }
 
