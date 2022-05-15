@@ -1,18 +1,18 @@
 package Restaurant;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import static Utilities.ValidatorUtils.*;
 import static Utilities.UiUtils.*;
 
 public class RestaurantFunctions {
 
-    public void viewData(RestaurantDatabase restaurantDatabase) {
-        Restaurant restaurant = new Restaurant();
-        System.out.println(Arrays.asList(restaurant.getMenuCard()));
+    public void viewData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        System.out.println(restaurantDatabase.foodMap.get(restaurant.getLoginID()));
     }
 
-    public void addData(RestaurantDatabase restaurantDatabase) {
-        Restaurant restaurant = new Restaurant();
+    public void addData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         Food food = new Food();
         System.out.println("Enter the food name: ");
         food.setFoodName(scanner.next());
@@ -27,20 +27,41 @@ public class RestaurantFunctions {
         } else {
         food.setVeg(false);
         }
-        restaurant.getMenuCard().put(food.getFoodName(), new Food(food.getFoodType(), food.getFoodCost(), food.isVeg()));
+        if (restaurantDatabase.foodMap.get(restaurant.getLoginID())==null) {
+            restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {
+                {
+                    add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
+                }
+            });
+        } else {
+            restaurantDatabase.foodMap.get(restaurant.getLoginID()).add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
+        }
     }
 
-    public void deleteData(RestaurantDatabase restaurantDatabase) {
-        Restaurant restaurant = new Restaurant();
-        System.out.println("Enter the food to be removed: ");
-        restaurant.getMenuCard().remove(scanner.next());
+    public void deleteData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        System.out.println("Enter the index of the food to be removed: ");
+        Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
+        // for (ArrayList<Food> food : restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator()) {
+        //     System.out.println(Arrays.asList(food));
+        // }
+        int i = 0;
+        while (foodItems.hasNext()) {
+            System.out.println(i + " | " + foodItems.next());
+            i++;
+        }
+        restaurantDatabase.foodMap.get(restaurant.getLoginID()).remove(scanner.nextInt());
     }
 
-    public void editData(RestaurantDatabase restaurantDatabase) {
-        Restaurant restaurant = new Restaurant();
-        System.out.println("Enter the food name whose cost has to be updated: ");
+    public void editData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        System.out.println("Enter the index of the food whose cost to be updated: ");
+        Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
+        int i = 0;
+        while (foodItems.hasNext()) {
+            System.out.println(i + " | " + foodItems.next());
+            i++;
+        }
         System.out.println("Enter the cost that has to be updated: ");
-        restaurant.getMenuCard().get(scanner.next()).setFoodCost(scanner.nextDouble());
+        restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(scanner.nextInt()).setFoodCost(scanner.nextDouble());
     }
 
     public void viewOrders() {
@@ -52,24 +73,28 @@ public class RestaurantFunctions {
         drawLine();
     }
 
-    public void executeRestaurantFunction(RestaurantDatabase restaurantDatabase) {
+    public void executeRestaurantFunction(String enteredID, RestaurantDatabase restaurantDatabase) {
+        Restaurant restaurant = new Restaurant();
         int option = 1;
+        restaurant.setLoginID(enteredID);
+        System.out.println(restaurant.getLoginID());
         while (option == 1 || option == 2 || option == 3 || option == 4 || option == 5) {
+            drawDoubleLine();
             displayOptionsForRestaurant();
             option = scanner.nextInt();
             optionValidator(option, 1, 6);
             switch (option) {
                 case 1:
-                    viewData(restaurantDatabase);
+                    viewData(restaurant, restaurantDatabase);
                     break;
                 case 2:
-                    addData(restaurantDatabase);
+                    addData(restaurant, restaurantDatabase);
                     break;
                 case 3:
-                    deleteData(restaurantDatabase);
+                    deleteData(restaurant, restaurantDatabase);
                     break;
                 case 4:
-                    editData(restaurantDatabase);
+                    editData(restaurant, restaurantDatabase);
                     break;
                 case 5:
                     viewOrders();

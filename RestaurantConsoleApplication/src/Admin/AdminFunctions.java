@@ -31,7 +31,7 @@ public class AdminFunctions {
         restaurant.setRestaurantPhoneNumber(scanner.next());
         System.out.println("Enter the average cost for 2: ");
         restaurant.setRestaurantAvgCost(scanner.nextDouble());
-        restaurantDatabase.getRestaurantList().add(new Restaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantLocation(), restaurant.getRestaurantPhoneNumber(), restaurant.getRestaurantAvgCost(), restaurant.getLoginID(), restaurant.getLoginPassword(), restaurant.getMenuCard()));
+        restaurantDatabase.getRestaurantList().add(new Restaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantLocation(), restaurant.getRestaurantPhoneNumber(), restaurant.getRestaurantAvgCost(), restaurant.getLoginID(), restaurant.getLoginPassword()));
         
     }
 

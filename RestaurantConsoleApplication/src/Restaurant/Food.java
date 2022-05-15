@@ -35,13 +35,15 @@ public class Food {
 	}
 
     //Constructor for Food
-    public Food(String foodType, double foodCost, boolean veg) {
+    public Food(String foodName, String foodType, double foodCost, boolean veg) {
+		this.foodName = foodName;
         this.foodType = foodType;
         this.foodCost = foodCost;
         this.veg = veg;
     }
 
     public Food() {
+		this.foodName = getFoodName();
         this.foodType = getFoodType();
         this.foodCost = getFoodCost();
         this.veg = isVeg();
@@ -50,7 +52,8 @@ public class Food {
     //To display food information
     @Override
     public String toString() {
-        return "Food Type: " + foodType
+        return "Food Name: " + foodName
+				+ " | Food Type: " + foodType
                 + " | Food Cost: ₹ " + foodCost
                 + " | Is Veg: " + veg;
     }
