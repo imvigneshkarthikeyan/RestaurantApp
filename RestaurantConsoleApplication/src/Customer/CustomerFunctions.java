@@ -3,6 +3,9 @@ package Customer;
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
+import java.util.ArrayList;
+
+import Order.CartItem;
 import Restaurant.Food;
 import Restaurant.Restaurant;
 import Restaurant.RestaurantDatabase;
@@ -29,7 +32,7 @@ public class CustomerFunctions {
         customerDatabase.getCustomerMap().put(customer.getLoginID(), new Customer(customer.getNameOfuser(), customer.getPhoneNumberOfUser(), customer.getLoginPassword(), customer.isPremiumUser()));
     }
 
-    public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase) {
+    public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, Customer customer) {
         drawDoubleLine();
         System.out.println("Enter the Login Id: ");
         String enteredID = scanner.next();
@@ -38,14 +41,14 @@ public class CustomerFunctions {
             String enteredPassword = readPassword();
             if (customerDatabase.getCustomerMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
-                executeCustomerFunction(restaurantDatabase);
+                executeCustomerFunction(enteredID, restaurantDatabase, customer, customerDatabase);
             } else {
                 System.out.println("Password is wrong");
             }
         }
     }
 
-    public void searchRestaurant(RestaurantDatabase restaurantDatabase) {
+    public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase, Customer customer, CustomerDatabase customerDatabase) {
         drawDoubleLine();
         restaurantDatabase.printRestaurantData();
         System.out.println("Enter the name of Restaurant");
@@ -55,14 +58,14 @@ public class CustomerFunctions {
                 System.out.println("RestaurantFound!");
                 System.out.println(restaurant);
                 // Function for list foods and search food
-                searchFood(searchedRestaurant, restaurant, restaurantDatabase);
+                searchFood(enteredID, searchedRestaurant, restaurant, restaurantDatabase, customer, customerDatabase);
             } else {
                 System.out.println("The restaurant is not available, try other");
             }
         }
     }
 
-    public void searchFood(String searchedRestaurant, Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+    public void searchFood(String enteredID, String searchedRestaurant, Restaurant restaurant, RestaurantDatabase restaurantDatabase, Customer customer, CustomerDatabase customerDatabase) {
         drawDoubleLine();
         restaurant.setRestaurantName(searchedRestaurant);
         String restaurantID = restaurant.getRestaurantName().toLowerCase() + "@abc.com";
@@ -75,16 +78,35 @@ public class CustomerFunctions {
                 System.out.println("FoodFound!");
                 System.out.println(food);
                 //Function to add food to cart
+                addFoodToCart(restaurant, enteredID, food, customerDatabase, customer);
             } else {
                 System.out.println("The food is not available, try different!");
             }
         }
     }
 
+    public void addFoodToCart(Restaurant restaurant, String enteredID, Food food, CustomerDatabase customerDatabase, Customer customer) {
+        System.out.println("Enter the quantity to be added: ");
+        if (customerDatabase.getCartItems().get(enteredID)==null) {
+            customerDatabase.getCartItems().put(enteredID, new ArrayList<CartItem>(){{
+                add(new CartItem(restaurant.getRestaurantName(), restaurant.getLoginID(), customer.getNameOfuser(), food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg(), scanner.nextInt()));
+            }});
+        } else {
+            customerDatabase.getCartItems().get(enteredID).add(new CartItem(restaurant.getRestaurantName(),
+                    restaurant.getLoginID(), customer.getNameOfuser(), food.getFoodName(), food.getFoodType(),
+                    food.getFoodCost(), food.isVeg(), scanner.nextInt()));
+        }
+        
+    }
+
+    public void viewHistory(String enteredID, CustomerDatabase customerDatabase) {
+        System.out.println(customerDatabase.getCartItems().get(enteredID));
+    }
+
     public void displayOptionsForCustomer() {
         System.out.println("Enter 1: Search Restaurant \nEnter 2: View History \nEnter 3: Go back");
     }
-    public void executeCustomerFunction(RestaurantDatabase restaurantDatabase) {
+    public void executeCustomerFunction(String enteredID, RestaurantDatabase restaurantDatabase, Customer customer, CustomerDatabase customerDatabase) {
         int option = 1;
         while (option == 1 || option == 2) {
             drawDoubleLine();
@@ -93,13 +115,13 @@ public class CustomerFunctions {
             optionValidator(option, 1, 3);
             switch (option) {
                 case 1:
-                    searchRestaurant(restaurantDatabase);
+                    searchRestaurant(enteredID, restaurantDatabase, customer, customerDatabase);
                     break;
                 case 2:
-                    //ViewHistory
+                    viewHistory(enteredID, customerDatabase);
                     break;
                 case 3:
-                    System.out.println("Logging out from Restaurant portal");
+                    System.out.println("Logging out from Customer portal");
                 default:
                     break;
             }

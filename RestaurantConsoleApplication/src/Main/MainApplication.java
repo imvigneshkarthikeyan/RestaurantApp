@@ -19,6 +19,7 @@ public class MainApplication {
         AdminDatabase adminDatabase = new AdminDatabase();
         RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
         CustomerDatabase customerDatabase = new CustomerDatabase();
+        Customer customer = new Customer();
         while (option == 1 || option == 2 || option == 3 || option ==4) {
             System.out.println("Enter to Login as: \n1. SuperAdmin \n2. Admin \n3. Restaurant \n4. Customer \n5. Quit");
             drawLine();
@@ -39,7 +40,7 @@ public class MainApplication {
                     break;
                 case 4:
                     CustomerAuthenticator customerAuthenticator = new CustomerAuthenticator();
-                    customerAuthenticator.showSignUpSignIn(restaurantDatabase, customerDatabase);
+                    customerAuthenticator.showSignUpSignIn(restaurantDatabase, customerDatabase, customer);
                     break;
                 case 5:
                     System.out.println("Quitting the application");
