@@ -5,8 +5,8 @@ import java.util.*;
 public class RestaurantDatabase {
     Restaurant restaurant = new Restaurant();
     private ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>() {{
-        add(new Restaurant("A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2bmad@abc.com", "123"));
-        add(new Restaurant("KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfcnag@abc.com", "123"));
+        add(new Restaurant("A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2b@abc.com", "123"));
+        add(new Restaurant("KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfc@abc.com", "123"));
     }};
 
     public void setRestaurantList(ArrayList<Restaurant> restaurantList) {
@@ -32,15 +32,23 @@ public class RestaurantDatabase {
     }
 
     protected Map<String, ArrayList<Food>> foodMap = new HashMap<String, ArrayList<Food>>(){{
-        put("a2bmad@abc.com", new ArrayList<Food>(){{
+        put("a2b@abc.com", new ArrayList<Food>(){{
             add(new Food("Dosa", "South-Indian", 40, true));
             add(new Food("Chapathi", "North-Indian", 50, true));
         }});
-        put("kfcnag@abc.com", new ArrayList<Food>(){{
+        put("kfc@abc.com", new ArrayList<Food>(){{
             add(new Food("Rice & Gravy", "Indian", 300, true));
             add(new Food("Crispy Chicken", "FastFood", 200, false));
         }});
     }};
+
+    public Map<String, ArrayList<Food>> getFoodMap() {
+        return foodMap;
+    }
+
+    public void setFoodMap(Map<String, ArrayList<Food>> foodMap) {
+        this.foodMap = foodMap;
+    }
 
     public void printFoodData(Map<String, ArrayList<Food>> foodMap) {
         System.out.println(Arrays.asList(foodMap));

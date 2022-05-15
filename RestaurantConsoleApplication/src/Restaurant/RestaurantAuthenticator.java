@@ -15,7 +15,7 @@ public class RestaurantAuthenticator {
                 if (restaurant.getLoginPassword().equals(enteredPassword)) {
                     System.out.println("Login Successful");
                     RestaurantFunctions restaurantFunctions = new RestaurantFunctions();
-                    restaurantFunctions.executeRestaurantFunction(enteredID, restaurantDatabase);
+                    restaurantFunctions.executeRestaurantFunction(enteredID, restaurant, restaurantDatabase);
                 }
             } else {
                 System.out.println("Invalid id");

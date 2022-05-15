@@ -73,8 +73,7 @@ public class RestaurantFunctions {
         drawLine();
     }
 
-    public void executeRestaurantFunction(String enteredID, RestaurantDatabase restaurantDatabase) {
-        Restaurant restaurant = new Restaurant();
+    public void executeRestaurantFunction(String enteredID, Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         int option = 1;
         restaurant.setLoginID(enteredID);
         System.out.println(restaurant.getLoginID());
