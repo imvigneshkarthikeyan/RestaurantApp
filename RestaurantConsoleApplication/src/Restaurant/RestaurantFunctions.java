@@ -56,15 +56,16 @@ public class RestaurantFunctions {
     }
 
     public void editData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
-        System.out.println("Enter the index of the food whose cost to be updated: ");
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
         int i = 0;
         while (foodItems.hasNext()) {
             System.out.println(i + " | " + foodItems.next());
             i++;
         }
+        System.out.println("Enter the index of the food whose cost to be updated: ");
+        int index = scanner.nextInt();
         System.out.println("Enter the cost that has to be updated: ");
-        restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(scanner.nextInt()).setFoodCost(scanner.nextDouble());
+        restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(index).setFoodCost(scanner.nextDouble());
     }
 
     public void viewOrders(OrderDatabase orderDatabase, Restaurant restaurant) {
