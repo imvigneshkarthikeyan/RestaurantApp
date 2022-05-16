@@ -59,8 +59,6 @@ public class CustomerFunctions {
                 System.out.println(restaurant);
                 // Function for list foods and search food
                 showOptionsForSearchFoodAndCart(enteredID, restaurantDatabase, customerDatabase, searchedRestaurant, restaurant, orderDatabase);
-            } else {
-                System.out.println("The restaurant is not available, try other");
             }
         }
     }
@@ -195,8 +193,7 @@ public class CustomerFunctions {
         System.out.println("Enter the index number of the cart item to be removed: ");
         int itemToBeRemoved = scanner.nextInt();
         customerDatabase.getCartItems().get(enteredID).remove(itemToBeRemoved);
-        System.out.println("Items after removal");
-        viewCart(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+        System.out.println("Cart after removal is: " + customerDatabase.getCartItems().get(enteredID));
     }
 
     public void removeAllFromCart(CustomerDatabase customerDatabase) {
