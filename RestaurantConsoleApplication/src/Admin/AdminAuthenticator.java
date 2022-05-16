@@ -16,6 +16,7 @@ public class AdminAuthenticator {
             String enteredPassword = readPassword();
             if (adminDatabase.getAdminMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
+                displayLineTitleAndUser("Welcome", "Admin " + adminDatabase.getAdminMap().get(enteredID).getAdminName());
                 AdminFunctions adminFunctions = new AdminFunctions();
                 adminFunctions.executeAdminFunction(restaurantDatabase, customerDatabase);
             }

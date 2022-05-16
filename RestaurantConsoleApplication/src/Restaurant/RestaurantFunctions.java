@@ -83,7 +83,7 @@ public class RestaurantFunctions {
     public void executeRestaurantFunction(String enteredID, Restaurant restaurant, RestaurantDatabase restaurantDatabase, OrderDatabase orderDatabase) {
         int option = 1;
         restaurant.setLoginID(enteredID);
-        System.out.println(restaurant.getLoginID());
+        // System.out.println(restaurant.getLoginID());
         while (option == 1 || option == 2 || option == 3 || option == 4 || option == 5) {
             drawDoubleLine();
             displayOptionsForRestaurant();

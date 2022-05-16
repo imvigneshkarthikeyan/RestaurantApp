@@ -44,6 +44,7 @@ public class CustomerFunctions {
             String enteredPassword = readPassword();
             if (customerDatabase.getCustomerMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
+                displayLineTitleAndUser("Welcome ", customerDatabase.getCustomerMap().get(enteredID).getNameOfuser());
                 executeCustomerFunction(enteredID, restaurantDatabase, customerDatabase, orderDatabase, restaurant);
             }
         }

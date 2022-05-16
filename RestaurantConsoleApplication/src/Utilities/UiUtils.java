@@ -17,7 +17,7 @@ public class UiUtils {
 
     public static void displayLineWithTitle(String messageTitle) {
         drawDoubleLine();
-        System.out.println("\033[0;1m==================================================================== " + messageTitle + " =====================================================================\033[0;0m");
+        System.out.println("\033[0;1m=============================================================== " + messageTitle + " ================================================================\033[0;0m");
         drawDoubleLine();
     }
 }
