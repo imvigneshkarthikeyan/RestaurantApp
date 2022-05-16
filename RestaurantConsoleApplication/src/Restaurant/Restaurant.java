@@ -4,7 +4,7 @@ import User.User;
 
 public class Restaurant extends User {
     private String restaurantName;
-    private String restaurantType;
+    private RestaurantTypeEnum restaurantType;
     private String restaurantLocation;
     private String restaurantPhoneNumber;
     private double restaurantAvgCost;
@@ -18,11 +18,11 @@ public class Restaurant extends User {
         this.restaurantName = restaurantName;
     }
 
-    public String getRestaurantType() {
+    public RestaurantTypeEnum getRestaurantType() {
         return this.restaurantType;
     }
 
-    public void setRestaurantType(String restaurantType) {
+    public void setRestaurantType(RestaurantTypeEnum restaurantType) {
         this.restaurantType = restaurantType;
     }
 
@@ -70,7 +70,8 @@ public class Restaurant extends User {
 
 
     //Constructor for Restaurant
-    public Restaurant(String restaurantName, String retaurantType, 
+    public Restaurant(String restaurantName, 
+            RestaurantTypeEnum retaurantType, 
     String restaurantLocation, String retaurantPhoneNumber, double restaurantAvgCost, 
     String restaurantLoginId, String restaurantLoginPassword) {
         super(restaurantLoginId, restaurantLoginPassword);

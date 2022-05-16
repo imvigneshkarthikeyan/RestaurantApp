@@ -4,9 +4,15 @@ import java.util.*;
 
 public class RestaurantDatabase {
     Restaurant restaurant = new Restaurant();
+    RestaurantTypeEnum type1 = RestaurantTypeEnum.Cafe;
+    RestaurantTypeEnum type2 = RestaurantTypeEnum.CasualDining;
+    RestaurantTypeEnum type3 = RestaurantTypeEnum.MultiCusine;
+    RestaurantTypeEnum type4 = RestaurantTypeEnum.Pizzerias;
+    RestaurantTypeEnum type5 = RestaurantTypeEnum.FastFood;
+
     private ArrayList<Restaurant> restaurantList = new ArrayList<Restaurant>() {{
-        add(new Restaurant("A2B", "MultiCusine", "Madipakkam", "044-22423932", 400, "a2b@abc.com", "123"));
-        add(new Restaurant("KFC", "FastFood", "Nanganallur", "87913287912", 600, "kfc@abc.com", "123"));
+        add(new Restaurant("A2B", type2, "Madipakkam", "044-22423932", 400, "a2b@abc.com", "123"));
+        add(new Restaurant("KFC", type4, "Nanganallur", "87913287912", 600, "kfc@abc.com", "123"));
     }};
 
     public void setRestaurantList(ArrayList<Restaurant> restaurantList) {

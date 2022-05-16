@@ -2,6 +2,8 @@ package Admin;
 
 import Restaurant.Restaurant;
 import Restaurant.RestaurantDatabase;
+import Restaurant.RestaurantTypeEnum;
+
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
@@ -23,8 +25,32 @@ public class AdminFunctions {
         restaurant.setLoginPassword(scanner.next());
         System.out.println("Enter the Restaurant Name: ");
         restaurant.setRestaurantName(scanner.next());
-        System.out.println("Enter the type of Restaurant: ");
-        restaurant.setRestaurantType(scanner.next());
+        System.out.println("Enter the type of Restaurant: \n1.Cafe \n2.CasualDining \n3.MultiCusine \n4.Pizzerias \n5.FastFood ");
+        int option = scanner.nextInt();
+        switch (option) {
+            case 1:
+                RestaurantTypeEnum type1 = RestaurantTypeEnum.Cafe;
+                restaurant.setRestaurantType(type1);
+                break;
+            case 2:
+                RestaurantTypeEnum type2 = RestaurantTypeEnum.CasualDining;
+                restaurant.setRestaurantType(type2);
+                break;
+            case 3:
+                RestaurantTypeEnum type3 = RestaurantTypeEnum.MultiCusine;
+                restaurant.setRestaurantType(type3);
+                break;
+            case 4:
+                RestaurantTypeEnum type4 = RestaurantTypeEnum.Pizzerias;
+                restaurant.setRestaurantType(type4);
+                break;
+            case 5:
+                RestaurantTypeEnum type5 = RestaurantTypeEnum.FastFood;
+                restaurant.setRestaurantType(type5);
+                break;
+            default:
+                break;
+        }
         System.out.println("Enter the location of Restaurant: ");
         restaurant.setRestaurantLocation(scanner.next());
         System.out.println("Enter the phone number of Restaurant: ");
