@@ -19,12 +19,16 @@ public class AdminFunctions {
     public void addData(RestaurantDatabase restaurantDatabase) {
         // Adding new restaurant
         Restaurant restaurant = new Restaurant();
+        drawDoubleLine();
         System.out.println("Enter the Restaurant Login ID: ");
         restaurant.setLoginID(scanner.next());
+        drawLine();
         System.out.println("Enter the password for restaurant: ");
         restaurant.setLoginPassword(scanner.next());
+        drawLine();
         System.out.println("Enter the Restaurant Name: ");
         restaurant.setRestaurantName(scanner.next());
+        drawLine();
         System.out.println("Enter the type of Restaurant: \n1.Cafe \n2.CasualDining \n3.MultiCusine \n4.Pizzerias \n5.FastFood ");
         int option = scanner.nextInt();
         switch (option) {
@@ -51,14 +55,18 @@ public class AdminFunctions {
             default:
                 break;
         }
+        drawLine();
         System.out.println("Enter the location of Restaurant: ");
         restaurant.setRestaurantLocation(scanner.next());
+        drawLine();
         System.out.println("Enter the phone number of Restaurant: ");
         restaurant.setRestaurantPhoneNumber(scanner.next());
+        drawLine();
         System.out.println("Enter the average cost for 2: ");
         restaurant.setRestaurantAvgCost(scanner.nextDouble());
+        drawLine();
         restaurantDatabase.getRestaurantList().add(new Restaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantLocation(), restaurant.getRestaurantPhoneNumber(), restaurant.getRestaurantAvgCost(), restaurant.getLoginID(), restaurant.getLoginPassword()));
-        
+        drawDoubleLine();
     }
 
     public void deleteData(RestaurantDatabase restaurantDatabase) {
@@ -70,13 +78,17 @@ public class AdminFunctions {
     }
 
     public void viewCustomerData(CustomerDatabase customerDatabase) {
+        drawLine();
         customerDatabase.printCustomerData();
+        drawDoubleLine();
     }
 
     public void removeCustomerData(CustomerDatabase customerDatabase) {
+        drawLine();
         System.out.println("Enter the login ID to be removed: ");
         String IDtoBeRemoved = scanner.next();
         customerDatabase.getCustomerMap().remove(IDtoBeRemoved);
+        drawDoubleLine();
     }
 
     public void displayOptionsForAdmin() {
@@ -87,6 +99,7 @@ public class AdminFunctions {
     public void executeAdminFunction(RestaurantDatabase restaurantDatabase, CustomerDatabase  customerDatabase) {
         int option = 1;
         while (option == 1 || option == 2 || option == 3 || option == 4 || option == 5) {
+            drawDoubleLine();
             displayOptionsForAdmin();
             option = scanner.nextInt();
             optionValidator(option, 1, 6);

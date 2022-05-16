@@ -10,11 +10,14 @@ public class RestaurantAuthenticator {
         drawDoubleLine();
         System.out.println("Enter the Login Id: ");
         String enteredID = scanner.next();
+        drawLine();
         for (Restaurant restaurant : restaurantDatabase.getRestaurantList()) {
             if (restaurant.getLoginID().equals(enteredID)) {
                 System.out.println("ID is correct, enter password: ");
+                drawLine();
                 String enteredPassword = readPassword();
                 if (restaurant.getLoginPassword().equals(enteredPassword)) {
+                    drawLine();
                     System.out.println("Login Successful");
                     displayLineTitleAndUser("Welcome", restaurant.getRestaurantName() + " Restaurant");
                     RestaurantFunctions restaurantFunctions = new RestaurantFunctions();

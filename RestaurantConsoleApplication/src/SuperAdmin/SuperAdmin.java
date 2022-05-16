@@ -1,5 +1,6 @@
 package SuperAdmin;
 import static Utilities.ValidatorUtils.*;
+import static Utilities.UiUtils.*;
 import Admin.AdminDatabase;
 
 public class SuperAdmin {
@@ -11,9 +12,11 @@ public class SuperAdmin {
         String enteredLoginId = scanner.next();
         if (enteredLoginId.equals(SUPER_ADMIN_LOGIN_ID)) {
             System.out.println("ID is correct");
+            drawLine();
             System.out.println("Enter the Login Password: ");
             String enteredLoginPassword = readPassword();
             if (enteredLoginPassword.equals(SUPER_ADMIN_LOGIN_PASS)) {
+                drawLine();
                 System.out.println("The password is correct....Entering into SuperAdminPanel");
                 SuperAdminFunctions superAdminFunctions = new SuperAdminFunctions();
                 superAdminFunctions.welcomeSuperAdmin();

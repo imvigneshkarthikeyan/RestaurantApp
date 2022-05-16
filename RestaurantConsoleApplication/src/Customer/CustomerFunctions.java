@@ -17,14 +17,19 @@ public class CustomerFunctions {
     
     public void signUp(CustomerDatabase customerDatabase) {
         Customer customer = new Customer();
+        drawDoubleLine();
         System.out.println("Enter the new Login ID: ");
         customer.setLoginID(scanner.next());
+        drawLine();
         System.out.println("Set your new password: ");
         customer.setLoginPassword(scanner.next());
+        drawLine();
         System.out.println("Enter your name: ");
         customer.setNameOfuser(scanner.next());
+        drawLine();
         System.out.println("Enter your phone number: ");
         customer.setPhoneNumberOfUser(scanner.next());
+        drawLine();
         System.out.println("Enter 1: To become premium user \nEnter 2: To skip ");
         int option = scanner.nextInt();
         if (option == 1) {
@@ -32,7 +37,9 @@ public class CustomerFunctions {
         } else {
             customer.setPremiumUser(false);
         }
+        drawLine();
         customerDatabase.getCustomerMap().put(customer.getLoginID(), new Customer(customer.getNameOfuser(), customer.getPhoneNumberOfUser(), customer.getLoginPassword(), customer.isPremiumUser()));
+        drawDoubleLine();
     }
 
     public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
@@ -40,9 +47,11 @@ public class CustomerFunctions {
         System.out.println("Enter the Login Id: ");
         String enteredID = scanner.next();
         if (customerDatabase.getCustomerMap().containsKey(enteredID)) {
+            drawLine();
             System.out.println("ID is crt, now enter the password.");
             String enteredPassword = readPassword();
             if (customerDatabase.getCustomerMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
+                drawLine();
                 System.out.println("Password is right");
                 displayLineTitleAndUser("Welcome ", customerDatabase.getCustomerMap().get(enteredID).getNameOfuser());
                 executeCustomerFunction(enteredID, restaurantDatabase, customerDatabase, orderDatabase, restaurant);
@@ -56,6 +65,7 @@ public class CustomerFunctions {
         System.out.println("Enter the name of Restaurant");
         String searchedRestaurant = scanner.next();
         for (Restaurant restaurant : restaurantDatabase.getRestaurantList()) {
+        drawLine();
             if (restaurant.getRestaurantName().equalsIgnoreCase(searchedRestaurant)) {
                 System.out.println("RestaurantFound!");
                 System.out.println(restaurant);
@@ -63,6 +73,7 @@ public class CustomerFunctions {
                 showOptionsForSearchFoodAndCart(enteredID, restaurantDatabase, customerDatabase, searchedRestaurant, restaurant, orderDatabase);
             }
         }
+        drawDoubleLine();
     }
 
     public void showOptionsForSearchFoodAndCart(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,String searchedRestaurant, Restaurant restaurant, OrderDatabase orderDatabase) {
@@ -72,6 +83,7 @@ public class CustomerFunctions {
             System.out.println("Enter 1: Go to Foods \nEnter 2: View Cart \nEnter 3: Go back");
             option = scanner.nextInt();
             optionValidator(option, 1, 3);
+            drawLine();
             switch (option) {
                 case 1:
                     searchFood(enteredID, searchedRestaurant, restaurant, restaurantDatabase, customerDatabase);
@@ -100,9 +112,11 @@ public class CustomerFunctions {
             optionValidator(option, 1, 2);
             switch (option) {
                 case 1:
+                    drawLine();
                     System.out.println("Enter the food to search: ");
                     String searchedFood = scanner.next();
                     for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
+                        drawLine();
                         if (food.getFoodName().equalsIgnoreCase(searchedFood)) {
                             System.out.println("FoodFound!");
                             System.out.println(food);
@@ -110,6 +124,7 @@ public class CustomerFunctions {
                             addFoodToCart(searchedRestaurant, enteredID, food, customerDatabase);
                         }
                     }
+                    drawDoubleLine();
                     break;
                 case 2:
                     System.out.println("Going Back");
@@ -121,6 +136,7 @@ public class CustomerFunctions {
     }
 
     public void addFoodToCart(String searchedRestaurant, String enteredID, Food food, CustomerDatabase customerDatabase) {
+        drawLine();
         System.out.println("Enter the quantity to be added: ");
         if (customerDatabase.getCartItems().get(enteredID)==null) {
             customerDatabase.getCartItems().put(enteredID, new ArrayList<CartItem>(){{
@@ -168,13 +184,18 @@ public class CustomerFunctions {
         }
         // Discount for premium customer
         if (customerDatabase.getCustomerMap().get(enteredID).isPremiumUser()==true) {
+        drawDoubleLine();
         System.out.println("The total bill amount is: " + totalCost);
+        drawLine();
         System.out.println("But as you are a premium customer 10% discount is made.");
+        drawLine();
         totalCost = totalCost - (totalCost*0.10);
         System.out.println("Now the total bill is: " + totalCost);
+        drawDoubleLine();
         } else {
             //Bill amount for normal customer
             System.out.println("The total bill amount is: " + totalCost);
+            drawDoubleLine();
         }
         placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant, totalCost);
     }
@@ -186,8 +207,8 @@ public class CustomerFunctions {
 
     public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant, double totalCost) {
         String userName = customerDatabase.getCustomerMap().get(enteredID).getNameOfuser();
-
         orderDatabase.getOrderList().add(new Order(generateOrderID(), enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID), totalCost));
+        drawLine();
         System.out.println("Order Placed Successfully");
         removeAllFromCart(customerDatabase);
     }
@@ -221,7 +242,6 @@ public class CustomerFunctions {
         System.out.println("Enter 1: Search Restaurant \nEnter 2: View Order History \nEnter 3: Logout");
     }
     public void executeCustomerFunction(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
-        drawDoubleLine();
         int option = 1;
         while (option == 1 || option == 2) {
             drawDoubleLine();

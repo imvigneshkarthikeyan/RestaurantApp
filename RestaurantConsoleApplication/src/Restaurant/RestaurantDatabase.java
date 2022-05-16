@@ -1,5 +1,6 @@
 package Restaurant;
 
+import static Utilities.UiUtils.*;
 import java.util.*;
 
 public class RestaurantDatabase {
@@ -25,16 +26,20 @@ public class RestaurantDatabase {
 
     public void printRestaurantData() {
         for (Restaurant restaurant : restaurantList) {
+            drawLine();
             System.out.println(restaurant);
         }
+        drawDoubleLine();
     }
 
     public void printRestaurantDataWithIndex() {
         int index = 0;
         for (Restaurant restaurant : restaurantList) {
+            drawLine();
             System.out.print("Index Number: " + index++ + "| ");
             System.out.println(restaurant);
         }
+        drawDoubleLine();
     }
 
     FoodTypeEnum foodType1 = FoodTypeEnum.SouthIndian;

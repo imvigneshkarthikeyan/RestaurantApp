@@ -12,13 +12,16 @@ import static Utilities.UiUtils.*;
 public class RestaurantFunctions {
 
     public void viewData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        drawLine();
         System.out.println(restaurantDatabase.foodMap.get(restaurant.getLoginID()));
     }
 
     public void addData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         Food food = new Food();
+        drawDoubleLine();
         System.out.println("Enter the food name: ");
         food.setFoodName(scanner.next());
+        drawLine();
         System.out.println("Enter the type of Restaurant: \n1.SouthIndian \n2.NorthIndian \n3.Chinese \n4.Italian \n5.Desert ");
         int optionForEnum = scanner.nextInt();
         switch (optionForEnum) {
@@ -45,8 +48,10 @@ public class RestaurantFunctions {
             default:
                 break;
         }
+        drawLine();
         System.out.println("Enter the food cost: ");
         food.setFoodCost(scanner.nextDouble());
+        drawLine();
         System.out.println("Enter 1: if Veg? \nEnter 2: if NonVeg ");
         int option = scanner.nextInt();
         if (option == 1) {
@@ -54,6 +59,7 @@ public class RestaurantFunctions {
         } else {
         food.setVeg(false);
         }
+        drawLine();
         if (restaurantDatabase.foodMap.get(restaurant.getLoginID())==null) {
             restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {
                 {
@@ -63,19 +69,19 @@ public class RestaurantFunctions {
         } else {
             restaurantDatabase.foodMap.get(restaurant.getLoginID()).add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
         }
+        drawLine();
     }
 
     public void deleteData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         System.out.println("Enter the index of the food to be removed: ");
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
-        // for (ArrayList<Food> food : restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator()) {
-        //     System.out.println(Arrays.asList(food));
-        // }
         int i = 0;
         while (foodItems.hasNext()) {
+            drawLine();
             System.out.println(i + " | " + foodItems.next());
             i++;
         }
+        drawDoubleLine();
         restaurantDatabase.foodMap.get(restaurant.getLoginID()).remove(scanner.nextInt());
     }
 
@@ -83,21 +89,26 @@ public class RestaurantFunctions {
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
         int i = 0;
         while (foodItems.hasNext()) {
+            drawLine();
             System.out.println(i + " | " + foodItems.next());
             i++;
         }
+        drawDoubleLine();
         System.out.println("Enter the index of the food whose cost to be updated: ");
         int index = scanner.nextInt();
+        drawLine();
         System.out.println("Enter the cost that has to be updated: ");
         restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(index).setFoodCost(scanner.nextDouble());
     }
 
     public void viewOrders(OrderDatabase orderDatabase, Restaurant restaurant) {
         for (Order order : orderDatabase.getOrderList()) {
+            drawLine();
             if (order.getRestaurantID().equalsIgnoreCase(restaurant.getLoginID())) {
                 System.out.println(order);
             }
         }
+        drawDoubleLine();
     }
 
     public void displayOptionsForRestaurant() {

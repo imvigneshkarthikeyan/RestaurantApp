@@ -72,6 +72,7 @@ public class SuperAdminFunctions {
                     deleteData(adminDatabase);
                     break;
                 case 4:
+                    drawLine();
                     System.out.println("Logging out from Super admin portal");
                 default:
                     break;
