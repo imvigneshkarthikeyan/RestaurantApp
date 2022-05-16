@@ -8,7 +8,7 @@ import Restaurant.Restaurant;
 import Restaurant.RestaurantDatabase;
 
 public class CustomerAuthenticator {
-    public void showSignUpSignIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, Customer customer, OrderDatabase orderDatabase, Restaurant restaurant) {
+    public void showSignUpSignIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
         CustomerFunctions customerFunctions = new CustomerFunctions();
         int option = 1;
         while (option == 1 || option == 2) {
@@ -19,7 +19,7 @@ public class CustomerAuthenticator {
             switch (option) {
                 case 1:
                     System.out.println("Signing in");
-                    customerFunctions.signIn(restaurantDatabase, customerDatabase, customer, orderDatabase, restaurant);
+                    customerFunctions.signIn(restaurantDatabase, customerDatabase, orderDatabase, restaurant);
                     break;
                 case 2:
                     customerFunctions.signUp(customerDatabase);
