@@ -139,6 +139,8 @@ public class CustomerFunctions {
     public void placeOrder(String enteredID, CustomerDatabase customerDatabase, Customer customer, OrderDatabase orderDatabase, Restaurant restaurant) {
         orderDatabase.getOrderList().add(new Order("101010", enteredID, customer.getNameOfuser(), restaurant.getLoginID(),
                         restaurant.getRestaurantName(), customerDatabase.getCartItems().get(enteredID)));
+        System.out.println("Order Placed Successfully");
+        removeAllFromCart(customerDatabase);
         //Calculate Payment 
         //Discount for premium customer
     }
@@ -156,6 +158,10 @@ public class CustomerFunctions {
         viewCart(enteredID, customerDatabase, orderDatabase, customer, restaurant);
     }
 
+    public void removeAllFromCart(CustomerDatabase customerDatabase) {
+        customerDatabase.getCartItems().clear();
+    }
+
     public void viewOrderHistory(String enteredID, OrderDatabase orderDatabase) {
         for (Order order : orderDatabase.getOrderList()) {
             if (order.getUserID().equals(enteredID)) {
@@ -169,7 +175,7 @@ public class CustomerFunctions {
     }
     public void executeCustomerFunction(String enteredID, RestaurantDatabase restaurantDatabase, Customer customer, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
         int option = 1;
-        while (option == 1 || option == 2) {
+        while (option == 1 || option == 2 || option == 3) {
             drawDoubleLine();
             displayOptionsForCustomer();
             option = scanner.nextInt();
