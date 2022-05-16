@@ -216,9 +216,11 @@ public class CustomerFunctions {
     public void removeItemsFromCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
         int i = 0;
         for (CartItem cartItem : customerDatabase.getCartItems().get(enteredID)) {
+            drawLine();
             System.out.println(i + " | " +cartItem);
             i++;
         }
+        drawLine();
         System.out.println("Enter the index number of the cart item to be removed: ");
         int itemToBeRemoved = scanner.nextInt();
         customerDatabase.getCartItems().get(enteredID).remove(itemToBeRemoved);
