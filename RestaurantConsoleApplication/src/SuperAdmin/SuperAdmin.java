@@ -18,11 +18,7 @@ public class SuperAdmin {
                 SuperAdminFunctions superAdminFunctions = new SuperAdminFunctions();
                 superAdminFunctions.welcomeSuperAdmin();
                 superAdminFunctions.executeSuperAdminFunction(adminDatabase);
-            } else {
-                System.out.println("Login password is wrong");
             }
-        } else {
-            System.out.println("Login ID is wrong");
-        }
+        } 
     }
 }

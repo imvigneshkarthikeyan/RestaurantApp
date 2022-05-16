@@ -44,8 +44,6 @@ public class CustomerFunctions {
             if (customerDatabase.getCustomerMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
                 executeCustomerFunction(enteredID, restaurantDatabase, customerDatabase, orderDatabase, restaurant);
-            } else {
-                System.out.println("Password is wrong");
             }
         }
     }
@@ -70,7 +68,8 @@ public class CustomerFunctions {
     public void showOptionsForSearchFoodAndCart(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,String searchedRestaurant, Restaurant restaurant, OrderDatabase orderDatabase) {
         int option = 1;
         while (option == 1|| option == 2) {
-            System.out.println("Enter 1: Search Food \nEnter 2: View Cart \nEnter 3: Go back");
+            drawDoubleLine();
+            System.out.println("Enter 1: Go to Foods \nEnter 2: View Cart \nEnter 3: Go back");
             option = scanner.nextInt();
             optionValidator(option, 1, 3);
             switch (option) {
@@ -95,6 +94,7 @@ public class CustomerFunctions {
         System.out.println(restaurantDatabase.getFoodMap().get(restaurantID));
         int option = 1;
         while(option == 1) {
+            drawDoubleLine();
             System.out.println("Enter 1: To Search Food and add to cart\nEnter 2: To Go Back");
             option = scanner.nextInt();
             optionValidator(option, 1, 2);
@@ -108,13 +108,12 @@ public class CustomerFunctions {
                             System.out.println(food);
                             // Function to add food to cart
                             addFoodToCart(searchedRestaurant, enteredID, food, customerDatabase);
-                        } else {
-                            System.out.println("The food is not available, try different!");
                         }
                     }
                     break;
                 case 2:
                     System.out.println("Going Back");
+                    break;
                 default:
                     break;
             }
@@ -138,6 +137,7 @@ public class CustomerFunctions {
         System.out.println(customerDatabase.getCartItems().get(enteredID));
         int option = 1;
         while (option == 1 || option == 2) {
+            drawDoubleLine();
             System.out.println("Enter 1: View Total Cost and Place Order \nEnter 2: Remove items from cart \nEnter 3: To Go Back");
             option = scanner.nextInt();
             optionValidator(option, 1, 3);
@@ -150,6 +150,7 @@ public class CustomerFunctions {
                     break;
                 case 3:
                     System.out.println("Going Back");
+                    break;
                 default:
                     break;
             }
@@ -169,18 +170,18 @@ public class CustomerFunctions {
         if (customerDatabase.getCustomerMap().get(enteredID).isPremiumUser()==true) {
         System.out.println("The total bill amount is: " + totalCost);
         System.out.println("But as you are a premium customer 10% discount is made.");
-        double discountedBill = totalCost - (totalCost*0.10);
-        System.out.println("Now the total bill is: " + discountedBill);
+        totalCost = totalCost - (totalCost*0.10);
+        System.out.println("Now the total bill is: " + totalCost);
         } else {
             //Bill amount for normal customer
             System.out.println("The total bill amount is: " + totalCost);
         }
-        placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+        placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant, totalCost);
     }
 
-    public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
+    public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant, double totalCost) {
         String userName = customerDatabase.getCustomerMap().get(enteredID).getNameOfuser();
-        orderDatabase.getOrderList().add(new Order("101010", enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID)));
+        orderDatabase.getOrderList().add(new Order("101010", enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID), totalCost));
         System.out.println("Order Placed Successfully");
         removeAllFromCart(customerDatabase);
     }
@@ -203,6 +204,7 @@ public class CustomerFunctions {
     }
 
     public void viewOrderHistory(String enteredID, OrderDatabase orderDatabase) {
+        drawDoubleLine();
         for (Order order : orderDatabase.getOrderList()) {
             if (order.getUserID().equalsIgnoreCase(enteredID)) {
                 System.out.println(order);
@@ -211,9 +213,10 @@ public class CustomerFunctions {
     }
 
     public void displayOptionsForCustomer() {
-        System.out.println("Enter 1: Search Restaurant \nEnter 2: View Order History \nEnter 3: Go Back");
+        System.out.println("Enter 1: Search Restaurant \nEnter 2: View Order History \nEnter 3: Logout");
     }
     public void executeCustomerFunction(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
+        drawDoubleLine();
         int option = 1;
         while (option == 1 || option == 2) {
             drawDoubleLine();

@@ -18,8 +18,6 @@ public class AdminAuthenticator {
                 System.out.println("Password is right");
                 AdminFunctions adminFunctions = new AdminFunctions();
                 adminFunctions.executeAdminFunction(restaurantDatabase, customerDatabase);
-            } else {
-                System.out.println("Password is wrong");
             }
         }
     }

@@ -19,8 +19,6 @@ public class RestaurantAuthenticator {
                     RestaurantFunctions restaurantFunctions = new RestaurantFunctions();
                     restaurantFunctions.executeRestaurantFunction(enteredID, restaurant, restaurantDatabase, orderDatabase);
                 }
-            } else {
-                System.out.println("Invalid id");
             }
         }
     }

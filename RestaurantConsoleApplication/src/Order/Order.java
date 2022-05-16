@@ -9,6 +9,15 @@ public class Order {
     private String restaurantID;
     private String restaurantName;
     private ArrayList<CartItem> cartItems;
+    private double totalBillAmount;
+
+    public double getTotalBillAmount() {
+        return this.totalBillAmount;
+    }
+
+    public void setTotalBillAmount(double totalBillAmount) {
+        this.totalBillAmount = totalBillAmount;
+    }
 
     public String getOrderID() {
         return this.orderID;
@@ -59,13 +68,14 @@ public class Order {
     }
 
     //Constructor for Order
-    public Order(String orderID, String userID, String userName, String restaurantID, String restaurantName, ArrayList<CartItem> cartItems) {
+    public Order(String orderID, String userID, String userName, String restaurantID, String restaurantName, ArrayList<CartItem> cartItems, double totalBillAmount) {
         this.orderID = orderID;
         this.userID = userID;
         this.userName = userName;
         this.restaurantID = restaurantID;
         this.restaurantName = restaurantName;
         this.cartItems = cartItems;
+        this.totalBillAmount = totalBillAmount;
     }
 
     public Order() {
@@ -75,6 +85,7 @@ public class Order {
         this.restaurantID = getRestaurantID();
         this.restaurantName = getRestaurantName();
         this.cartItems = getCartItems();
+        this.totalBillAmount = getTotalBillAmount();
     }
 
     // To display Order information
@@ -85,7 +96,8 @@ public class Order {
                 + " | User Name: " + userName
                 + " | Restaurant ID: " + restaurantID
                 + " | Restaurant Name: " + restaurantName
-                + " | Food Items: " + cartItems;
+                + " | Food Items: " + cartItems
+                + " | Total Amount: " + totalBillAmount;
     }
     
 }
