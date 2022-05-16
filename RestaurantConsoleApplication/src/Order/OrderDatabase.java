@@ -3,10 +3,7 @@ package Order;
 import java.util.*;
 
 public class OrderDatabase {
-    private ArrayList<Order> orderList = new ArrayList<Order>(){{
-        new Order("O001", "vicky@abc", "Vicky", "a2bmad", "A2B", new ArrayList<CartItem>() {{}});
-        new Order("O002", "raj@abc", "Raj", "kfcnag", "KFC", new ArrayList<CartItem>() {{}});
-    }};
+    private ArrayList<Order> orderList = new ArrayList<Order>();
     private ArrayList<CartItem> cartItems;
 
     public void setOrderList(ArrayList<Order> orderList) {
@@ -24,13 +21,6 @@ public class OrderDatabase {
     public ArrayList<CartItem> getCartItem() {
         return cartItems;
     }
-
-    // Order order1 = new Order("O001", "vicky@abc", "Vicky", "a2bmad", "A2B", new ArrayList<CartItem>(){{}});
-    // Order order2 = new Order("O002", "raj@abc", "Raj", "kfcnag", "KFC", new ArrayList<CartItem>(){{}});
-
-    // public void addOrderData() {
-    //     Collections.addAll(orderList, order1, order2);
-    // }
 
     public void printOrderData() {
         for (Order order : orderList) {
