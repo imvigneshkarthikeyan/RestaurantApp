@@ -39,7 +39,7 @@ public class MainApplication {
                     break;
                 case 3:
                     RestaurantAuthenticator restaurantAuthenticator = new RestaurantAuthenticator();
-                    restaurantAuthenticator.authenticateRestaurant(restaurantDatabase);
+                    restaurantAuthenticator.authenticateRestaurant(restaurantDatabase, orderDatabase);
                     break;
                 case 4:
                     CustomerAuthenticator customerAuthenticator = new CustomerAuthenticator();

@@ -160,7 +160,7 @@ public class CustomerFunctions {
     }
 
     public void placeOrder(String enteredID, CustomerDatabase customerDatabase, Customer customer, OrderDatabase orderDatabase, String searchedRestaurant) {
-        orderDatabase.getOrderList().add(new Order("101010", enteredID, customer.getNameOfuser(), searchedRestaurant+"abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID)));
+        orderDatabase.getOrderList().add(new Order("101010", enteredID, customer.getNameOfuser(), searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID)));
         System.out.println("Order Placed Successfully");
         removeAllFromCart(customerDatabase);
         //Calculate Payment 
@@ -186,7 +186,7 @@ public class CustomerFunctions {
 
     public void viewOrderHistory(String enteredID, OrderDatabase orderDatabase) {
         for (Order order : orderDatabase.getOrderList()) {
-            if (order.getUserID().equals(enteredID)) {
+            if (order.getUserID().equalsIgnoreCase(enteredID)) {
                 System.out.println(order);
             }
         }

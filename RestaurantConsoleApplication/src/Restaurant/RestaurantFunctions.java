@@ -3,6 +3,9 @@ package Restaurant;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Order.Order;
+import Order.OrderDatabase;
+
 import static Utilities.ValidatorUtils.*;
 import static Utilities.UiUtils.*;
 
@@ -64,8 +67,12 @@ public class RestaurantFunctions {
         restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(scanner.nextInt()).setFoodCost(scanner.nextDouble());
     }
 
-    public void viewOrders() {
-        //TODO
+    public void viewOrders(OrderDatabase orderDatabase, Restaurant restaurant) {
+        for (Order order : orderDatabase.getOrderList()) {
+            if (order.getRestaurantID().equalsIgnoreCase(restaurant.getLoginID())) {
+                System.out.println(order);
+            }
+        }
     }
 
     public void displayOptionsForRestaurant() {
@@ -73,7 +80,7 @@ public class RestaurantFunctions {
         drawLine();
     }
 
-    public void executeRestaurantFunction(String enteredID, Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+    public void executeRestaurantFunction(String enteredID, Restaurant restaurant, RestaurantDatabase restaurantDatabase, OrderDatabase orderDatabase) {
         int option = 1;
         restaurant.setLoginID(enteredID);
         System.out.println(restaurant.getLoginID());
@@ -96,7 +103,7 @@ public class RestaurantFunctions {
                     editData(restaurant, restaurantDatabase);
                     break;
                 case 5:
-                    viewOrders();
+                    viewOrders(orderDatabase, restaurant);
                     break;
                 case 6:
                     System.out.println("Logging out from Restaurant portal");
