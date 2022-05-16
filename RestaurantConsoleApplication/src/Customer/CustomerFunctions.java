@@ -16,19 +16,20 @@ import Restaurant.RestaurantDatabase;
 public class CustomerFunctions {
     
     public void signUp(CustomerDatabase customerDatabase) {
+        scanner.nextLine();
         Customer customer = new Customer();
         drawDoubleLine();
         System.out.println("Enter the new Login ID: ");
-        customer.setLoginID(scanner.next());
+        customer.setLoginID(scanner.nextLine());
         drawLine();
         System.out.println("Set your new password: ");
-        customer.setLoginPassword(scanner.next());
+        customer.setLoginPassword(scanner.nextLine());
         drawLine();
         System.out.println("Enter your name: ");
-        customer.setNameOfuser(scanner.next());
+        customer.setNameOfuser(scanner.nextLine());
         drawLine();
         System.out.println("Enter your phone number: ");
-        customer.setPhoneNumberOfUser(scanner.next());
+        customer.setPhoneNumberOfUser(scanner.nextLine());
         drawLine();
         System.out.println("Enter 1: To become premium user \nEnter 2: To skip ");
         int option = scanner.nextInt();
@@ -43,9 +44,10 @@ public class CustomerFunctions {
     }
 
     public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
+        scanner.nextLine();
         drawDoubleLine();
         System.out.println("Enter the Login Id: ");
-        String enteredID = scanner.next();
+        String enteredID = scanner.nextLine();
         if (customerDatabase.getCustomerMap().containsKey(enteredID)) {
             drawLine();
             System.out.println("ID is crt, now enter the password.");
@@ -60,10 +62,11 @@ public class CustomerFunctions {
     }
 
     public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,OrderDatabase orderDatabase) {
+        scanner.nextLine();
         drawDoubleLine();
         restaurantDatabase.printRestaurantData();
         System.out.println("Enter the name of Restaurant");
-        String searchedRestaurant = scanner.next();
+        String searchedRestaurant = scanner.nextLine();
         for (Restaurant restaurant : restaurantDatabase.getRestaurantList()) {
         drawLine();
             if (restaurant.getRestaurantName().equalsIgnoreCase(searchedRestaurant)) {
@@ -101,6 +104,7 @@ public class CustomerFunctions {
 
     public void searchFood(String enteredID, String searchedRestaurant, Restaurant restaurant, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase) {
         drawDoubleLine();
+        scanner.nextLine();
         restaurant.setRestaurantName(searchedRestaurant);
         String restaurantID = restaurant.getRestaurantName().toLowerCase() + "@abc.com";
         System.out.println(restaurantDatabase.getFoodMap().get(restaurantID));
@@ -114,7 +118,7 @@ public class CustomerFunctions {
                 case 1:
                     drawLine();
                     System.out.println("Enter the food to search: ");
-                    String searchedFood = scanner.next();
+                    String searchedFood = scanner.nextLine();
                     for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
                         drawLine();
                         if (food.getFoodName().equalsIgnoreCase(searchedFood)) {

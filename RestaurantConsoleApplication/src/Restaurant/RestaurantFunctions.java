@@ -17,10 +17,11 @@ public class RestaurantFunctions {
     }
 
     public void addData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        scanner.nextLine();
         Food food = new Food();
         drawDoubleLine();
         System.out.println("Enter the food name: ");
-        food.setFoodName(scanner.next());
+        food.setFoodName(scanner.nextLine());
         drawLine();
         System.out.println("Enter the type of Restaurant: \n1.SouthIndian \n2.NorthIndian \n3.Chinese \n4.Italian \n5.Desert ");
         int optionForEnum = scanner.nextInt();
@@ -49,6 +50,7 @@ public class RestaurantFunctions {
                 break;
         }
         drawLine();
+        // scanner.nextLine();
         System.out.println("Enter the food cost: ");
         food.setFoodCost(scanner.nextDouble());
         drawLine();
@@ -73,6 +75,7 @@ public class RestaurantFunctions {
     }
 
     public void deleteData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        scanner.nextLine();
         System.out.println("Enter the index of the food to be removed: ");
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
         int i = 0;
@@ -86,6 +89,7 @@ public class RestaurantFunctions {
     }
 
     public void editData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        scanner.nextLine();
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
         int i = 0;
         while (foodItems.hasNext()) {

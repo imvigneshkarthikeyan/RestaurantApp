@@ -18,16 +18,17 @@ public class AdminFunctions {
 
     public void addData(RestaurantDatabase restaurantDatabase) {
         // Adding new restaurant
+        scanner.nextLine();
         Restaurant restaurant = new Restaurant();
         drawDoubleLine();
         System.out.println("Enter the Restaurant Login ID: ");
-        restaurant.setLoginID(scanner.next());
+        restaurant.setLoginID(scanner.nextLine());
         drawLine();
         System.out.println("Enter the password for restaurant: ");
-        restaurant.setLoginPassword(scanner.next());
+        restaurant.setLoginPassword(scanner.nextLine());
         drawLine();
         System.out.println("Enter the Restaurant Name: ");
-        restaurant.setRestaurantName(scanner.next());
+        restaurant.setRestaurantName(scanner.nextLine());
         drawLine();
         System.out.println("Enter the type of Restaurant: \n1.Cafe \n2.CasualDining \n3.MultiCusine \n4.Pizzerias \n5.FastFood ");
         int option = scanner.nextInt();
@@ -56,11 +57,12 @@ public class AdminFunctions {
                 break;
         }
         drawLine();
+        scanner.nextLine();
         System.out.println("Enter the location of Restaurant: ");
-        restaurant.setRestaurantLocation(scanner.next());
+        restaurant.setRestaurantLocation(scanner.nextLine());
         drawLine();
         System.out.println("Enter the phone number of Restaurant: ");
-        restaurant.setRestaurantPhoneNumber(scanner.next());
+        restaurant.setRestaurantPhoneNumber(scanner.nextLine());
         drawLine();
         System.out.println("Enter the average cost for 2: ");
         restaurant.setRestaurantAvgCost(scanner.nextDouble());
@@ -84,9 +86,10 @@ public class AdminFunctions {
     }
 
     public void removeCustomerData(CustomerDatabase customerDatabase) {
+        scanner.nextLine();
         drawLine();
         System.out.println("Enter the login ID to be removed: ");
-        String IDtoBeRemoved = scanner.next();
+        String IDtoBeRemoved = scanner.nextLine();
         customerDatabase.getCustomerMap().remove(IDtoBeRemoved);
         drawDoubleLine();
     }

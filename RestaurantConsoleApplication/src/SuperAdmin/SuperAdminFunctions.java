@@ -14,20 +14,21 @@ public class SuperAdminFunctions {
 
     
     public void addData(AdminDatabase adminDatabase) {
+        scanner.nextLine();
         // Add new admin to admin map
         Admin admin = new Admin();
         drawDoubleLine();
         System.out.println("Set new admin login id: ");
-        admin.setLoginID(scanner.next());
+        admin.setLoginID(scanner.nextLine());
         drawLine();
         System.out.println("Set new admin name: ");
-        admin.setAdminName(scanner.next());
+        admin.setAdminName(scanner.nextLine());
         drawLine();
         System.out.println("Set new admin contact number: ");
-        admin.setAdminContactNumber(scanner.next());
+        admin.setAdminContactNumber(scanner.nextLine());
         drawLine();
         System.out.println("Set new password: ");
-        admin.setLoginPassword(scanner.next());
+        admin.setLoginPassword(scanner.nextLine());
         drawDoubleLine();
         adminDatabase.getAdminMap().put(admin.getLoginID(), new Admin(admin.getAdminName(), admin.getAdminContactNumber(), admin.getLoginPassword()));
         System.out.println("Admin with: " + admin.getLoginID() + " was added to database.");
@@ -38,9 +39,10 @@ public class SuperAdminFunctions {
 
     
     public void deleteData(AdminDatabase adminDatabase) {
+        scanner.nextLine();
         // Delete admin from admin map
         System.out.println("Enter the login id of the admin that has to be removed: ");
-        adminDatabase.getAdminMap().remove(scanner.next());
+        adminDatabase.getAdminMap().remove(scanner.nextLine());
         System.out.println("The admin DB after deleting: ");
         adminDatabase.printAdminData();    
         drawDoubleLine();    
