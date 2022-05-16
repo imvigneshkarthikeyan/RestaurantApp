@@ -23,7 +23,7 @@ public class RestaurantFunctions {
         food.setFoodType(scanner.next());
         System.out.println("Enter the food cost: ");
         food.setFoodCost(scanner.nextDouble());
-        System.out.println("Enter 1: if Veg? \n Enter 2: if NonVeg ");
+        System.out.println("Enter 1: if Veg? \nEnter 2: if NonVeg ");
         int option = scanner.nextInt();
         if (option == 1) {
         food.setVeg(true);
