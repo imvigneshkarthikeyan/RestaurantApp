@@ -2,15 +2,13 @@ package Order;
 
 import java.util.*;
 
-import Restaurant.Food;
-
 public class Order {
     private String orderID;
     private String userID;
     private String userName;
     private String restaurantID;
     private String restaurantName;
-    private Map<Food, Integer> orderedFoodList;
+    private ArrayList<CartItem> cartItems;
 
     public String getOrderID() {
         return this.orderID;
@@ -52,22 +50,22 @@ public class Order {
         this.restaurantName = restaurantName;
     }
 
-    public Map<Food, Integer> getOrderedFoodList() {
-        return orderedFoodList;
+    public ArrayList<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setOrderedFoodList(Map<Food, Integer> orderedFoodList) {
-        this.orderedFoodList = orderedFoodList;
+    public void setCartItems(ArrayList<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     //Constructor for Order
-    public Order(String orderID, String userID, String userName, String restaurantID, String restaurantName, Map<Food, Integer> cartMap) {
+    public Order(String orderID, String userID, String userName, String restaurantID, String restaurantName, ArrayList<CartItem> cartItems) {
         this.orderID = orderID;
         this.userID = userID;
         this.userName = userName;
         this.restaurantID = restaurantID;
         this.restaurantName = restaurantName;
-        this.orderedFoodList = cartMap;
+        this.cartItems = cartItems;
     }
 
     public Order() {
@@ -76,7 +74,7 @@ public class Order {
         this.userName = getUserName();
         this.restaurantID = getRestaurantID();
         this.restaurantName = getRestaurantName();
-        this.orderedFoodList = getOrderedFoodList();
+        this.cartItems = getCartItems();
     }
     
 }

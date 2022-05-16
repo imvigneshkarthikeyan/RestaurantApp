@@ -1,9 +1,6 @@
 package Order;
 
 public class CartItem {
-    private String restaurantName;
-    private String restaurantLoginID;
-    private String username;
     private String foodName;
     private String foodType;
     private double foodCost;
@@ -16,30 +13,6 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getRestaurantName() {
-        return this.restaurantName;
-    }
-
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
-    }
-
-    public String getRestaurantLoginID() {
-        return this.restaurantLoginID;
-    }
-
-    public void setRestaurantLoginID(String restaurantLoginID) {
-        this.restaurantLoginID = restaurantLoginID;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getFoodName() {
@@ -74,10 +47,7 @@ public class CartItem {
         this.veg = veg;
     }
 
-    public CartItem(String restaurantName, String restaurantLoginID, String username, String foodName, String foodType, double foodCost, boolean veg, int quantity) {
-        this.restaurantLoginID = restaurantLoginID;
-        this.restaurantName = restaurantName;
-        this.username = username;
+    public CartItem(String foodName, String foodType, double foodCost, boolean veg, int quantity) {
         this.foodName = foodName;
         this.foodType = foodType;
         this.foodCost = foodCost;
@@ -86,9 +56,6 @@ public class CartItem {
     }
 
     public CartItem() {
-        this.restaurantLoginID = getRestaurantLoginID();
-        this.restaurantName = getRestaurantName();
-        this.username = getUsername();
         this.foodName = getFoodName();
         this.foodType = getFoodType();
         this.foodCost = getFoodCost();
@@ -99,10 +66,7 @@ public class CartItem {
     // To display user information
     @Override
     public String toString() {
-        return "User Name: " + username
-                + " | Restaurant ID: " + restaurantLoginID
-                + " | Restaurant Name: " + restaurantName
-                + " | Food Name: " + foodName
+        return "Food Name: " + foodName
                 + " | Food Type: " + foodType
                 + " | Food Cost: " + foodCost
                 + " | Is Veg: " + veg

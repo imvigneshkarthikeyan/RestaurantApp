@@ -2,10 +2,12 @@ package Customer;
 
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
+
+import Order.OrderDatabase;
 import Restaurant.RestaurantDatabase;
 
 public class CustomerAuthenticator {
-    public void showSignUpSignIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, Customer customer) {
+    public void showSignUpSignIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, Customer customer, OrderDatabase orderDatabase) {
         CustomerFunctions customerFunctions = new CustomerFunctions();
         int option = 1;
         while (option == 1 || option == 2) {
@@ -16,7 +18,7 @@ public class CustomerAuthenticator {
             switch (option) {
                 case 1:
                     System.out.println("Signing in");
-                    customerFunctions.signIn(restaurantDatabase, customerDatabase, customer);
+                    customerFunctions.signIn(restaurantDatabase, customerDatabase, customer, orderDatabase);
                     break;
                 case 2:
                     customerFunctions.signUp(customerDatabase);

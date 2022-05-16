@@ -6,6 +6,7 @@ import static Utilities.ValidatorUtils.*;
 import java.util.ArrayList;
 
 import Order.CartItem;
+import Order.OrderDatabase;
 import Restaurant.Food;
 import Restaurant.Restaurant;
 import Restaurant.RestaurantDatabase;
@@ -32,7 +33,7 @@ public class CustomerFunctions {
         customerDatabase.getCustomerMap().put(customer.getLoginID(), new Customer(customer.getNameOfuser(), customer.getPhoneNumberOfUser(), customer.getLoginPassword(), customer.isPremiumUser()));
     }
 
-    public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, Customer customer) {
+    public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, Customer customer, OrderDatabase orderDatabase) {
         drawDoubleLine();
         System.out.println("Enter the Login Id: ");
         String enteredID = scanner.next();
@@ -41,7 +42,7 @@ public class CustomerFunctions {
             String enteredPassword = readPassword();
             if (customerDatabase.getCustomerMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
                 System.out.println("Password is right");
-                executeCustomerFunction(enteredID, restaurantDatabase, customer, customerDatabase);
+                executeCustomerFunction(enteredID, restaurantDatabase, customer, customerDatabase, orderDatabase);
             } else {
                 System.out.println("Password is wrong");
             }
@@ -71,16 +72,30 @@ public class CustomerFunctions {
         String restaurantID = restaurant.getRestaurantName().toLowerCase() + "@abc.com";
         System.out.println(restaurantID);
         System.out.println(restaurantDatabase.getFoodMap().get(restaurantID));
-        System.out.println("Enter the food to search: ");
-        String searchedFood = scanner.next();
-        for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
-            if (food.getFoodName().equalsIgnoreCase(searchedFood)) {
-                System.out.println("FoodFound!");
-                System.out.println(food);
-                //Function to add food to cart
-                addFoodToCart(restaurant, enteredID, food, customerDatabase, customer);
-            } else {
-                System.out.println("The food is not available, try different!");
+        int option = 1;
+        while(option == 1) {
+            System.out.println("Enter 1: To Search Food and add to cart\nEnter 2: To Go Back");
+            option = scanner.nextInt();
+            optionValidator(option, 1, 3);
+            switch (option) {
+                case 1:
+                    System.out.println("Enter the food to search: ");
+                    String searchedFood = scanner.next();
+                    for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
+                        if (food.getFoodName().equalsIgnoreCase(searchedFood)) {
+                            System.out.println("FoodFound!");
+                            System.out.println(food);
+                            // Function to add food to cart
+                            addFoodToCart(restaurant, enteredID, food, customerDatabase, customer);
+                        } else {
+                            System.out.println("The food is not available, try different!");
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Going Back");
+                default:
+                    break;
             }
         }
     }
@@ -89,39 +104,75 @@ public class CustomerFunctions {
         System.out.println("Enter the quantity to be added: ");
         if (customerDatabase.getCartItems().get(enteredID)==null) {
             customerDatabase.getCartItems().put(enteredID, new ArrayList<CartItem>(){{
-                add(new CartItem(restaurant.getRestaurantName(), restaurant.getLoginID(), customer.getNameOfuser(), food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg(), scanner.nextInt()));
+                add(new CartItem(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg(), scanner.nextInt()));
             }});
         } else {
-            customerDatabase.getCartItems().get(enteredID).add(new CartItem(restaurant.getRestaurantName(),
-                    restaurant.getLoginID(), customer.getNameOfuser(), food.getFoodName(), food.getFoodType(),
+            customerDatabase.getCartItems().get(enteredID).add(new CartItem(food.getFoodName(), food.getFoodType(),
                     food.getFoodCost(), food.isVeg(), scanner.nextInt()));
         }
-        
     }
 
-    public void viewHistory(String enteredID, CustomerDatabase customerDatabase) {
+    public void viewCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase) {
+        //Itmes in cart
         System.out.println(customerDatabase.getCartItems().get(enteredID));
+        int option = 1;
+        while (option == 1 || option == 2) {
+            System.out.println("Enter 1: Place Order \nEnter 2: Remove items from cart \nEnter 3: To Go Back");
+            option = scanner.nextInt();
+            optionValidator(option, 1, 3);
+            switch (option) {
+                case 1:
+                    //Logic for place order
+                        // PaymentCalculator
+                        // Add totalCost in CartItem by multiplying it with Quantity.
+                    break;
+                case 2:
+                    removeItemsFromCart(enteredID, customerDatabase, orderDatabase);
+                    break;
+                case 3:
+                    System.out.println("Going Back");
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void removeItemsFromCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase) {
+        int i = 0;
+        for (CartItem cartItem : customerDatabase.getCartItems().get(enteredID)) {
+            System.out.println(i + " | " +cartItem);
+            i++;
+        }
+        System.out.println("Enter the index number of the cart item to be removed: ");
+        int itemToBeRemoved = scanner.nextInt();
+        customerDatabase.getCartItems().get(enteredID).remove(itemToBeRemoved);
+        System.out.println("Items after removal");
+        viewCart(enteredID, customerDatabase, orderDatabase);
     }
 
     public void displayOptionsForCustomer() {
-        System.out.println("Enter 1: Search Restaurant \nEnter 2: View History \nEnter 3: Go back");
+        System.out.println("Enter 1: Search Restaurant \nEnter 2: View Cart \nEnter 3: View Order History \nEnter 4: Go Back");
     }
-    public void executeCustomerFunction(String enteredID, RestaurantDatabase restaurantDatabase, Customer customer, CustomerDatabase customerDatabase) {
+    public void executeCustomerFunction(String enteredID, RestaurantDatabase restaurantDatabase, Customer customer, CustomerDatabase customerDatabase, OrderDatabase orderDatabase) {
         int option = 1;
         while (option == 1 || option == 2) {
             drawDoubleLine();
             displayOptionsForCustomer();
             option = scanner.nextInt();
-            optionValidator(option, 1, 3);
+            optionValidator(option, 1, 4);
             switch (option) {
                 case 1:
                     searchRestaurant(enteredID, restaurantDatabase, customer, customerDatabase);
                     break;
                 case 2:
-                    viewHistory(enteredID, customerDatabase);
+                    viewCart(enteredID, customerDatabase, orderDatabase);
                     break;
                 case 3:
+                    //viewOrderHistory
+                    break;
+                case 4:
                     System.out.println("Logging out from Customer portal");
+                    break;
                 default:
                     break;
             }

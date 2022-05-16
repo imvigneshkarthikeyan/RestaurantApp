@@ -2,11 +2,9 @@ package Order;
 
 import java.util.*;
 
-import Restaurant.Food;
-
 public class OrderDatabase {
-    private ArrayList<Order> orderList = new ArrayList<>();
-    private Map<Food, Integer> cartMap;
+    private ArrayList<Order> orderList;
+    private ArrayList<CartItem> cartItems;
 
     public void setOrderList(ArrayList<Order> orderList) {
         this.orderList = orderList;
@@ -16,8 +14,16 @@ public class OrderDatabase {
         return orderList;
     }
 
-    Order order1 = new Order("O001", "vicky@abc", "Vicky", "a2bmad", "A2B", cartMap);
-    Order order2 = new Order("O002", "raj@abc", "Raj", "kfcnag", "KFC", cartMap);
+    public void setCartItem(ArrayList<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public ArrayList<CartItem> getCartItem() {
+        return cartItems;
+    }
+
+    Order order1 = new Order("O001", "vicky@abc", "Vicky", "a2bmad", "A2B", new ArrayList<CartItem>(){{}});
+    Order order2 = new Order("O002", "raj@abc", "Raj", "kfcnag", "KFC", new ArrayList<CartItem>(){{}});
 
     public void addOrderData() {
         Collections.addAll(orderList, order1, order2);

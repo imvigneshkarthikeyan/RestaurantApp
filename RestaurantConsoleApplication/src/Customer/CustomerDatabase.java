@@ -20,10 +20,11 @@ public class CustomerDatabase {
 
     private Map<String, ArrayList<CartItem>> cartItems = new HashMap<String, ArrayList<CartItem>>(){{
         put("vicky@gmail.com", new ArrayList<CartItem>(){{
-            add(new CartItem("A2B", "a2b@abc.com", "Vicky", "Dosa", "South", 40, true, 2));
+            add(new CartItem("Dosa", "South", 40, true, 2));
+            add(new CartItem("Chapathi", "South", 40, true, 2));
         }});
         put("rahul@gmail.com", new ArrayList<CartItem>() {{
-            add(new CartItem("A2B", "a2b@abc.com", "Rahul", "Dosa", "South", 40, true, 3));
+            add(new CartItem("Dosa", "South", 40, true, 3));
         }});
     }};
 

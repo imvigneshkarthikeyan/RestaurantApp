@@ -6,6 +6,7 @@ import SuperAdmin.SuperAdmin;
 import Admin.*;
 import Restaurant.*;
 import Customer.*;
+import Order.OrderDatabase;
 
 public class MainApplication {
     public void displayWelcomeMessage() {
@@ -20,6 +21,7 @@ public class MainApplication {
         RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
         CustomerDatabase customerDatabase = new CustomerDatabase();
         Customer customer = new Customer();
+        OrderDatabase orderDatabase = new OrderDatabase();
         while (option == 1 || option == 2 || option == 3 || option ==4) {
             System.out.println("Enter to Login as: \n1. SuperAdmin \n2. Admin \n3. Restaurant \n4. Customer \n5. Quit");
             drawLine();
@@ -40,7 +42,7 @@ public class MainApplication {
                     break;
                 case 4:
                     CustomerAuthenticator customerAuthenticator = new CustomerAuthenticator();
-                    customerAuthenticator.showSignUpSignIn(restaurantDatabase, customerDatabase, customer);
+                    customerAuthenticator.showSignUpSignIn(restaurantDatabase, customerDatabase, customer, orderDatabase);
                     break;
                 case 5:
                     System.out.println("Quitting the application");
