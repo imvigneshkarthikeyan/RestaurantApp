@@ -19,6 +19,7 @@ public class MainApplication {
         int option = 1;
         AdminDatabase adminDatabase = new AdminDatabase();
         RestaurantDatabase restaurantDatabase = new RestaurantDatabase();
+        Restaurant restaurant = new Restaurant();
         CustomerDatabase customerDatabase = new CustomerDatabase();
         Customer customer = new Customer();
         OrderDatabase orderDatabase = new OrderDatabase();
@@ -42,7 +43,7 @@ public class MainApplication {
                     break;
                 case 4:
                     CustomerAuthenticator customerAuthenticator = new CustomerAuthenticator();
-                    customerAuthenticator.showSignUpSignIn(restaurantDatabase, customerDatabase, customer, orderDatabase);
+                    customerAuthenticator.showSignUpSignIn(restaurantDatabase, customerDatabase, customer, orderDatabase, restaurant);
                     break;
                 case 5:
                     System.out.println("Quitting the application");

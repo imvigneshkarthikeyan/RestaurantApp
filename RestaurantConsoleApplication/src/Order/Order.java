@@ -76,5 +76,16 @@ public class Order {
         this.restaurantName = getRestaurantName();
         this.cartItems = getCartItems();
     }
+
+    // To display Order information
+    @Override
+    public String toString() {
+        return "Order ID: " + orderID
+                + " | User ID: " + userID
+                + " | User Name: " + userName
+                + " | Restaurant ID: " + restaurantID
+                + " | Restaurant Name: " + restaurantName
+                + " | Food Items: " + cartItems;
+    }
     
 }
