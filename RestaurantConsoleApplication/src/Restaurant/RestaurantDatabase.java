@@ -37,8 +37,8 @@ public class RestaurantDatabase {
             add(new Food("Chapathi", "North-Indian", 50, true));
         }});
         put("kfc@abc.com", new ArrayList<Food>(){{
-            add(new Food("Rice & Gravy", "Indian", 300, true));
-            add(new Food("Crispy Chicken", "FastFood", 200, false));
+            add(new Food("Rice", "Indian", 300, true));
+            add(new Food("CrispyChicken", "FastFood", 200, false));
         }});
     }};
 

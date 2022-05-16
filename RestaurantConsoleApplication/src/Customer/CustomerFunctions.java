@@ -70,7 +70,7 @@ public class CustomerFunctions {
     public void showOptionsForSearchFoodAndCart(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,String searchedRestaurant, Restaurant restaurant, OrderDatabase orderDatabase) {
         int option = 1;
         while (option == 1|| option == 2) {
-            System.out.println("Enter 1: Search Food and Add to cart \nEnter 2: View Cart \nEnter 3: Go back");
+            System.out.println("Enter 1: Search Food \nEnter 2: View Cart \nEnter 3: Go back");
             option = scanner.nextInt();
             optionValidator(option, 1, 3);
             switch (option) {
@@ -92,7 +92,6 @@ public class CustomerFunctions {
         drawDoubleLine();
         restaurant.setRestaurantName(searchedRestaurant);
         String restaurantID = restaurant.getRestaurantName().toLowerCase() + "@abc.com";
-        System.out.println(restaurantID);
         System.out.println(restaurantDatabase.getFoodMap().get(restaurantID));
         int option = 1;
         while(option == 1) {
@@ -145,7 +144,6 @@ public class CustomerFunctions {
             switch (option) {
                 case 1:
                     viewTotalCost(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
-                    placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
                     break;
                 case 2:
                     removeItemsFromCart(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
