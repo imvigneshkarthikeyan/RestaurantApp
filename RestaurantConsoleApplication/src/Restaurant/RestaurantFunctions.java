@@ -106,10 +106,14 @@ public class RestaurantFunctions {
     }
 
     public void viewOrders(OrderDatabase orderDatabase, Restaurant restaurant) {
-        for (Order order : orderDatabase.getOrderList()) {
-            drawLine();
-            if (order.getRestaurantID().equalsIgnoreCase(restaurant.getLoginID())) {
-                System.out.println(order);
+        if (orderDatabase.getOrderList().isEmpty()) {
+            System.out.println("No Orders Till now");
+        } else {
+            for (Order order : orderDatabase.getOrderList()) {
+                drawLine();
+                if (order.getRestaurantID().equalsIgnoreCase(restaurant.getLoginID())) {
+                    System.out.println(order);
+                }
             }
         }
         drawDoubleLine();
