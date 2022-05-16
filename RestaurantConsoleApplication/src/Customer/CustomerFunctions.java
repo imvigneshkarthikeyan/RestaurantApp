@@ -69,7 +69,6 @@ public class CustomerFunctions {
 
     public void showOptionsForSearchFoodAndCart(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,String searchedRestaurant, Restaurant restaurant, OrderDatabase orderDatabase) {
         int option = 1;
-        
         while (option == 1|| option == 2) {
             System.out.println("Enter 1: Search Food and Add to cart \nEnter 2: View Cart \nEnter 3: Go back");
             option = scanner.nextInt();
@@ -140,11 +139,12 @@ public class CustomerFunctions {
         System.out.println(customerDatabase.getCartItems().get(enteredID));
         int option = 1;
         while (option == 1 || option == 2) {
-            System.out.println("Enter 1: Place Order \nEnter 2: Remove items from cart \nEnter 3: To Go Back");
+            System.out.println("Enter 1: View Total Cost and Place Order \nEnter 2: Remove items from cart \nEnter 3: To Go Back");
             option = scanner.nextInt();
             optionValidator(option, 1, 3);
             switch (option) {
                 case 1:
+                    viewTotalCost(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
                     placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
                     break;
                 case 2:
@@ -158,13 +158,33 @@ public class CustomerFunctions {
         }
     }
 
+    public void viewTotalCost(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
+        ArrayList<Double> totalCostList = new ArrayList<>();
+        for (CartItem cartItem : customerDatabase.getCartItems().get(enteredID)) {
+            totalCostList.add(cartItem.getFoodCost() * cartItem.getQuantity());
+        }
+        double totalCost = 0;
+        for (Double element : totalCostList) {
+            totalCost += element;
+        }
+        // Discount for premium customer
+        if (customerDatabase.getCustomerMap().get(enteredID).isPremiumUser()==true) {
+        System.out.println("The total bill amount is: " + totalCost);
+        System.out.println("But as you are a premium customer 10% discount is made.");
+        double discountedBill = totalCost - (totalCost*0.10);
+        System.out.println("Now the total bill is: " + discountedBill);
+        } else {
+            //Bill amount for normal customer
+            System.out.println("The total bill amount is: " + totalCost);
+        }
+        placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+    }
+
     public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
         String userName = customerDatabase.getCustomerMap().get(enteredID).getNameOfuser();
         orderDatabase.getOrderList().add(new Order("101010", enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID)));
         System.out.println("Order Placed Successfully");
         removeAllFromCart(customerDatabase);
-        //Calculate Payment 
-        //Discount for premium customer
     }
 
     public void removeItemsFromCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
