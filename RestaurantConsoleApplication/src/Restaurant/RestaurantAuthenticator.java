@@ -16,7 +16,7 @@ public class RestaurantAuthenticator {
                 String enteredPassword = readPassword();
                 if (restaurant.getLoginPassword().equals(enteredPassword)) {
                     System.out.println("Login Successful");
-                    displayLineTitleAndUser("Welcome", "Restaurant " + restaurant.getRestaurantName());
+                    displayLineTitleAndUser("Welcome", restaurant.getRestaurantName() + " Restaurant");
                     RestaurantFunctions restaurantFunctions = new RestaurantFunctions();
                     restaurantFunctions.executeRestaurantFunction(enteredID, restaurant, restaurantDatabase, orderDatabase);
                 }
