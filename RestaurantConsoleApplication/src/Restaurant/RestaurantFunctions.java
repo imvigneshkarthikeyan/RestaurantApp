@@ -19,8 +19,32 @@ public class RestaurantFunctions {
         Food food = new Food();
         System.out.println("Enter the food name: ");
         food.setFoodName(scanner.next());
-        System.out.println("Enter the food type: ");
-        food.setFoodType(scanner.next());
+        System.out.println("Enter the type of Restaurant: \n1.SouthIndian \n2.NorthIndian \n3.Chinese \n4.Italian \n5.Desert ");
+        int optionForEnum = scanner.nextInt();
+        switch (optionForEnum) {
+            case 1:
+                FoodTypeEnum type1 = FoodTypeEnum.SouthIndian;
+                food.setFoodType(type1);
+                break;
+            case 2:
+                FoodTypeEnum type2 = FoodTypeEnum.NorthIndian;
+                food.setFoodType(type2);
+                break;
+            case 3:
+                FoodTypeEnum type3 = FoodTypeEnum.Chinese;
+                food.setFoodType(type3);
+                break;
+            case 4:
+                FoodTypeEnum type4 = FoodTypeEnum.Italian;
+                food.setFoodType(type4);
+                break;
+            case 5:
+                FoodTypeEnum type5 = FoodTypeEnum.Desert;
+                food.setFoodType(type5);
+                break;
+            default:
+                break;
+        }
         System.out.println("Enter the food cost: ");
         food.setFoodCost(scanner.nextDouble());
         System.out.println("Enter 1: if Veg? \nEnter 2: if NonVeg ");

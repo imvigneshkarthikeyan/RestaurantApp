@@ -1,7 +1,7 @@
 package Restaurant;
 public class Food {
     private String foodName;
-    private String foodType;
+    private FoodTypeEnum foodType;
     private double foodCost;
     private boolean veg;
 
@@ -13,10 +13,10 @@ public class Food {
 		this.foodName = foodName;
 	}
 
-	public String getFoodType() {
+	public FoodTypeEnum getFoodType() {
 		return this.foodType;
 	}
-	public void setFoodType(String foodType) {
+	public void setFoodType(FoodTypeEnum foodType) {
 		this.foodType = foodType;
 	}
 
@@ -35,7 +35,7 @@ public class Food {
 	}
 
     //Constructor for Food
-    public Food(String foodName, String foodType, double foodCost, boolean veg) {
+    public Food(String foodName, FoodTypeEnum foodType, double foodCost, boolean veg) {
 		this.foodName = foodName;
         this.foodType = foodType;
         this.foodCost = foodCost;

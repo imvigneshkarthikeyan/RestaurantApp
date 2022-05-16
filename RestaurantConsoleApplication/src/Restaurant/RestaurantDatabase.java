@@ -37,14 +37,20 @@ public class RestaurantDatabase {
         }
     }
 
+    FoodTypeEnum foodType1 = FoodTypeEnum.SouthIndian;
+    FoodTypeEnum foodType2 = FoodTypeEnum.NorthIndian;
+    FoodTypeEnum foodType3 = FoodTypeEnum.Chinese;
+    FoodTypeEnum foodType4 = FoodTypeEnum.Italian;
+    FoodTypeEnum foodType5 = FoodTypeEnum.Desert;
+
     protected Map<String, ArrayList<Food>> foodMap = new HashMap<String, ArrayList<Food>>(){{
         put("a2b@abc.com", new ArrayList<Food>(){{
-            add(new Food("Dosa", "South-Indian", 40, true));
-            add(new Food("Chapathi", "North-Indian", 50, true));
+            add(new Food("Dosa", foodType1, 40, true));
+            add(new Food("Chapathi", foodType2, 50, true));
         }});
         put("kfc@abc.com", new ArrayList<Food>(){{
-            add(new Food("Rice", "Indian", 300, true));
-            add(new Food("CrispyChicken", "FastFood", 200, false));
+            add(new Food("Rice", foodType1, 300, true));
+            add(new Food("ChickenNoodles", foodType3, 200, false));
         }});
     }};
 

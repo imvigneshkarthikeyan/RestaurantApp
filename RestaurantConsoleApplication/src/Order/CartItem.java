@@ -1,8 +1,10 @@
 package Order;
 
+import Restaurant.FoodTypeEnum;
+
 public class CartItem {
     private String foodName;
-    private String foodType;
+    private FoodTypeEnum foodType;
     private double foodCost;
     private boolean veg;
     private int quantity;
@@ -23,11 +25,11 @@ public class CartItem {
         this.foodName = foodName;
     }
 
-    public String getFoodType() {
+    public FoodTypeEnum getFoodType() {
         return this.foodType;
     }
 
-    public void setFoodType(String foodType) {
+    public void setFoodType(FoodTypeEnum foodType) {
         this.foodType = foodType;
     }
 
@@ -47,7 +49,7 @@ public class CartItem {
         this.veg = veg;
     }
 
-    public CartItem(String foodName, String foodType, double foodCost, boolean veg, int quantity) {
+    public CartItem(String foodName, FoodTypeEnum foodType, double foodCost, boolean veg, int quantity) {
         this.foodName = foodName;
         this.foodType = foodType;
         this.foodCost = foodCost;
