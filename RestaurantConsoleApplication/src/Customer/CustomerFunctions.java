@@ -4,6 +4,7 @@ import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import Order.CartItem;
 import Order.Order;
@@ -177,9 +178,15 @@ public class CustomerFunctions {
         placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant, totalCost);
     }
 
+    public String generateOrderID() {
+        String ID = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        return ID;
+    }
+
     public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant, double totalCost) {
         String userName = customerDatabase.getCustomerMap().get(enteredID).getNameOfuser();
-        orderDatabase.getOrderList().add(new Order("101010", enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID), totalCost));
+
+        orderDatabase.getOrderList().add(new Order(generateOrderID(), enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID), totalCost));
         System.out.println("Order Placed Successfully");
         removeAllFromCart(customerDatabase);
     }

@@ -11,7 +11,7 @@ import Order.OrderDatabase;
 public class MainApplication {
     public void displayWelcomeMessage() {
         drawDoubleLine();
-        displayLineWithTitle("Welcome to Food ordering application!");
+        displayLineWithTitle("Welcome to Food order app!");
         drawDoubleLine();
     }
     public void selectUserType() {
