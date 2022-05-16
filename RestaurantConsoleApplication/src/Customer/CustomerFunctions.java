@@ -121,7 +121,7 @@ public class CustomerFunctions {
                             System.out.println("FoodFound!");
                             System.out.println(food);
                             // Function to add food to cart
-                            addFoodToCart(searchedRestaurant, enteredID, food, customerDatabase);
+                            addFoodToCart(enteredID, food, customerDatabase);
                         }
                     }
                     drawDoubleLine();
@@ -135,17 +135,20 @@ public class CustomerFunctions {
         }
     }
 
-    public void addFoodToCart(String searchedRestaurant, String enteredID, Food food, CustomerDatabase customerDatabase) {
+    public void addFoodToCart(String enteredID, Food food, CustomerDatabase customerDatabase) {
         drawLine();
         System.out.println("Enter the quantity to be added: ");
+        int quantity = scanner.nextInt();
         if (customerDatabase.getCartItems().get(enteredID)==null) {
             customerDatabase.getCartItems().put(enteredID, new ArrayList<CartItem>(){{
-                add(new CartItem(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg(), scanner.nextInt()));
+                add(new CartItem(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg(), 
+                            quantity));
             }});
         } else {
             customerDatabase.getCartItems().get(enteredID).add(new CartItem(food.getFoodName(), food.getFoodType(),
-                    food.getFoodCost(), food.isVeg(), scanner.nextInt()));
+                    food.getFoodCost(), food.isVeg(), quantity));
         }
+        System.out.println("Food: " + food.getFoodName() + " of " + quantity + " quantity added to cart");
     }
 
     public void viewCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
@@ -162,7 +165,7 @@ public class CustomerFunctions {
                     viewTotalCost(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
                     break;
                 case 2:
-                    removeItemsFromCart(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+                    removeItemsFromCart(enteredID, customerDatabase);
                     break;
                 case 3:
                     System.out.println("Going Back");
@@ -213,7 +216,7 @@ public class CustomerFunctions {
         removeAllFromCart(customerDatabase);
     }
 
-    public void removeItemsFromCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
+    public void removeItemsFromCart(String enteredID, CustomerDatabase customerDatabase) {
         int i = 0;
         for (CartItem cartItem : customerDatabase.getCartItems().get(enteredID)) {
             drawLine();
