@@ -56,21 +56,47 @@ public class CustomerFunctions {
     }
 
     public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
+        int option = 1;
         scanner.nextLine();
-        drawDoubleLine();
-        System.out.println("Enter the Login Id: ");
-        String enteredID = scanner.nextLine();
-        if (customerDatabase.getCustomerMap().containsKey(enteredID)) {
-            drawLine();
+        while (option == 1) {
+            drawDoubleLine();
+            System.out.println("Enter the Login Id: ");
+            String enteredID = scanner.nextLine();
+            if (customerDatabase.getCustomerMap().containsKey(enteredID)==false) {
+                drawDoubleLine();
+                System.out.println("Login ID is wrong\nEnter 1: To try again\nEnter 2: Go Back and try SignUp");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                if (customerDatabase.getCustomerMap().containsKey(enteredID)) {
+                    drawLine();
+                    System.out.println("ID is Correct");
+                    authenticatePasswordForCustomer(enteredID, restaurantDatabase, customerDatabase, orderDatabase, restaurant);
+                    option = 2;
+                }
+            }
+        }
+    }
+
+    public void authenticatePasswordForCustomer(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
+        int option = 1;
+        while (option == 1) {
+            drawDoubleLine();
             System.out.println("ID is crt, now enter the password.");
             String enteredPassword = readPassword();
-            if (customerDatabase.getCustomerMap().get(enteredID).getLoginPassword().equals(enteredPassword)) {
+            if (customerDatabase.getCustomerMap().get(enteredID).getLoginPassword().equals(enteredPassword)==false) {
+                System.out.println("Password is wrong\nEnter 1: To try again\nEnter 2: Go Back");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
                 drawLine();
                 System.out.println("Password is right");
                 displayLineTitleAndUser("Welcome ", customerDatabase.getCustomerMap().get(enteredID).getNameOfuser());
-                executeCustomerFunction(enteredID, restaurantDatabase, customerDatabase, orderDatabase, restaurant);
+                executeCustomerFunction(enteredID, restaurantDatabase, customerDatabase, orderDatabase,restaurant);
+                option = 2;
             }
         }
+        drawDoubleLine();
     }
 
     public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,OrderDatabase orderDatabase) {
