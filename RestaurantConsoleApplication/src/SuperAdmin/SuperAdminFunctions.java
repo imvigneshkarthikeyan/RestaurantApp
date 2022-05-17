@@ -57,10 +57,23 @@ public class SuperAdminFunctions {
     public void deleteData(AdminDatabase adminDatabase) {
         scanner.nextLine();
         // Delete admin from admin map
-        System.out.println("Enter the login id of the admin that has to be removed: ");
-        adminDatabase.getAdminMap().remove(scanner.nextLine());
-        System.out.println("The admin DB after deleting: ");
-        adminDatabase.printAdminData();    
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the login id of the admin that has to be removed: ");
+            String adminToBeRemoved = scanner.nextLine();
+            if (adminDatabase.getAdminMap().containsKey(adminToBeRemoved) == false) {
+                System.out.println("There is no such login ID\nEnter 1: To try again\nEnter 2: To Go Back");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                adminDatabase.getAdminMap().remove(adminToBeRemoved);
+                System.out.println("The admin with login ID: " + adminToBeRemoved + " was removed successfully!");
+                drawDoubleLine();
+                System.out.println("The admin DB after deleting: ");
+                adminDatabase.printAdminData();
+                option = 2;
+            }
+        }   
         drawDoubleLine();    
     }
 
