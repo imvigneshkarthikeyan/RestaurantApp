@@ -21,54 +21,70 @@ public class AdminFunctions {
         scanner.nextLine();
         Restaurant restaurant = new Restaurant();
         drawDoubleLine();
-        System.out.println("Enter the Restaurant Login ID: ");
-        restaurant.setLoginID(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter the password for restaurant: ");
-        restaurant.setLoginPassword(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter the Restaurant Name: ");
-        restaurant.setRestaurantName(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter the type of Restaurant: \n1.Cafe \n2.CasualDining \n3.MultiCusine \n4.Pizzerias \n5.FastFood ");
-        int option = scanner.nextInt();
-        switch (option) {
-            case 1:
-                RestaurantTypeEnum type1 = RestaurantTypeEnum.Cafe;
-                restaurant.setRestaurantType(type1);
-                break;
-            case 2:
-                RestaurantTypeEnum type2 = RestaurantTypeEnum.CasualDining;
-                restaurant.setRestaurantType(type2);
-                break;
-            case 3:
-                RestaurantTypeEnum type3 = RestaurantTypeEnum.MultiCusine;
-                restaurant.setRestaurantType(type3);
-                break;
-            case 4:
-                RestaurantTypeEnum type4 = RestaurantTypeEnum.Pizzerias;
-                restaurant.setRestaurantType(type4);
-                break;
-            case 5:
-                RestaurantTypeEnum type5 = RestaurantTypeEnum.FastFood;
-                restaurant.setRestaurantType(type5);
-                break;
-            default:
-                break;
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the Restaurant Login ID: ");
+            restaurant.setLoginID(scanner.nextLine());
+            if (restaurantDatabase.getFoodMap().containsKey(restaurant.getLoginID())) {
+                System.out.println("This Restaurant already exists, \nEnter 1: To Try again and create different ID \nEnter 2: To Go Back");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                drawLine();
+                System.out.println("Enter the password for restaurant: ");
+                restaurant.setLoginPassword(scanner.nextLine());
+                drawLine();
+                System.out.println("Enter the Restaurant Name: ");
+                restaurant.setRestaurantName(scanner.nextLine());
+                drawLine();
+                System.out.println(
+                        "Enter the type of Restaurant: \n1.Cafe \n2.CasualDining \n3.MultiCusine \n4.Pizzerias \n5.FastFood ");
+                int typeOption = scanner.nextInt();
+                switch (typeOption) {
+                    case 1:
+                        RestaurantTypeEnum type1 = RestaurantTypeEnum.Cafe;
+                        restaurant.setRestaurantType(type1);
+                        break;
+                    case 2:
+                        RestaurantTypeEnum type2 = RestaurantTypeEnum.CasualDining;
+                        restaurant.setRestaurantType(type2);
+                        break;
+                    case 3:
+                        RestaurantTypeEnum type3 = RestaurantTypeEnum.MultiCusine;
+                        restaurant.setRestaurantType(type3);
+                        break;
+                    case 4:
+                        RestaurantTypeEnum type4 = RestaurantTypeEnum.Pizzerias;
+                        restaurant.setRestaurantType(type4);
+                        break;
+                    case 5:
+                        RestaurantTypeEnum type5 = RestaurantTypeEnum.FastFood;
+                        restaurant.setRestaurantType(type5);
+                        break;
+                    default:
+                        break;
+                }
+                drawLine();
+                scanner.nextLine();
+                System.out.println("Enter the location of Restaurant: ");
+                restaurant.setRestaurantLocation(scanner.nextLine());
+                drawLine();
+                System.out.println("Enter the phone number of Restaurant: ");
+                restaurant.setRestaurantPhoneNumber(scanner.nextLine());
+                drawLine();
+                System.out.println("Enter the average cost for 2: ");
+                restaurant.setRestaurantAvgCost(scanner.nextDouble());
+                drawLine();
+                restaurantDatabase.getRestaurantList()
+                        .add(new Restaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(),
+                                restaurant.getRestaurantLocation(), restaurant.getRestaurantPhoneNumber(),
+                                restaurant.getRestaurantAvgCost(), restaurant.getLoginID(),
+                                restaurant.getLoginPassword()));
+                drawDoubleLine();
+                option = 2;
+            }
+            drawDoubleLine();
         }
-        drawLine();
-        scanner.nextLine();
-        System.out.println("Enter the location of Restaurant: ");
-        restaurant.setRestaurantLocation(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter the phone number of Restaurant: ");
-        restaurant.setRestaurantPhoneNumber(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter the average cost for 2: ");
-        restaurant.setRestaurantAvgCost(scanner.nextDouble());
-        drawLine();
-        restaurantDatabase.getRestaurantList().add(new Restaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantLocation(), restaurant.getRestaurantPhoneNumber(), restaurant.getRestaurantAvgCost(), restaurant.getLoginID(), restaurant.getLoginPassword()));
-        drawDoubleLine();
     }
 
     public void deleteData(RestaurantDatabase restaurantDatabase) {
