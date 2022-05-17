@@ -170,40 +170,46 @@ public class CustomerFunctions {
         while(option == 1) {
             drawDoubleLine();
             System.out.println("Enter 1: To Search Food and add to cart\nEnter 2: To Go Back");
-            option = scanner.nextInt();
-            optionValidator(option, 1, 2);
-            scanner.nextLine();
-            switch (option) {
-                case 1:
-                    drawLine();
-                    int searchOption = 1;
-                    while (searchOption == 1) {
-                        System.out.println("Enter the food to search: ");
-                        String searchedFood = scanner.nextLine();
-                        if (restaurantDatabase.getFoodMap().get(restaurantID).stream().map(Food::getFoodName).anyMatch(f->f.equalsIgnoreCase(searchedFood))==false) {
-                            System.out.println("Food is not available\nEnter 1: To try again\nEnter 2: Go Back");
-                            option = scanner.nextInt();
-                            scanner.nextLine();
-                        } else {
-                            for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
-                                drawLine();
-                                if (food.getFoodName().equalsIgnoreCase(searchedFood)) {
-                                    System.out.println("FoodFound!");
-                                    System.out.println(food);
-                                    // Function to add food to cart
-                                    addFoodToCart(enteredID, food, customerDatabase);
+            try {
+                option = scanner.nextInt();
+                optionValidator(option, 1, 2);
+                scanner.nextLine();
+                switch (option) {
+                    case 1:
+                        drawLine();
+                        int searchOption = 1;
+                        while (searchOption == 1) {
+                            System.out.println("Enter the food to search: ");
+                            String searchedFood = scanner.nextLine();
+                            if (restaurantDatabase.getFoodMap().get(restaurantID).stream().map(Food::getFoodName)
+                                    .anyMatch(f -> f.equalsIgnoreCase(searchedFood)) == false) {
+                                System.out.println("Food is not available\nEnter 1: To try again\nEnter 2: Go Back");
+                                option = scanner.nextInt();
+                                scanner.nextLine();
+                            } else {
+                                for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
+                                    drawLine();
+                                    if (food.getFoodName().equalsIgnoreCase(searchedFood)) {
+                                        System.out.println("FoodFound!");
+                                        System.out.println(food);
+                                        // Function to add food to cart
+                                        addFoodToCart(enteredID, food, customerDatabase);
+                                    }
                                 }
+                                drawDoubleLine();
+                                searchOption = 2;
                             }
-                            drawDoubleLine();
-                            searchOption = 2;
                         }
-                    }
-                    break;
-                case 2:
-                    System.out.println("Going Back");
-                    break;
-                default:
-                    break;
+                        break;
+                    case 2:
+                        System.out.println("Going Back");
+                        break;
+                    default:
+                        break;
+                }                
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input, try again");
+                option = 1;
             }
         }
     }
@@ -373,20 +379,25 @@ public class CustomerFunctions {
         while (option == 1 || option == 2) {
             drawDoubleLine();
             displayOptionsForCustomer();
-            option = scanner.nextInt();
-            optionValidator(option, 1, 3);
-            switch (option) {
-                case 1:
-                    searchRestaurant(enteredID, restaurantDatabase, customerDatabase, orderDatabase);
-                    break;
-                case 2:
-                    viewOrderHistory(enteredID, orderDatabase);
-                    break;
-                case 3:
-                    System.out.println("Logging out from Customer portal");
-                    break;
-                default:
-                    break;
+            try {
+                option = scanner.nextInt();
+                optionValidator(option, 1, 3);
+                switch (option) {
+                    case 1:
+                        searchRestaurant(enteredID, restaurantDatabase, customerDatabase, orderDatabase);
+                        break;
+                    case 2:
+                        viewOrderHistory(enteredID, orderDatabase);
+                        break;
+                    case 3:
+                        System.out.println("Logging out from Customer portal");
+                        break;
+                    default:
+                        break;
+                }                
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input, try again");
+                option = 1;
             }
         }
     }
