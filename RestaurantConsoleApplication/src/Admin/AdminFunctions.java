@@ -23,7 +23,7 @@ public class AdminFunctions {
         drawDoubleLine();
         int option = 1;
         while (option == 1) {
-            System.out.println("Enter the Restaurant Login ID: ");
+            System.out.println("Enter the Restaurant Login ID: (Hint: Enter restaurant name + abc.com)");
             restaurant.setLoginID(scanner.nextLine());
             if (restaurantDatabase.getFoodMap().containsKey(restaurant.getLoginID())) {
                 System.out.println("This Restaurant already exists, \nEnter 1: To Try again and create different ID \nEnter 2: To Go Back");
