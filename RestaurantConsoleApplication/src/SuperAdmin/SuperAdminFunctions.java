@@ -89,25 +89,30 @@ public class SuperAdminFunctions {
     public void executeSuperAdminFunction(AdminDatabase adminDatabase) {
         int option = 1;
         while (option == 1 || option == 2 || option == 3) {
-            displayOptionsForSuperAdmin();
-            option = scanner.nextInt();
-            optionValidator(option, 1, 4);
-            switch (option) {
-                case 1:
-                    viewData(adminDatabase);
-                    break;
-                case 2:
-                    addData(adminDatabase);
-                    break;
-                case 3:
-                    deleteData(adminDatabase);
-                    break;
-                case 4:
-                    drawLine();
-                    System.out.println("Logging out from Super admin portal");
-                    break;
-                default:
-                    break;
+            try {
+                displayOptionsForSuperAdmin();
+                option = scanner.nextInt();
+                optionValidator(option, 1, 4);
+                switch (option) {
+                    case 1:
+                        viewData(adminDatabase);
+                        break;
+                    case 2:
+                        addData(adminDatabase);
+                        break;
+                    case 3:
+                        deleteData(adminDatabase);
+                        break;
+                    case 4:
+                        drawLine();
+                        System.out.println("Logging out from Super admin portal");
+                        break;
+                    default:
+                        break;
+                }                
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input, please try again");
+                option = 1;
             }
         }
     }
