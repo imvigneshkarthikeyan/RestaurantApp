@@ -70,6 +70,10 @@ public class AdminFunctions {
                 drawLine();
                 System.out.println("Enter the phone number of Restaurant: ");
                 restaurant.setRestaurantPhoneNumber(scanner.nextLine());
+                while (restaurant.getRestaurantPhoneNumber().length() != 10) {
+                    System.out.println("Please enter a valid 10 digit phone number \n Eg: 9876543210");
+                    restaurant.setRestaurantPhoneNumber(scanner.next());
+                }
                 drawLine();
                 System.out.println("Enter the average cost for 2: ");
                 restaurant.setRestaurantAvgCost(scanner.nextDouble());
