@@ -25,6 +25,7 @@ public class MainApplication {
         while (option == 1 || option == 2 || option == 3 || option ==4) {
             System.out.println("Enter to Login as: \n1. SuperAdmin \n2. Admin \n3. Restaurant \n4. Customer \n5. Quit");
             drawLine();
+            try {
             option = scanner.nextInt();
             optionValidator(option, 1, 5);
             switch (option) {
@@ -51,6 +52,11 @@ public class MainApplication {
                     break;
             }   
             drawDoubleLine();
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input, try again");
+                option = 1;
+            }
+            
         }
     }
 }
