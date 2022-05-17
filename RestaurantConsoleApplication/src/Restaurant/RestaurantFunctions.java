@@ -12,8 +12,12 @@ import static Utilities.UiUtils.*;
 public class RestaurantFunctions {
 
     public void viewData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
-        drawLine();
-        System.out.println(restaurantDatabase.foodMap.get(restaurant.getLoginID()));
+        if (restaurantDatabase.foodMap.get(restaurant.getLoginID())==null) {
+            System.out.println("No food added Till Now.");
+        } else {
+            drawLine();
+            System.out.println(restaurantDatabase.foodMap.get(restaurant.getLoginID()));
+        }
     }
 
     public void addData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
