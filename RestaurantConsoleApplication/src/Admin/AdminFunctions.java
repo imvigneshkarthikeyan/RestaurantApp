@@ -37,8 +37,7 @@ public class AdminFunctions {
                 System.out.println("Enter the Restaurant Name: ");
                 restaurant.setRestaurantName(scanner.nextLine());
                 drawLine();
-                System.out.println(
-                        "Enter the type of Restaurant: \n1.Cafe \n2.CasualDining \n3.MultiCusine \n4.Pizzerias \n5.FastFood ");
+                System.out.println("Enter the type of Restaurant: \n1.Cafe \n2.CasualDining \n3.MultiCusine \n4.Pizzerias \n5.FastFood ");
                 int typeOption = scanner.nextInt();
                 switch (typeOption) {
                     case 1:
@@ -149,28 +148,33 @@ public class AdminFunctions {
         while (option == 1 || option == 2 || option == 3 || option == 4 || option == 5) {
             drawDoubleLine();
             displayOptionsForAdmin();
-            option = scanner.nextInt();
-            optionValidator(option, 1, 6);
-            switch (option) {
-                case 1:
-                    viewData(restaurantDatabase);
-                    break;
-                case 2:
-                    addData(restaurantDatabase);
-                    break;
-                case 3:
-                    deleteData(restaurantDatabase);
-                    break;
-                case 4:
-                    viewCustomerData(customerDatabase);
-                    break;
-                case 5:
-                    removeCustomerData(customerDatabase);
-                    break;
-                case 6:
-                    System.out.println("Logging out from Admin portal");
-                default:
-                    break;
+            try {
+                option = scanner.nextInt();
+                optionValidator(option, 1, 6);
+                switch (option) {
+                    case 1:
+                        viewData(restaurantDatabase);
+                        break;
+                    case 2:
+                        addData(restaurantDatabase);
+                        break;
+                    case 3:
+                        deleteData(restaurantDatabase);
+                        break;
+                    case 4:
+                        viewCustomerData(customerDatabase);
+                        break;
+                    case 5:
+                        removeCustomerData(customerDatabase);
+                        break;
+                    case 6:
+                        System.out.println("Logging out from Admin portal");
+                    default:
+                        break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input, try again");
+                option = 1;
             }
         }
     }
