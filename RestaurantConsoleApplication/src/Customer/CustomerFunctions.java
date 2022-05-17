@@ -4,6 +4,7 @@ import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import Order.CartItem;
@@ -278,11 +279,17 @@ public class CustomerFunctions {
     }
 
     public void viewOrderHistory(String enteredID, OrderDatabase orderDatabase) {
+        List<Order> orderHistory = new ArrayList<Order>();
         drawDoubleLine();
         for (Order order : orderDatabase.getOrderList()) {
             if (order.getUserID().equalsIgnoreCase(enteredID)) {
-                System.out.println(order);
+                orderHistory.add(order);
             }
+        }
+        if (orderHistory.isEmpty()) {
+            System.out.println("No Orders Till Now.");
+        } else {
+            System.out.println(orderHistory);
         }
     }
 
