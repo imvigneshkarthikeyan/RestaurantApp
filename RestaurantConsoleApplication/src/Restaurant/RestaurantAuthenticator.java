@@ -6,26 +6,24 @@ import static Utilities.ValidatorUtils.*;
 import Order.OrderDatabase;
 
 public class RestaurantAuthenticator {
-    public void authenticateRestaurant(RestaurantDatabase restaurantDatabase, OrderDatabase orderDatabase) {
+    public void authenticateRestaurant(RestaurantDatabase restaurantDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
         int option = 1;
         while (option == 1) {
             drawDoubleLine();
             System.out.println("Enter the Login Id: ");
             String enteredID = scanner.next();
             drawLine();
-            for (Restaurant restaurant : restaurantDatabase.getRestaurantList()) {
-                if (restaurant.getLoginID().equals(enteredID)) {
-                    System.out.println("ID is correct");
-                    validatePasswordForRestaurant(restaurant, enteredID, restaurantDatabase, orderDatabase);
-                    option = 2;
-                    break;
-                } else {
-                    drawDoubleLine();
-                    System.out.println("Login ID is wrong\nEnter 1: To try again\nEnter 2: Go Back");
-                    option = scanner.nextInt();
-                    break;
-                }           
-            }
+            if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getLoginID).anyMatch(r -> r.equalsIgnoreCase(enteredID))) {
+                System.out.println("ID is correct");
+                validatePasswordForRestaurant(restaurant, enteredID, restaurantDatabase, orderDatabase);
+                option = 2;
+                break;
+            } else {
+                drawDoubleLine();
+                System.out.println("Login ID is wrong\nEnter 1: To try again\nEnter 2: Go Back");
+                option = scanner.nextInt();
+                break;
+            }          
         }
     }
 
@@ -35,7 +33,7 @@ public class RestaurantAuthenticator {
             System.out.println("Enter password: ");
             String enteredPassword = readPassword();
             drawLine();
-            if (restaurant.getLoginPassword().equals(enteredPassword)) {
+            if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getLoginPassword).anyMatch(r -> r.equalsIgnoreCase(enteredPassword))) {
                 drawLine();
                 System.out.println("Login Successful");
                 displayLineTitleAndUser("Welcome", restaurant.getRestaurantName() + " Restaurant");

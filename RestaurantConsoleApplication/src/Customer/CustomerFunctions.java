@@ -3,6 +3,8 @@ package Customer;
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -327,9 +329,15 @@ public class CustomerFunctions {
         return ID;
     }
 
+    public String getDateAndTimeNow() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
+
     public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant, double totalCost) {
         String userName = customerDatabase.getCustomerMap().get(enteredID).getNameOfuser();
-        orderDatabase.getOrderList().add(new Order(generateOrderID(), enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID), totalCost));
+        orderDatabase.getOrderList().add(new Order(generateOrderID(), getDateAndTimeNow(), enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID), totalCost));
         drawLine();
         System.out.println("Order Placed Successfully");
         removeAllFromCart(customerDatabase);

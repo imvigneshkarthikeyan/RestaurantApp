@@ -11,26 +11,7 @@ public class ValidatorUtils {
             throw new IllegalArgumentException();
         }
     }
-    public static int readInt() {
-        int val = -1;
-        try {
-            val = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Input! Please enter a positive number!");
-            return val;
-        }
-        return val < 0 ? -1 : val;
-    }
-    public static double readDouble() {
-        double val = -1;
-        try {
-            val = Double.parseDouble(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Input! Enter a positive number!");
-            return val;
-        }
-        return val;
-    }
+    
     public static String readPassword() {
         return console != null ? String.valueOf(console.readPassword()) : scanner.nextLine();
     }

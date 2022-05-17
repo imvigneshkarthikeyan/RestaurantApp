@@ -10,6 +10,15 @@ public class Order {
     private String restaurantName;
     private ArrayList<CartItem> cartItems;
     private double totalBillAmount;
+    private String dateTimeLog;
+
+    public String getDateTimeLog() {
+        return this.dateTimeLog;
+    }
+
+    public void setDateTimeLog(String dateTimeLog) {
+        this.dateTimeLog = dateTimeLog;
+    }
 
     public double getTotalBillAmount() {
         return this.totalBillAmount;
@@ -68,8 +77,9 @@ public class Order {
     }
 
     //Constructor for Order
-    public Order(String orderID, String userID, String userName, String restaurantID, String restaurantName, ArrayList<CartItem> cartItems, double totalBillAmount) {
+    public Order(String orderID, String dateTimeLog, String userID, String userName, String restaurantID, String restaurantName, ArrayList<CartItem> cartItems, double totalBillAmount) {
         this.orderID = orderID;
+        this.dateTimeLog = dateTimeLog;
         this.userID = userID;
         this.userName = userName;
         this.restaurantID = restaurantID;
@@ -80,6 +90,7 @@ public class Order {
 
     public Order() {
         this.orderID = getOrderID();
+        this.dateTimeLog = getDateTimeLog();
         this.userID = getUserID();
         this.userName = getUserName();
         this.restaurantID = getRestaurantID();
@@ -92,6 +103,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order ID: " + orderID
+                + " | Order Time: " + dateTimeLog
                 + " | User ID: " + userID
                 + " | User Name: " + userName
                 + " | Restaurant ID: " + restaurantID
