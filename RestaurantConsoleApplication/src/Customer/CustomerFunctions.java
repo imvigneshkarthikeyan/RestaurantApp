@@ -134,23 +134,29 @@ public class CustomerFunctions {
     public void showOptionsForSearchFoodAndCart(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,String searchedRestaurant, Restaurant restaurant, OrderDatabase orderDatabase) {
         int option = 1;
         while (option == 1|| option == 2) {
-            drawDoubleLine();
-            System.out.println("Enter 1: Go to Foods \nEnter 2: View Cart \nEnter 3: Go back");
-            option = scanner.nextInt();
-            optionValidator(option, 1, 3);
-            drawLine();
-            switch (option) {
-                case 1:
-                    searchFood(enteredID, searchedRestaurant, restaurant, restaurantDatabase, customerDatabase);
-                    break;
-                case 2:
-                    viewCart(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
-                    break;
-                case 3:
-                    System.out.println("Going Back");
-                default:
-                    break;
+            try {
+                drawDoubleLine();
+                System.out.println("Enter 1: Go to Foods \nEnter 2: View Cart \nEnter 3: Go back");
+                option = scanner.nextInt();
+                optionValidator(option, 1, 3);
+                drawLine();
+                switch (option) {
+                    case 1:
+                        searchFood(enteredID, searchedRestaurant, restaurant, restaurantDatabase, customerDatabase);
+                        break;
+                    case 2:
+                        viewCart(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+                        break;
+                    case 3:
+                        System.out.println("Going Back");
+                    default:
+                        break;
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Add food and come to cart, Going back");
+                option = 3;
             }
+            
         }
     }
 
@@ -170,18 +176,28 @@ public class CustomerFunctions {
             switch (option) {
                 case 1:
                     drawLine();
-                    System.out.println("Enter the food to search: ");
-                    String searchedFood = scanner.nextLine();
-                    for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
-                        drawLine();
-                        if (food.getFoodName().equalsIgnoreCase(searchedFood)) {
-                            System.out.println("FoodFound!");
-                            System.out.println(food);
-                            // Function to add food to cart
-                            addFoodToCart(enteredID, food, customerDatabase);
+                    int searchOption = 1;
+                    while (searchOption == 1) {
+                        System.out.println("Enter the food to search: ");
+                        String searchedFood = scanner.nextLine();
+                        if (restaurantDatabase.getFoodMap().get(restaurantID).stream().map(Food::getFoodName).anyMatch(f->f.equalsIgnoreCase(searchedFood))==false) {
+                            System.out.println("Food is not available\nEnter 1: To try again\nEnter 2: Go Back");
+                            option = scanner.nextInt();
+                            scanner.nextLine();
+                        } else {
+                            for (Food food : restaurantDatabase.getFoodMap().get(restaurantID)) {
+                                drawLine();
+                                if (food.getFoodName().equalsIgnoreCase(searchedFood)) {
+                                    System.out.println("FoodFound!");
+                                    System.out.println(food);
+                                    // Function to add food to cart
+                                    addFoodToCart(enteredID, food, customerDatabase);
+                                }
+                            }
+                            drawDoubleLine();
+                            searchOption = 2;
                         }
                     }
-                    drawDoubleLine();
                     break;
                 case 2:
                     System.out.println("Going Back");
@@ -194,35 +210,64 @@ public class CustomerFunctions {
 
     public void addFoodToCart(String enteredID, Food food, CustomerDatabase customerDatabase) {
         drawLine();
-        System.out.println("Enter the quantity to be added: ");
-        int quantity = scanner.nextInt();
-        if (customerDatabase.getCartItems().get(enteredID)==null) {
-            customerDatabase.getCartItems().put(enteredID, new ArrayList<CartItem>(){{
-                add(new CartItem(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg(), 
-                            quantity));
-            }});
-        } else {
-            customerDatabase.getCartItems().get(enteredID).add(new CartItem(food.getFoodName(), food.getFoodType(),
-                    food.getFoodCost(), food.isVeg(), quantity));
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the quantity to be added: ");
+            int quantity = scanner.nextInt();
+            if (quantity > 0) {
+                if (customerDatabase.getCartItems().get(enteredID) == null) {
+                    customerDatabase.getCartItems().put(enteredID, new ArrayList<CartItem>() {
+                        {
+                            add(new CartItem(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg(),
+                                    quantity));
+                        }
+                    });
+                } else {
+                    customerDatabase.getCartItems().get(enteredID)
+                            .add(new CartItem(food.getFoodName(), food.getFoodType(),
+                                    food.getFoodCost(), food.isVeg(), quantity));
+                }
+                System.out.println("Food: " + food.getFoodName() + " of " + quantity + " quantity added to cart");
+                option = 2;
+            } else {
+                System.out.println("Enter a valid positive number.");
+                option = 1;
+            }
         }
-        System.out.println("Food: " + food.getFoodName() + " of " + quantity + " quantity added to cart");
+        
+        
     }
 
     public void viewCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
         //Itmes in cart
-        System.out.println(customerDatabase.getCartItems().get(enteredID));
+        if (customerDatabase.getCartItems().get(enteredID).isEmpty()) {
+            System.out.println("The cart is empty");
+        } else {
+            System.out.println(customerDatabase.getCartItems().get(enteredID));
+        }
         int option = 1;
         while (option == 1 || option == 2) {
-            drawDoubleLine();
+            try {
+                drawDoubleLine();
             System.out.println("Enter 1: View Total Cost and Place Order \nEnter 2: Remove items from cart \nEnter 3: To Go Back");
             option = scanner.nextInt();
             optionValidator(option, 1, 3);
             switch (option) {
                 case 1:
-                    viewTotalCost(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+                    if (customerDatabase.getCartItems().get(enteredID).isEmpty()) {
+                        System.out.println("As the cart is empty, you can't view total/place Order");
+                    } else if (customerDatabase.getCartItems() == null) {
+                        System.out.println("As the order was placed, the cart is empty now");
+                    } else {
+                        viewTotalCost(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+                    }
                     break;
                 case 2:
-                    removeItemsFromCart(enteredID, customerDatabase);
+                    if (customerDatabase.getCartItems().get(enteredID).isEmpty()) {
+                        System.out.println("As the cart is empty, you can't remove further");
+                    } else {
+                        removeItemsFromCart(enteredID, customerDatabase);
+                    }
                     break;
                 case 3:
                     System.out.println("Going Back");
@@ -230,7 +275,12 @@ public class CustomerFunctions {
                 default:
                     break;
             }
+        } catch (NullPointerException e) {
+            System.out.println("Can't place order, going back");
+            option = 3;
         }
+            } 
+            
     }
 
     public void viewTotalCost(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
@@ -258,6 +308,7 @@ public class CustomerFunctions {
             drawDoubleLine();
         }
         placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant, totalCost);
+        
     }
 
     public String generateOrderID() {
@@ -281,10 +332,18 @@ public class CustomerFunctions {
             i++;
         }
         drawLine();
-        System.out.println("Enter the index number of the cart item to be removed: ");
-        int itemToBeRemoved = scanner.nextInt();
-        customerDatabase.getCartItems().get(enteredID).remove(itemToBeRemoved);
-        System.out.println("Cart after removal is: " + customerDatabase.getCartItems().get(enteredID));
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the index number of the cart item to be removed: ");
+            int index = scanner.nextInt();
+            if (index < customerDatabase.getCartItems().get(enteredID).size() && index >= 0 ) {
+                customerDatabase.getCartItems().get(enteredID).remove(index);
+                System.out.println("Cart after removal is: " + customerDatabase.getCartItems().get(enteredID));
+                option = 2;
+            } else {
+                System.out.println("Enter a valid index number");
+            }
+        }
     }
 
     public void removeAllFromCart(CustomerDatabase customerDatabase) {
