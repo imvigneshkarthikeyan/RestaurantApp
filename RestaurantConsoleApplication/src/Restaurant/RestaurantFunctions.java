@@ -170,36 +170,41 @@ public class RestaurantFunctions {
         while (option == 1 || option == 2 || option == 3 || option == 4 || option == 5) {
             drawDoubleLine();
             displayOptionsForRestaurant();
-            option = scanner.nextInt();
-            optionValidator(option, 1, 6);
-            switch (option) {
-                case 1:
-                    viewData(restaurant, restaurantDatabase);
-                    break;
-                case 2:
-                    addData(restaurant, restaurantDatabase);
-                    break;
-                case 3:
-                if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty()==false) {
-                    deleteData(restaurant, restaurantDatabase);
-                } else {
-                    System.out.println("As no food is available, you can't delete food");
+            try {
+                option = scanner.nextInt();
+                optionValidator(option, 1, 6);
+                switch (option) {
+                    case 1:
+                        viewData(restaurant, restaurantDatabase);
+                        break;
+                    case 2:
+                        addData(restaurant, restaurantDatabase);
+                        break;
+                    case 3:
+                        if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty() == false) {
+                            deleteData(restaurant, restaurantDatabase);
+                        } else {
+                            System.out.println("As no food is available, you can't delete food");
+                        }
+                        break;
+                    case 4:
+                        if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty() == false) {
+                            editData(restaurant, restaurantDatabase);
+                        } else {
+                            System.out.println("As no food is available, you can't edit food's cost");
+                        }
+                        break;
+                    case 5:
+                        viewOrders(orderDatabase, restaurant);
+                        break;
+                    case 6:
+                        System.out.println("Logging out from Restaurant portal");
+                    default:
+                        break;
                 }
-                break;
-                case 4:
-                if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty()==false) {
-                    editData(restaurant, restaurantDatabase);
-                } else {
-                    System.out.println("As no food is available, you can't edit food's cost");
-                }
-                break;
-                case 5:
-                    viewOrders(orderDatabase, restaurant);
-                    break;
-                case 6:
-                    System.out.println("Logging out from Restaurant portal");
-                default:
-                    break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input, try again");
+                option = 1;
             }
         }
     }
