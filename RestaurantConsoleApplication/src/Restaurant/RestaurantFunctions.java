@@ -12,7 +12,7 @@ import static Utilities.UiUtils.*;
 public class RestaurantFunctions {
 
     public void viewData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
-        if (restaurantDatabase.foodMap.get(restaurant.getLoginID())==null) {
+        if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty()) {
             System.out.println("No food added Till Now.");
         } else {
             drawLine();
@@ -112,11 +112,21 @@ public class RestaurantFunctions {
             i++;
         }
         drawDoubleLine();
-        System.out.println("Enter the index of the food whose cost to be updated: ");
-        int index = scanner.nextInt();
-        drawLine();
-        System.out.println("Enter the cost that has to be updated: ");
-        restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(index).setFoodCost(scanner.nextDouble());
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the index of the food whose cost to be updated: ");
+            int index = scanner.nextInt();
+            if (index < restaurantDatabase.foodMap.get(restaurant.getLoginID()).size()
+                    && index >= 0) {
+                drawLine();
+                System.out.println("Enter the cost that has to be updated: ");
+                restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(index).setFoodCost(scanner.nextDouble());
+                option = 2;
+            } else {
+                System.out.println("Enter a valid index number");
+                option = 1;
+            }
+        }
     }
 
     public void viewOrders(OrderDatabase orderDatabase, Restaurant restaurant) {
@@ -155,11 +165,19 @@ public class RestaurantFunctions {
                     addData(restaurant, restaurantDatabase);
                     break;
                 case 3:
+                if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty()==false) {
                     deleteData(restaurant, restaurantDatabase);
-                    break;
+                } else {
+                    System.out.println("As no food is available, you can't delete food");
+                }
+                break;
                 case 4:
+                if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty()==false) {
                     editData(restaurant, restaurantDatabase);
-                    break;
+                } else {
+                    System.out.println("As no food is available, you can't edit food's cost");
+                }
+                break;
                 case 5:
                     viewOrders(orderDatabase, restaurant);
                     break;
