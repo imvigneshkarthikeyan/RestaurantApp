@@ -80,7 +80,6 @@ public class RestaurantFunctions {
 
     public void deleteData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         scanner.nextLine();
-        System.out.println("Enter the index of the food to be removed: ");
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
         int i = 0;
         while (foodItems.hasNext()) {
@@ -89,7 +88,18 @@ public class RestaurantFunctions {
             i++;
         }
         drawDoubleLine();
-        restaurantDatabase.foodMap.get(restaurant.getLoginID()).remove(scanner.nextInt());
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the index of the food to be removed: ");
+            int indexToBeRemoved = scanner.nextInt();
+            if (indexToBeRemoved < restaurantDatabase.foodMap.get(restaurant.getLoginID()).size() && indexToBeRemoved >= 0) {
+                restaurantDatabase.foodMap.get(restaurant.getLoginID()).remove(indexToBeRemoved);
+                option = 2;
+            } else {
+                System.out.println("Enter a valid index number");
+                option = 1;
+            }
+        }
     }
 
     public void editData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
