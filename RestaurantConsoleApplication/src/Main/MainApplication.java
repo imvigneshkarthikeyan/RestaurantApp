@@ -55,12 +55,15 @@ public class MainApplication {
                     break;
             }   
             drawDoubleLine();
-            } catch (IllegalArgumentException | InputMismatchException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("Invalid input, try again");
                 drawDoubleLine();
                 option = 1;
-                scanner.next();
             }   
+            catch(InputMismatchException e) {
+                System.out.println("Try again!");
+                scanner.next();
+            }
         }
     }
 }
