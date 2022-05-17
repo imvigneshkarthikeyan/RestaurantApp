@@ -2,6 +2,9 @@ package Main;
 
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
+
+import java.util.InputMismatchException;
+
 import SuperAdmin.SuperAdmin;
 import Admin.*;
 import Restaurant.*;
@@ -52,11 +55,11 @@ public class MainApplication {
                     break;
             }   
             drawDoubleLine();
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | InputMismatchException e) {
                 System.out.println("Invalid input, try again");
                 option = 1;
-            }
-            
+                scanner.next();
+            }   
         }
     }
 }
