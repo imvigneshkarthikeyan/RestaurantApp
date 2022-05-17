@@ -54,6 +54,7 @@ public class CustomerFunctions {
                 drawLine();
                 customerDatabase.getCustomerMap().put(customer.getLoginID(), new Customer(customer.getNameOfuser(),
                         customer.getPhoneNumberOfUser(), customer.getLoginPassword(), customer.isPremiumUser()));
+                System.out.println("New User with ID " + customer.getLoginID() + " created successfully");        
                 drawDoubleLine();
                 option = 2;
             }
