@@ -34,7 +34,7 @@ public class SuperAdmin {
             System.out.println("Enter the Login Password: ");
             String enteredLoginPassword = readPassword();
             if (enteredLoginPassword.equals(SUPER_ADMIN_LOGIN_PASS) == false) {
-                System.out.println("Login ID is wrong\nEnter 1: To try again\nEnter 2: Go Back");
+                System.out.println("Password is wrong\nEnter 1: To try again\nEnter 2: Go Back");
                 option = scanner.nextInt();
                 scanner.nextLine();
             } else {
