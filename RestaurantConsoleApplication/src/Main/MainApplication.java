@@ -57,6 +57,7 @@ public class MainApplication {
             drawDoubleLine();
             } catch (IllegalArgumentException | InputMismatchException e) {
                 System.out.println("Invalid input, try again");
+                drawDoubleLine();
                 option = 1;
                 scanner.next();
             }   
