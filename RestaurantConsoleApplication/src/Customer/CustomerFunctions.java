@@ -114,6 +114,7 @@ public class CustomerFunctions {
             System.out.println("Enter 1: To Search Food and add to cart\nEnter 2: To Go Back");
             option = scanner.nextInt();
             optionValidator(option, 1, 2);
+            scanner.nextLine();
             switch (option) {
                 case 1:
                     drawLine();
