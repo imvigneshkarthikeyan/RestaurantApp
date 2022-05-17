@@ -105,6 +105,7 @@ public class SuperAdminFunctions {
                 case 4:
                     drawLine();
                     System.out.println("Logging out from Super admin portal");
+                    break;
                 default:
                     break;
             }
