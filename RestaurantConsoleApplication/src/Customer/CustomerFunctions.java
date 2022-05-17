@@ -16,31 +16,43 @@ import Restaurant.RestaurantDatabase;
 public class CustomerFunctions {
     
     public void signUp(CustomerDatabase customerDatabase) {
+        int option = 1;
         scanner.nextLine();
         Customer customer = new Customer();
-        drawDoubleLine();
-        System.out.println("Enter the new Login ID: ");
-        customer.setLoginID(scanner.nextLine());
-        drawLine();
-        System.out.println("Set your new password: ");
-        customer.setLoginPassword(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter your name: ");
-        customer.setNameOfuser(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter your phone number: ");
-        customer.setPhoneNumberOfUser(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter 1: To become premium user \nEnter 2: To skip ");
-        int option = scanner.nextInt();
-        if (option == 1) {
-            customer.setPremiumUser(true);
-        } else {
-            customer.setPremiumUser(false);
+        while (option == 1) {
+            drawDoubleLine();
+            System.out.println("Enter the new Login ID: ");
+            customer.setLoginID(scanner.nextLine());
+            if (customerDatabase.getCustomerMap().containsKey(customer.getLoginID())) {
+                drawDoubleLine();
+                System.out.println("This Login ID already exists\nEnter 1: To try again\nEnter 2: Go Back and login");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                drawLine();
+                System.out.println("Set your new password: ");
+                customer.setLoginPassword(scanner.nextLine());
+                drawLine();
+                System.out.println("Enter your name: ");
+                customer.setNameOfuser(scanner.nextLine());
+                drawLine();
+                System.out.println("Enter your phone number: ");
+                customer.setPhoneNumberOfUser(scanner.nextLine());
+                drawLine();
+                System.out.println("Enter 1: To become premium user \nEnter 2: To skip ");
+                int premiumUserOption = scanner.nextInt();
+                if (premiumUserOption == 1) {
+                    customer.setPremiumUser(true);
+                } else {
+                    customer.setPremiumUser(false);
+                }
+                drawLine();
+                customerDatabase.getCustomerMap().put(customer.getLoginID(), new Customer(customer.getNameOfuser(),
+                        customer.getPhoneNumberOfUser(), customer.getLoginPassword(), customer.isPremiumUser()));
+                drawDoubleLine();
+                option = 2;
+            }
         }
-        drawLine();
-        customerDatabase.getCustomerMap().put(customer.getLoginID(), new Customer(customer.getNameOfuser(), customer.getPhoneNumberOfUser(), customer.getLoginPassword(), customer.isPremiumUser()));
-        drawDoubleLine();
     }
 
     public void signIn(RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
