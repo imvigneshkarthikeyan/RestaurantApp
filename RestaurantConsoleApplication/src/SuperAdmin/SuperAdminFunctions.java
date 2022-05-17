@@ -7,8 +7,12 @@ import static Utilities.ValidatorUtils.*;
 public class SuperAdminFunctions {
 
     public void viewData(AdminDatabase adminDatabase) {
-        // View Admins available from admin map
-        adminDatabase.printAdminData(); 
+        if (adminDatabase.getAdminMap().isEmpty()) {
+            System.out.println("No Admins added till now");
+        } else {
+            // View Admins available from admin map
+            adminDatabase.printAdminData();
+        }
         drawDoubleLine();       
     }
 
@@ -18,23 +22,35 @@ public class SuperAdminFunctions {
         // Add new admin to admin map
         Admin admin = new Admin();
         drawDoubleLine();
-        System.out.println("Set new admin login id: ");
-        admin.setLoginID(scanner.nextLine());
-        drawLine();
-        System.out.println("Set new admin name: ");
-        admin.setAdminName(scanner.nextLine());
-        drawLine();
-        System.out.println("Set new admin contact number: ");
-        admin.setAdminContactNumber(scanner.nextLine());
-        drawLine();
-        System.out.println("Set new password: ");
-        admin.setLoginPassword(scanner.nextLine());
-        drawDoubleLine();
-        adminDatabase.getAdminMap().put(admin.getLoginID(), new Admin(admin.getAdminName(), admin.getAdminContactNumber(), admin.getLoginPassword()));
-        System.out.println("Admin with: " + admin.getLoginID() + " was added to database.");
-        System.out.println("The admin DB after adding: ");
-        adminDatabase.printAdminData();
-        drawDoubleLine();
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Set new admin login id: ");
+            admin.setLoginID(scanner.nextLine());
+            if (adminDatabase.getAdminMap().containsKey(admin.getLoginID())) {
+                System.out.println("This admin already exists, \nEnter 1: To Try again and create different ID \nEnter 2: To Go Back");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                drawLine();
+                System.out.println("Set new admin name: ");
+                admin.setAdminName(scanner.nextLine());
+                drawLine();
+                System.out.println("Set new admin contact number: ");
+                admin.setAdminContactNumber(scanner.nextLine());
+                drawLine();
+                System.out.println("Set new password: ");
+                admin.setLoginPassword(scanner.nextLine());
+                drawDoubleLine();
+                adminDatabase.getAdminMap().put(admin.getLoginID(),
+                        new Admin(admin.getAdminName(), admin.getAdminContactNumber(), admin.getLoginPassword()));
+                System.out.println("Admin with: " + admin.getLoginID() + " was added to database.");
+                System.out.println("The admin DB after adding: ");
+                adminDatabase.printAdminData();
+                drawDoubleLine();
+                option = 2;
+            }
+            drawDoubleLine();
+        }
     }
 
     
