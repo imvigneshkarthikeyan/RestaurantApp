@@ -24,59 +24,74 @@ public class RestaurantFunctions {
         scanner.nextLine();
         Food food = new Food();
         drawDoubleLine();
-        System.out.println("Enter the food name: ");
-        food.setFoodName(scanner.nextLine());
-        drawLine();
-        System.out.println("Enter the type of Restaurant: \n1.SouthIndian \n2.NorthIndian \n3.Chinese \n4.Italian \n5.Desert ");
-        int optionForEnum = scanner.nextInt();
-        switch (optionForEnum) {
-            case 1:
-                FoodTypeEnum type1 = FoodTypeEnum.SouthIndian;
-                food.setFoodType(type1);
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the food name: ");
+            food.setFoodName(scanner.nextLine());
+            if (restaurantDatabase.getFoodMap().get(restaurant.getLoginID()).stream().map(Food::getFoodName).anyMatch(f -> f.equalsIgnoreCase(food.getFoodName()))) {
+                System.out.println(
+                        "This food already exists,\nEnter 1: To Try again and create different food \nEnter 2: To Go Back");
+                drawLine();
+                option = scanner.nextInt();
+                scanner.nextLine();
                 break;
-            case 2:
-                FoodTypeEnum type2 = FoodTypeEnum.NorthIndian;
-                food.setFoodType(type2);
-                break;
-            case 3:
-                FoodTypeEnum type3 = FoodTypeEnum.Chinese;
-                food.setFoodType(type3);
-                break;
-            case 4:
-                FoodTypeEnum type4 = FoodTypeEnum.Italian;
-                food.setFoodType(type4);
-                break;
-            case 5:
-                FoodTypeEnum type5 = FoodTypeEnum.Desert;
-                food.setFoodType(type5);
-                break;
-            default:
-                break;
-        }
-        drawLine();
-        // scanner.nextLine();
-        System.out.println("Enter the food cost: ");
-        food.setFoodCost(scanner.nextDouble());
-        drawLine();
-        System.out.println("Enter 1: if Veg? \nEnter 2: if NonVeg ");
-        int option = scanner.nextInt();
-        if (option == 1) {
-        food.setVeg(true);
-        } else {
-        food.setVeg(false);
-        }
-        drawLine();
-        if (restaurantDatabase.foodMap.get(restaurant.getLoginID())==null) {
-            restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {
-                {
-                    add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
+            } else {
+                    drawLine();
+                    System.out.println("Enter the type of Restaurant: \n1.SouthIndian \n2.NorthIndian \n3.Chinese \n4.Italian \n5.Desert ");
+                    int optionForEnum = scanner.nextInt();
+                    switch (optionForEnum) {
+                        case 1:
+                            FoodTypeEnum type1 = FoodTypeEnum.SouthIndian;
+                            food.setFoodType(type1);
+                            break;
+                        case 2:
+                            FoodTypeEnum type2 = FoodTypeEnum.NorthIndian;
+                            food.setFoodType(type2);
+                            break;
+                        case 3:
+                            FoodTypeEnum type3 = FoodTypeEnum.Chinese;
+                            food.setFoodType(type3);
+                            break;
+                        case 4:
+                            FoodTypeEnum type4 = FoodTypeEnum.Italian;
+                            food.setFoodType(type4);
+                            break;
+                        case 5:
+                            FoodTypeEnum type5 = FoodTypeEnum.Desert;
+                            food.setFoodType(type5);
+                            break;
+                        default:
+                            break;
+                    }
+                    drawLine();
+                    System.out.println("Enter the food cost: ");
+                    food.setFoodCost(scanner.nextDouble());
+                    drawLine();
+                    System.out.println("Enter 1: if Veg? \nEnter 2: if NonVeg ");
+                    int foodPreference = scanner.nextInt();
+                    if (foodPreference == 1) {
+                        food.setVeg(true);
+                    } else {
+                        food.setVeg(false);
+                    }
+                    drawLine();
+                    if (restaurantDatabase.foodMap.get(restaurant.getLoginID()) == null) {
+                        restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {
+                            {
+                                add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
+                            }
+                        });
+                    } else {
+                        restaurantDatabase.foodMap.get(restaurant.getLoginID()).add(
+                                new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
+                    }
+                    drawLine();
+                    option = 2;
+                    break;
                 }
-            });
-        } else {
-            restaurantDatabase.foodMap.get(restaurant.getLoginID()).add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
+            }
         }
-        drawLine();
-    }
+    
 
     public void deleteData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         scanner.nextLine();
