@@ -107,18 +107,36 @@ public class AdminFunctions {
     }
 
     public void viewCustomerData(CustomerDatabase customerDatabase) {
-        drawLine();
-        customerDatabase.printCustomerData();
-        drawDoubleLine();
+        if (customerDatabase.getCustomerMap().isEmpty()) {
+            System.out.println("No customers available till now");
+        } else {
+            drawLine();
+            customerDatabase.printCustomerData();
+            drawDoubleLine();
+        }
     }
 
     public void removeCustomerData(CustomerDatabase customerDatabase) {
         scanner.nextLine();
         drawLine();
-        System.out.println("Enter the login ID to be removed: ");
-        String IDtoBeRemoved = scanner.nextLine();
-        customerDatabase.getCustomerMap().remove(IDtoBeRemoved);
-        drawDoubleLine();
+        int option = 1;
+        while (option == 1) {
+            System.out.println("Enter the login ID to be removed: ");
+            String IDtoBeRemoved = scanner.nextLine();
+            if (customerDatabase.getCustomerMap().containsKey(IDtoBeRemoved) == false) {
+                System.out.println("There is no such customer ID\nEnter 1: To try again\nEnter 2: To Go Back");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                customerDatabase.getCustomerMap().remove(IDtoBeRemoved);
+                drawDoubleLine();
+                System.out.println("The customer with login ID: " + IDtoBeRemoved + " was removed successfully!");
+                drawDoubleLine();
+                System.out.println("The customer DB after deleting: ");
+                customerDatabase.printCustomerData();
+                option = 2;
+            }
+        }
     }
 
     public void displayOptionsForAdmin() {
