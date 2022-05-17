@@ -100,19 +100,32 @@ public class CustomerFunctions {
         drawDoubleLine();
     }
 
-    public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase,OrderDatabase orderDatabase) {
+    public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase,
+            CustomerDatabase customerDatabase, OrderDatabase orderDatabase) {
         scanner.nextLine();
+        int option = 1;
         drawDoubleLine();
         restaurantDatabase.printRestaurantData();
-        System.out.println("Enter the name of Restaurant");
-        String searchedRestaurant = scanner.nextLine();
-        for (Restaurant restaurant : restaurantDatabase.getRestaurantList()) {
-        drawLine();
-            if (restaurant.getRestaurantName().equalsIgnoreCase(searchedRestaurant)) {
-                System.out.println("RestaurantFound!");
-                System.out.println(restaurant);
-                // Function for list foods and search food
-                showOptionsForSearchFoodAndCart(enteredID, restaurantDatabase, customerDatabase, searchedRestaurant, restaurant, orderDatabase);
+        while (option == 1) {
+            System.out.println("Enter the name of Restaurant");
+            String searchedRestaurant = scanner.nextLine();
+            if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getRestaurantName)
+                    .anyMatch(r -> r.equalsIgnoreCase(searchedRestaurant)) == false) {
+                System.out.println("Restaurant is not available\nEnter 1: To try again\nEnter 2: Go Back");
+                option = scanner.nextInt();
+                scanner.nextLine();
+            } else {
+                for (Restaurant restaurant : restaurantDatabase.getRestaurantList()) {
+                    drawLine();
+                    if (restaurant.getRestaurantName().equalsIgnoreCase(searchedRestaurant)) {
+                        System.out.println("RestaurantFound!");
+                        System.out.println(restaurant);
+                        // Function for list foods and search food
+                        showOptionsForSearchFoodAndCart(enteredID, restaurantDatabase, customerDatabase,
+                                searchedRestaurant, restaurant, orderDatabase);
+                    }
+                }
+                option = 2;
             }
         }
         drawDoubleLine();
