@@ -11,6 +11,7 @@ public class SuperAdmin {
         int option = 1;
         scanner.nextLine();
         while (option == 1) {
+            drawDoubleLine();
             System.out.println("Enter Login ID: ");
             String enteredLoginId = scanner.nextLine();
             if (enteredLoginId.equals(SUPER_ADMIN_LOGIN_ID)==false) {
@@ -27,7 +28,7 @@ public class SuperAdmin {
         }
     }
 
-    private void validatePassword(AdminDatabase adminDatabase) {
+    public void validatePassword(AdminDatabase adminDatabase) {
         int option = 1;
         while (option == 1) {
             drawDoubleLine();
