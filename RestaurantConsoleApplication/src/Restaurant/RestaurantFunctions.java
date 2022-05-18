@@ -26,6 +26,9 @@ public class RestaurantFunctions {
         drawDoubleLine();
         int option = 1;
         while (option == 1) {
+            if (restaurantDatabase.foodMap.get(restaurant.getLoginID()) == null) {
+                restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {{}});
+            }
             System.out.println("Enter the food name: ");
             food.setFoodName(scanner.nextLine());
             if (restaurantDatabase.getFoodMap().get(restaurant.getLoginID()).stream().map(Food::getFoodName).anyMatch(f -> f.equalsIgnoreCase(food.getFoodName()))) {
@@ -75,16 +78,16 @@ public class RestaurantFunctions {
                         food.setVeg(false);
                     }
                     drawLine();
-                    if (restaurantDatabase.foodMap.get(restaurant.getLoginID()) == null) {
-                        restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {
-                            {
-                                add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
-                            }
-                        });
-                    } else {
+                    // if (restaurantDatabase.foodMap.get(restaurant.getLoginID()) == null) {
+                    //     restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {
+                    //         {
+                    //             add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
+                    //         }
+                    //     });
+                    // } else {
                         restaurantDatabase.foodMap.get(restaurant.getLoginID()).add(
                                 new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
-                    }
+                    // }
                     drawLine();
                     option = 2;
                     break;
@@ -163,9 +166,9 @@ public class RestaurantFunctions {
         drawLine();
     }
 
-    public void executeRestaurantFunction(String enteredID, Restaurant restaurant, RestaurantDatabase restaurantDatabase, OrderDatabase orderDatabase) {
+    public void executeRestaurantFunction(Restaurant restaurant, RestaurantDatabase restaurantDatabase, OrderDatabase orderDatabase) {
         int option = 1;
-        restaurant.setLoginID(enteredID);
+        // restaurant.setLoginID(enteredID);
         // System.out.println(restaurant.getLoginID());
         while (option == 1 || option == 2 || option == 3 || option == 4 || option == 5) {
             drawDoubleLine();

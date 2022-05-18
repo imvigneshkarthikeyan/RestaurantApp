@@ -3,8 +3,6 @@ package Main;
 import static Utilities.UiUtils.*;
 import static Utilities.ValidatorUtils.*;
 
-import java.util.InputMismatchException;
-
 import SuperAdmin.SuperAdmin;
 import Admin.*;
 import Restaurant.*;
@@ -60,7 +58,7 @@ public class MainApplication {
                 drawDoubleLine();
                 option = 1;
             }   
-            catch(InputMismatchException e) {
+            catch(Exception e) {
                 System.out.println("Try again!");
                 scanner.next();
             }

@@ -15,6 +15,12 @@ public class RestaurantAuthenticator {
             drawLine();
             if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getLoginID).anyMatch(r -> r.equalsIgnoreCase(enteredID))) {
                 System.out.println("ID is correct");
+                for (Restaurant res : restaurantDatabase.getRestaurantList()) {
+                    if (res.getLoginID().equals(enteredID)) {
+                        restaurant.setRestaurantName(res.getRestaurantName());
+                        restaurant.setLoginID(res.getLoginID());
+                    }
+                }
                 validatePasswordForRestaurant(restaurant, enteredID, restaurantDatabase, orderDatabase);
                 option = 2;
                 break;
@@ -38,7 +44,7 @@ public class RestaurantAuthenticator {
                 System.out.println("Login Successful");
                 displayLineTitleAndUser("Welcome", restaurant.getRestaurantName() + " Restaurant");
                 RestaurantFunctions restaurantFunctions = new RestaurantFunctions();
-                restaurantFunctions.executeRestaurantFunction(enteredID, restaurant, restaurantDatabase, orderDatabase);
+                restaurantFunctions.executeRestaurantFunction(restaurant, restaurantDatabase, orderDatabase);
                 option = 2;
             } else {
                 System.out.println("Password is wrong\nEnter 1: To try again\nEnter 2: Go Back");
