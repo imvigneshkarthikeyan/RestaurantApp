@@ -58,7 +58,7 @@ public class CustomerFunctions {
                         customer.getPhoneNumberOfUser(), customer.getLoginPassword(), customer.isPremiumUser()));
                 System.out.println("New User with ID " + customer.getLoginID() + " created successfully");        
                 drawDoubleLine();
-                option = 2;
+                break;
             }
         }
     }
@@ -80,7 +80,7 @@ public class CustomerFunctions {
                     drawLine();
                     System.out.println("ID is Correct");
                     authenticatePasswordForCustomer(enteredID, restaurantDatabase, customerDatabase, orderDatabase, restaurant);
-                    option = 2;
+                    break;
                 }
             }
         }
@@ -101,7 +101,7 @@ public class CustomerFunctions {
                 System.out.println("Password is right");
                 displayLineTitleAndUser("Welcome ", customerDatabase.getCustomerMap().get(enteredID).getNameOfuser());
                 executeCustomerFunction(enteredID, restaurantDatabase, customerDatabase, orderDatabase,restaurant);
-                option = 2;
+                break;
             }
         }
         drawDoubleLine();
@@ -155,7 +155,7 @@ public class CustomerFunctions {
                                 searchedRestaurant, restaurant, orderDatabase);
                     }
                 }
-                option = 2;
+                break;
             }
         }
         drawDoubleLine();
@@ -172,7 +172,6 @@ public class CustomerFunctions {
                 drawLine();
                 if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getRestaurantName)
                         .anyMatch(r -> r.equalsIgnoreCase(searchedRestaurant))) {
-                    System.out.println("ID is correct");
                     for (Restaurant res : restaurantDatabase.getRestaurantList()) {
                         if (res.getLoginID().equals(enteredID)) {
                             restaurant.setRestaurantName(res.getRestaurantName());
@@ -274,7 +273,7 @@ public class CustomerFunctions {
                                     food.getFoodCost(), food.isVeg(), quantity));
                 }
                 System.out.println("Food: " + food.getFoodName() + " of " + quantity + " quantity added to cart");
-                option = 2;
+                break;
             } else {
                 System.out.println("Enter a valid positive number.");
                 option = 1;
@@ -364,7 +363,7 @@ public class CustomerFunctions {
     }
 
     public String getDateAndTimeNow() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
@@ -392,7 +391,7 @@ public class CustomerFunctions {
             if (index <= customerDatabase.getCartItems().get(enteredID).size() && index >= 1 ) {
                 customerDatabase.getCartItems().get(enteredID).remove(index-1);
                 System.out.println("Cart after removal is: " + customerDatabase.getCartItems().get(enteredID));
-                option = 2;
+                break;
             } else {
                 System.out.println("Enter a valid index number");
             }
