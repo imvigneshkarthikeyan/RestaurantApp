@@ -147,12 +147,22 @@ public class CustomerFunctions {
                 option = scanner.nextInt();
                 optionValidator(option, 1, 3);
                 drawLine();
+                if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getRestaurantName)
+                        .anyMatch(r -> r.equalsIgnoreCase(searchedRestaurant))) {
+                    System.out.println("ID is correct");
+                    for (Restaurant res : restaurantDatabase.getRestaurantList()) {
+                        if (res.getLoginID().equals(enteredID)) {
+                            restaurant.setRestaurantName(res.getRestaurantName());
+                            restaurant.setLoginID(res.getLoginID());
+                        }
+                    }
+                }
                 switch (option) {
                     case 1:
-                        searchFood(enteredID, searchedRestaurant, restaurant, restaurantDatabase, customerDatabase);
+                        searchFood(enteredID, restaurant, restaurantDatabase, customerDatabase);
                         break;
                     case 2:
-                        viewCart(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+                        viewCart(enteredID, customerDatabase, orderDatabase, restaurant);
                         break;
                     case 3:
                         System.out.println("Going Back");
@@ -167,21 +177,10 @@ public class CustomerFunctions {
         }
     }
 
-    public void searchFood(String enteredID, String searchedRestaurant, Restaurant restaurant, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase) {
+    public void searchFood(String enteredID, Restaurant restaurant, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase) {
         drawDoubleLine();
         scanner.nextLine();
-        // if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getRestaurantName).anyMatch(r -> r.equalsIgnoreCase(searchedRestaurant))) {
-        //         System.out.println("ID is correct");
-        //         for (Restaurant res : restaurantDatabase.getRestaurantList()) {
-        //             if (res.getLoginID().equals(enteredID)) {
-        //                 restaurant.setRestaurantName(res.getRestaurantName());
-        //                 restaurant.setLoginID(res.getLoginID());
-        //             }
-        //         }
-        // }
-        restaurant.setRestaurantName(searchedRestaurant);
-        // String restaurantID = restaurant.getLoginID();
-        String restaurantID = restaurant.getRestaurantName().toLowerCase() + "@abc.com";
+        String restaurantID = restaurant.getLoginID();
         System.out.println(restaurantDatabase.getFoodMap().get(restaurantID).toString().replace("{", "")
                 .replace("}", "").replace("[", "").replace("]", "").replace(",", ""));
         int option = 1;
@@ -262,7 +261,7 @@ public class CustomerFunctions {
         
     }
 
-    public void viewCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
+    public void viewCart(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
         //Itmes in cart
         if (customerDatabase.getCartItems().get(enteredID).isEmpty()) {
             System.out.println("The cart is empty");
@@ -284,7 +283,7 @@ public class CustomerFunctions {
                     } else if (customerDatabase.getCartItems() == null) {
                         System.out.println("As the order was placed, the cart is empty now");
                     } else {
-                        viewTotalCost(enteredID, customerDatabase, orderDatabase, searchedRestaurant);
+                        viewTotalCost(enteredID, customerDatabase, orderDatabase, restaurant);
                     }
                     break;
                 case 2:
@@ -308,7 +307,7 @@ public class CustomerFunctions {
             
     }
 
-    public void viewTotalCost(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant) {
+    public void viewTotalCost(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
         ArrayList<Double> totalCostList = new ArrayList<>();
         for (CartItem cartItem : customerDatabase.getCartItems().get(enteredID)) {
             totalCostList.add(cartItem.getFoodCost() * cartItem.getQuantity());
@@ -332,7 +331,7 @@ public class CustomerFunctions {
             System.out.println("The total bill amount is: " + totalCost);
             drawDoubleLine();
         }
-        placeOrder(enteredID, customerDatabase, orderDatabase, searchedRestaurant, totalCost);
+        placeOrder(enteredID, customerDatabase, orderDatabase, restaurant, totalCost);
         
     }
 
@@ -347,9 +346,9 @@ public class CustomerFunctions {
         return dtf.format(now);
     }
 
-    public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, String searchedRestaurant, double totalCost) {
+    public void placeOrder(String enteredID, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant, double totalCost) {
         String userName = customerDatabase.getCustomerMap().get(enteredID).getNameOfuser();
-        orderDatabase.getOrderList().add(new Order(generateOrderID(), getDateAndTimeNow(), enteredID, userName, searchedRestaurant+"@abc.com",searchedRestaurant, customerDatabase.getCartItems().get(enteredID), totalCost));
+        orderDatabase.getOrderList().add(new Order(generateOrderID(), getDateAndTimeNow(), enteredID, userName, restaurant.getLoginID(),restaurant.getRestaurantName(), customerDatabase.getCartItems().get(enteredID), totalCost));
         drawLine();
         System.out.println("Order Placed Successfully");
         removeAllFromCart(customerDatabase);
