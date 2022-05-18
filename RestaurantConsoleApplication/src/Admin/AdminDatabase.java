@@ -15,7 +15,7 @@ public class AdminDatabase {
     }
 
     public void printAdminData() {
-        System.out.println(Arrays.asList(adminMap));
+        System.out.println(Arrays.asList(adminMap).toString().replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace(",", ""));
     }
     
 }

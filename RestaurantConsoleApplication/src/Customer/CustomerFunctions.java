@@ -182,7 +182,8 @@ public class CustomerFunctions {
         restaurant.setRestaurantName(searchedRestaurant);
         // String restaurantID = restaurant.getLoginID();
         String restaurantID = restaurant.getRestaurantName().toLowerCase() + "@abc.com";
-        System.out.println(restaurantDatabase.getFoodMap().get(restaurantID));
+        System.out.println(restaurantDatabase.getFoodMap().get(restaurantID).toString().replace("{", "")
+                .replace("}", "").replace("[", "").replace("]", "").replace(",", ""));
         int option = 1;
         while(option == 1) {
             drawDoubleLine();
@@ -266,7 +267,8 @@ public class CustomerFunctions {
         if (customerDatabase.getCartItems().get(enteredID).isEmpty()) {
             System.out.println("The cart is empty");
         } else {
-            System.out.println(customerDatabase.getCartItems().get(enteredID));
+            System.out.println(customerDatabase.getCartItems().get(enteredID).toString().replace("{", "")
+                    .replace("}", "").replace("[", "").replace("]", "").replace(",", ""));
         }
         int option = 1;
         while (option == 1 || option == 2) {
@@ -390,7 +392,7 @@ public class CustomerFunctions {
         if (orderHistory.isEmpty()) {
             System.out.println("No Orders Till Now.");
         } else {
-            System.out.println(orderHistory);
+            System.out.println(orderHistory.toString().replace("[", "").replace("]", "").replace(",", ""));
         }
     }
 

@@ -93,10 +93,10 @@ public class Restaurant extends User {
     // To display restaurant information
     @Override
     public String toString() {
-        return "Restaurant Name: " + restaurantName + "\n"
-                + " | Restaurant Type: " + restaurantType + "\n"
-                + " | Restaurant Location: " + restaurantLocation + "\n"
-                + " | Restaurant Conatct: " + restaurantPhoneNumber + "\n"
-                + " | Avg Cost for 2: ₹ " + restaurantAvgCost;
+        return "\nRestaurant Name: " + restaurantName + "\n"
+                + "Restaurant Type: " + restaurantType + "\n"
+                + "Restaurant Location: " + restaurantLocation + "\n"
+                + "Restaurant Conatct: " + restaurantPhoneNumber + "\n"
+                + "Avg Cost for 2: ₹ " + restaurantAvgCost + "\n";
     }
 }

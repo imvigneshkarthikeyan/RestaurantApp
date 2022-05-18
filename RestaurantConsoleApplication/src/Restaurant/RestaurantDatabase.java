@@ -27,7 +27,7 @@ public class RestaurantDatabase {
     public void printRestaurantData() {
         for (Restaurant restaurant : restaurantList) {
             drawLine();
-            System.out.println(restaurant);
+            System.out.println(restaurant.toString().replace("[", "").replace("]", "").replace(",", ""));
         }
         drawDoubleLine();
     }

@@ -22,7 +22,8 @@ public class RestaurantFunctions {
             System.out.println("No food added Till Now.");
         } else {
             drawLine();
-            System.out.println(restaurantDatabase.foodMap.get(restaurant.getLoginID()));
+            System.out.println(restaurantDatabase.foodMap.get(restaurant.getLoginID()).toString().replace("[", "")
+                    .replace("]", "").replace(",", ""));
         }
     }
 
@@ -160,7 +161,7 @@ public class RestaurantFunctions {
             for (Order order : orderDatabase.getOrderList()) {
                 drawLine();
                 if (order.getRestaurantID().equalsIgnoreCase(restaurant.getLoginID())) {
-                    System.out.println(order);
+                    System.out.println(order.toString().replace("[", "").replace("]", "").replace(",", ""));
                 }
             }
         }

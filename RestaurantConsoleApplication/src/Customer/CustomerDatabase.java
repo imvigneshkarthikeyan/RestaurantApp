@@ -43,6 +43,6 @@ public class CustomerDatabase {
     }
 
     public void printCustomerData() {
-        System.out.println(Arrays.asList(customerMap));
+        System.out.println(customerMap.toString().replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace(",", ""));
     }
 }

@@ -49,9 +49,9 @@ public class Customer extends User {
     // To display user information
     @Override
     public String toString() {
-        return "\n | User Name: " + nameOfuser + "\n"
-                + " | User Ph No: " + phoneNumberOfUser + "\n"
-                + " | Premium User: " + premiumUser + "\n"
+        return "\nUser Name: " + nameOfuser + "\n"
+                + "User Ph No: " + phoneNumberOfUser + "\n"
+                + "Premium User: " + premiumUser + "\n"
                 + "_____________________________________________________________________________________\n";
     }
 

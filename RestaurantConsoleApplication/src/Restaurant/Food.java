@@ -52,9 +52,9 @@ public class Food {
     //To display food information
     @Override
     public String toString() {
-        return "Food Name: " + foodName
-				+ " | Food Type: " + foodType
-                + " | Food Cost: ₹ " + foodCost
-                + " | Is Veg: " + veg + "\n";
+        return "\nFood Name: " + foodName + "\n"
+				+ "Food Type: " + foodType + "\n"
+                + "Food Cost: ₹ " + foodCost + "\n"
+                + "Is Veg: " + veg + "\n";
     }
 }
