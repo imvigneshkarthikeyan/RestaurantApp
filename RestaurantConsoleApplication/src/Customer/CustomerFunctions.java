@@ -108,6 +108,7 @@ public class CustomerFunctions {
     }
 
     public void globalSearchFood(RestaurantDatabase restaurantDatabase, Restaurant restaurant) {
+        displayLineWithTitle("Global Food Search");
         scanner.nextLine();
         System.out.println("Enter the food to search: ");
         String searchedFood = scanner.nextLine();
@@ -132,6 +133,7 @@ public class CustomerFunctions {
 
     public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase,
             CustomerDatabase customerDatabase, OrderDatabase orderDatabase) {
+        displayLineWithTitle("Search for Restaurant");
         scanner.nextLine();
         int option = 1;
         drawDoubleLine();
@@ -288,6 +290,7 @@ public class CustomerFunctions {
         if (customerDatabase.getCartItems().get(enteredID).isEmpty()) {
             System.out.println("The cart is empty");
         } else {
+            displayLineWithTitle("Items in Cart");
             System.out.println(customerDatabase.getCartItems().get(enteredID).toString().replace("{", "")
                     .replace("}", "").replace("[", "").replace("]", "").replace(",", ""));
         }
@@ -403,6 +406,7 @@ public class CustomerFunctions {
     }
 
     public void viewOrderHistory(String enteredID, OrderDatabase orderDatabase) {
+        displayLineWithTitle("Order History");
         List<Order> orderHistory = new ArrayList<Order>();
         drawDoubleLine();
         for (Order order : orderDatabase.getOrderList()) {
