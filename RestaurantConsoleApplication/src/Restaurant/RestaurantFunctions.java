@@ -44,7 +44,6 @@ public class RestaurantFunctions {
                 drawLine();
                 option = scanner.nextInt();
                 scanner.nextLine();
-                break;
             } else {
                     drawLine();
                     System.out.println("Enter the type of Restaurant: \n1.SouthIndian \n2.NorthIndian \n3.Chinese \n4.Italian \n5.Desert ");
@@ -85,18 +84,9 @@ public class RestaurantFunctions {
                         food.setVeg(false);
                     }
                     drawLine();
-                    // if (restaurantDatabase.foodMap.get(restaurant.getLoginID()) == null) {
-                    //     restaurantDatabase.foodMap.put(restaurant.getLoginID(), new ArrayList<Food>() {
-                    //         {
-                    //             add(new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
-                    //         }
-                    //     });
-                    // } else {
-                        restaurantDatabase.foodMap.get(restaurant.getLoginID()).add(
+                    restaurantDatabase.foodMap.get(restaurant.getLoginID()).add(
                                 new Food(food.getFoodName(), food.getFoodType(), food.getFoodCost(), food.isVeg()));
-                    // }
                     drawLine();
-                    option = 2;
                     break;
                 }
             }
@@ -119,7 +109,7 @@ public class RestaurantFunctions {
             int indexToBeRemoved = scanner.nextInt();
             if (indexToBeRemoved <= restaurantDatabase.foodMap.get(restaurant.getLoginID()).size() && indexToBeRemoved >= 1) {
                 restaurantDatabase.foodMap.get(restaurant.getLoginID()).remove(indexToBeRemoved-1);
-                option = 2;
+                break;
             } else {
                 System.out.println("Enter a valid index number");
                 option = 1;
@@ -146,7 +136,7 @@ public class RestaurantFunctions {
                 drawLine();
                 System.out.println("Enter the cost that has to be updated: ");
                 restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(index-1).setFoodCost(scanner.nextDouble());
-                option = 2;
+                break;
             } else {
                 System.out.println("Enter a valid index number");
                 option = 1;
