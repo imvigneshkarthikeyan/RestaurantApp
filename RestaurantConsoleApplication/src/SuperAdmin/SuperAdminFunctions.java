@@ -10,6 +10,7 @@ public class SuperAdminFunctions {
         if (adminDatabase.getAdminMap().isEmpty()) {
             System.out.println("No Admins added till now");
         } else {
+            displayLineWithTitle("Admins Available");
             // View Admins available from admin map
             adminDatabase.printAdminData();
         }
@@ -20,6 +21,7 @@ public class SuperAdminFunctions {
     public void addData(AdminDatabase adminDatabase) {
         scanner.nextLine();
         // Add new admin to admin map
+        displayLineWithTitle("Add new Admin");
         Admin admin = new Admin();
         drawDoubleLine();
         int option = 1;
@@ -60,6 +62,7 @@ public class SuperAdminFunctions {
     
     public void deleteData(AdminDatabase adminDatabase) {
         scanner.nextLine();
+        displayLineWithTitle("Delete a Admin");
         // Delete admin from admin map
         int option = 1;
         while (option == 1) {

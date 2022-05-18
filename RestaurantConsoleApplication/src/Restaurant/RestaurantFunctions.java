@@ -21,6 +21,7 @@ public class RestaurantFunctions {
         if (restaurantDatabase.foodMap.get(restaurant.getLoginID()).isEmpty()) {
             System.out.println("No food added Till Now.");
         } else {
+            displayLineWithTitle("Food Available");
             drawLine();
             System.out.println(restaurantDatabase.foodMap.get(restaurant.getLoginID()).toString().replace("[", "")
                     .replace("]", "").replace(",", ""));
@@ -29,6 +30,7 @@ public class RestaurantFunctions {
 
     public void addData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         scanner.nextLine();
+        displayLineWithTitle("Add new Food");
         Food food = new Food();
         drawDoubleLine();
         int option = 1;
@@ -94,6 +96,7 @@ public class RestaurantFunctions {
     
 
     public void deleteData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        displayLineWithTitle("Delete Food");
         scanner.nextLine();
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
         int i = 1;
@@ -118,6 +121,7 @@ public class RestaurantFunctions {
     }
 
     public void editData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
+        displayLineWithTitle("Edit cost of Food");
         scanner.nextLine();
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
         int i = 1;
@@ -148,6 +152,7 @@ public class RestaurantFunctions {
         if (orderDatabase.getOrderList().isEmpty()) {
             System.out.println("No Orders Till now");
         } else {
+            displayLineWithTitle("Order History");
             for (Order order : orderDatabase.getOrderList()) {
                 drawLine();
                 if (order.getRestaurantID().equalsIgnoreCase(restaurant.getLoginID())) {

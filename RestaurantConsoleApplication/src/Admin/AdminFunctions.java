@@ -13,11 +13,13 @@ public class AdminFunctions {
 
     public void viewData(RestaurantDatabase restaurantDatabase) {
         // View Restaurant Details
+        displayLineWithTitle("Restaurants Available");
         restaurantDatabase.printRestaurantData();        
     }
 
     public void addData(RestaurantDatabase restaurantDatabase) {
         // Adding new restaurant
+        displayLineWithTitle("Add new Restaurant");
         scanner.nextLine();
         Restaurant restaurant = new Restaurant();
         drawDoubleLine();
@@ -91,6 +93,7 @@ public class AdminFunctions {
     }
 
     public void deleteData(RestaurantDatabase restaurantDatabase) {
+        displayLineWithTitle("Delete a Restaurant");
         scanner.nextLine();
         restaurantDatabase.printRestaurantDataWithIndex();
         // Delete restaurant
@@ -110,6 +113,7 @@ public class AdminFunctions {
     }
 
     public void viewCustomerData(CustomerDatabase customerDatabase) {
+        displayLineWithTitle("Customers Available");
         if (customerDatabase.getCustomerMap().isEmpty()) {
             System.out.println("No customers available till now");
         } else {
@@ -120,6 +124,7 @@ public class AdminFunctions {
     }
 
     public void removeCustomerData(CustomerDatabase customerDatabase) {
+        displayLineWithTitle("Remove Customer");
         scanner.nextLine();
         drawLine();
         int option = 1;
