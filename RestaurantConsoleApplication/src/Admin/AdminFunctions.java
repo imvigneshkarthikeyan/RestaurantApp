@@ -72,7 +72,7 @@ public class AdminFunctions {
                 restaurant.setRestaurantPhoneNumber(scanner.nextLine());
                 while (restaurant.getRestaurantPhoneNumber().length() != 10) {
                     System.out.println("Please enter a valid 10 digit phone number \n Eg: 9876543210");
-                    restaurant.setRestaurantPhoneNumber(scanner.next());
+                    restaurant.setRestaurantPhoneNumber(scanner.nextLine());
                 }
                 drawLine();
                 System.out.println("Enter the average cost for 2: ");

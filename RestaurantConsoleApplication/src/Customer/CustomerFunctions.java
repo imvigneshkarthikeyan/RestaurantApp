@@ -43,7 +43,7 @@ public class CustomerFunctions {
                 customer.setPhoneNumberOfUser(scanner.nextLine());
                 while (customer.getPhoneNumberOfUser().length() != 10) {
                     System.out.println("Please enter a valid 10 digit phone number \n Eg: 9876543210");
-                    customer.setPhoneNumberOfUser(scanner.next());
+                    customer.setPhoneNumberOfUser(scanner.nextLine());
                 }
                 drawLine();
                 System.out.println("Enter 1: To become premium user \nEnter 2: To skip ");

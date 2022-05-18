@@ -39,7 +39,7 @@ public class SuperAdminFunctions {
                 admin.setAdminContactNumber(scanner.nextLine());
                 while (admin.getAdminContactNumber().length() != 10) {
                     System.out.println("Please enter a valid 10 digit phone number \n Eg: 9876543210");
-                    admin.setAdminContactNumber(scanner.next());
+                    admin.setAdminContactNumber(scanner.nextLine());
                 }
                 drawLine();
                 System.out.println("Set new password: ");
