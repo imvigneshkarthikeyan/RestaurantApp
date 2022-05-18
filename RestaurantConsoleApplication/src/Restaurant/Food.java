@@ -55,6 +55,6 @@ public class Food {
         return "Food Name: " + foodName
 				+ " | Food Type: " + foodType
                 + " | Food Cost: ₹ " + foodCost
-                + " | Is Veg: " + veg;
+                + " | Is Veg: " + veg + "\n";
     }
 }

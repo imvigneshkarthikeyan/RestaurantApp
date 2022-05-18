@@ -51,7 +51,7 @@ public class Customer extends User {
     public String toString() {
         return "User Name: " + nameOfuser
                 + " | User Ph No: " + phoneNumberOfUser
-                + " | Premium User: " + premiumUser;
+                + " | Premium User: " + premiumUser + "\n";
     }
 
 }

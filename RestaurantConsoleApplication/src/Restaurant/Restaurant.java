@@ -97,6 +97,6 @@ public class Restaurant extends User {
                 + " | Restaurant Type: " + restaurantType
                 + " | Restaurant Location: " + restaurantLocation
                 + " | Restaurant Conatct: " + restaurantPhoneNumber
-                + " | Avg Cost for 2: ₹ " + restaurantAvgCost;
+                + " | Avg Cost for 2: ₹ " + restaurantAvgCost + "\n";
     }
 }
