@@ -106,7 +106,7 @@ public class RestaurantFunctions {
     public void deleteData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         scanner.nextLine();
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
-        int i = 0;
+        int i = 1;
         while (foodItems.hasNext()) {
             drawLine();
             System.out.println(i + " | " + foodItems.next());
@@ -117,8 +117,8 @@ public class RestaurantFunctions {
         while (option == 1) {
             System.out.println("Enter the index of the food to be removed: ");
             int indexToBeRemoved = scanner.nextInt();
-            if (indexToBeRemoved < restaurantDatabase.foodMap.get(restaurant.getLoginID()).size() && indexToBeRemoved >= 0) {
-                restaurantDatabase.foodMap.get(restaurant.getLoginID()).remove(indexToBeRemoved);
+            if (indexToBeRemoved <= restaurantDatabase.foodMap.get(restaurant.getLoginID()).size() && indexToBeRemoved >= 1) {
+                restaurantDatabase.foodMap.get(restaurant.getLoginID()).remove(indexToBeRemoved-1);
                 option = 2;
             } else {
                 System.out.println("Enter a valid index number");
@@ -130,7 +130,7 @@ public class RestaurantFunctions {
     public void editData(Restaurant restaurant, RestaurantDatabase restaurantDatabase) {
         scanner.nextLine();
         Iterator<Food> foodItems = restaurantDatabase.foodMap.get(restaurant.getLoginID()).iterator();
-        int i = 0;
+        int i = 1;
         while (foodItems.hasNext()) {
             drawLine();
             System.out.println(i + " | " + foodItems.next());
@@ -141,11 +141,11 @@ public class RestaurantFunctions {
         while (option == 1) {
             System.out.println("Enter the index of the food whose cost to be updated: ");
             int index = scanner.nextInt();
-            if (index < restaurantDatabase.foodMap.get(restaurant.getLoginID()).size()
-                    && index >= 0) {
+            if (index <= restaurantDatabase.foodMap.get(restaurant.getLoginID()).size()
+                    && index >= 1) {
                 drawLine();
                 System.out.println("Enter the cost that has to be updated: ");
-                restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(index).setFoodCost(scanner.nextDouble());
+                restaurantDatabase.foodMap.get(restaurant.getLoginID()).get(index-1).setFoodCost(scanner.nextDouble());
                 option = 2;
             } else {
                 System.out.println("Enter a valid index number");

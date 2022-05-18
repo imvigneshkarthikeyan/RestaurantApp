@@ -98,8 +98,8 @@ public class AdminFunctions {
         while (option == 1) {
             System.out.println("Enter the index of the restaurant that has to be removed: ");
             int index = scanner.nextInt();
-            if (index < restaurantDatabase.getRestaurantList().size() && index >= 0 ) {
-                restaurantDatabase.getRestaurantList().remove(index);
+            if (index <= restaurantDatabase.getRestaurantList().size() && index >= 1 ) {
+                restaurantDatabase.getRestaurantList().remove(index-1);
                 option = 2;
             } else {
                 System.out.println("Enter a valid index number");

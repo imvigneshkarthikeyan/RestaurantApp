@@ -355,7 +355,7 @@ public class CustomerFunctions {
     }
 
     public void removeItemsFromCart(String enteredID, CustomerDatabase customerDatabase) {
-        int i = 0;
+        int i = 1;
         for (CartItem cartItem : customerDatabase.getCartItems().get(enteredID)) {
             drawLine();
             System.out.println(i + " | " +cartItem);
@@ -366,8 +366,8 @@ public class CustomerFunctions {
         while (option == 1) {
             System.out.println("Enter the index number of the cart item to be removed: ");
             int index = scanner.nextInt();
-            if (index < customerDatabase.getCartItems().get(enteredID).size() && index >= 0 ) {
-                customerDatabase.getCartItems().get(enteredID).remove(index);
+            if (index <= customerDatabase.getCartItems().get(enteredID).size() && index >= 1 ) {
+                customerDatabase.getCartItems().get(enteredID).remove(index-1);
                 System.out.println("Cart after removal is: " + customerDatabase.getCartItems().get(enteredID));
                 option = 2;
             } else {

@@ -33,11 +33,11 @@ public class RestaurantDatabase {
     }
 
     public void printRestaurantDataWithIndex() {
-        int index = 0;
+        int index = 1;
         for (Restaurant restaurant : restaurantList) {
             drawLine();
             System.out.print("Index Number: " + index++ + "| ");
-            System.out.println(restaurant);
+            System.out.println(restaurant.toString().replace("[", "").replace("]", "").replace(",", ""));
         }
         drawDoubleLine();
     }
