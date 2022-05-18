@@ -102,14 +102,16 @@ public class Order {
     // To display Order information
     @Override
     public String toString() {
-        return "Order ID: " + orderID
-                + " | Order Time: " + dateTimeLog
-                + " | User ID: " + userID
-                + " | User Name: " + userName
-                + " | Restaurant ID: " + restaurantID
-                + " | Restaurant Name: " + restaurantName
-                + " | Food Items: " + cartItems
-                + " | Total Amount: " + totalBillAmount;
+        return "Order Time: " + dateTimeLog + "\n"
+                + " | Order ID: " + orderID + "\n"
+                + " | User ID: " + userID + "\n"
+                + " | User Name: " + userName + "\n"
+                + " | Restaurant ID: " + restaurantID + "\n"
+                + " | Restaurant Name: " + restaurantName + "\n"
+                + " | Food Items: " + cartItems + "\n"
+                + " | Total Amount: " + totalBillAmount + "\n"
+                + "---------------------------------------------------------------------------------------------------------------------------------------------------"
+                + "\n";
     }
     
 }

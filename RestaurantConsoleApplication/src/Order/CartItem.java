@@ -68,11 +68,11 @@ public class CartItem {
     // To display user information
     @Override
     public String toString() {
-        return "Food Name: " + foodName
+        return "\n\tFood Name: " + foodName
                 + " | Food Type: " + foodType
                 + " | Food Cost: " + foodCost
                 + " | Is Veg: " + veg
-                + " | Quantity: " + quantity;
+                + " | Quantity: " + quantity + "\n";
     }
 
 }

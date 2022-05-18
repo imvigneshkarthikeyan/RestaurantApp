@@ -170,7 +170,17 @@ public class CustomerFunctions {
     public void searchFood(String enteredID, String searchedRestaurant, Restaurant restaurant, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase) {
         drawDoubleLine();
         scanner.nextLine();
+        // if (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getRestaurantName).anyMatch(r -> r.equalsIgnoreCase(searchedRestaurant))) {
+        //         System.out.println("ID is correct");
+        //         for (Restaurant res : restaurantDatabase.getRestaurantList()) {
+        //             if (res.getLoginID().equals(enteredID)) {
+        //                 restaurant.setRestaurantName(res.getRestaurantName());
+        //                 restaurant.setLoginID(res.getLoginID());
+        //             }
+        //         }
+        // }
         restaurant.setRestaurantName(searchedRestaurant);
+        // String restaurantID = restaurant.getLoginID();
         String restaurantID = restaurant.getRestaurantName().toLowerCase() + "@abc.com";
         System.out.println(restaurantDatabase.getFoodMap().get(restaurantID));
         int option = 1;
