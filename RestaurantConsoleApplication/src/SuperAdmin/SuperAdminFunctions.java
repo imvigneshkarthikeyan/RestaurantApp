@@ -51,7 +51,7 @@ public class SuperAdminFunctions {
                 System.out.println("The admin DB after adding: ");
                 adminDatabase.printAdminData();
                 drawDoubleLine();
-                option = 2;
+                break;
             }
             drawDoubleLine();
         }
@@ -75,7 +75,7 @@ public class SuperAdminFunctions {
                 drawDoubleLine();
                 System.out.println("The admin DB after deleting: ");
                 adminDatabase.printAdminData();
-                option = 2;
+                break;
             }
         }   
         drawDoubleLine();    
