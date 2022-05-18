@@ -107,6 +107,29 @@ public class CustomerFunctions {
         drawDoubleLine();
     }
 
+    public void globalSearchFood(RestaurantDatabase restaurantDatabase, Restaurant restaurant) {
+        scanner.nextLine();
+        System.out.println("Enter the food to search: ");
+        String searchedFood = scanner.nextLine();
+        for (String key : restaurantDatabase.getFoodMap().keySet()) {
+            if (restaurantDatabase.getFoodMap().get(key).stream().map(Food::getFoodName).anyMatch(f -> f.equalsIgnoreCase(searchedFood))) {
+                // Restaurant Name
+                String restaurantName = key.substring(0, key.indexOf("@"));
+                System.out.println("\nThe food is available at " + restaurantName);
+                // Food Details
+                System.out.println(restaurantDatabase.getFoodMap().get(key).stream()
+                        .filter(food -> food.getFoodName().equalsIgnoreCase(searchedFood))
+                        .findAny().get());
+                // getRestaurantNameForGlobalSearch(searchedFood);
+            }
+        }
+    }
+
+    // public void getRestaurantNameForGlobalSearch(String searchedFood) {
+    //     System.out.println("Enter the restaurant name from which " + searchedFood + " has to be ordered: ");
+    //     String restaurantName = scanner.nextLine();
+    // }
+
     public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase,
             CustomerDatabase customerDatabase, OrderDatabase orderDatabase) {
         scanner.nextLine();
@@ -396,24 +419,27 @@ public class CustomerFunctions {
     }
 
     public void displayOptionsForCustomer() {
-        System.out.println("Enter 1: Search Restaurant \nEnter 2: View Order History \nEnter 3: Logout");
+        System.out.println("Enter 1: Search Restaurant \nEnter 2: Global Food Search \nEnter 3: View Order History \nEnter 4: Logout");
     }
     public void executeCustomerFunction(String enteredID, RestaurantDatabase restaurantDatabase, CustomerDatabase customerDatabase, OrderDatabase orderDatabase, Restaurant restaurant) {
         int option = 1;
-        while (option == 1 || option == 2) {
+        while (option == 1 || option == 2 || option == 3) {
             drawDoubleLine();
             displayOptionsForCustomer();
             try {
                 option = scanner.nextInt();
-                optionValidator(option, 1, 3);
+                optionValidator(option, 1, 4);
                 switch (option) {
                     case 1:
                         searchRestaurant(enteredID, restaurantDatabase, customerDatabase, orderDatabase);
                         break;
                     case 2:
-                        viewOrderHistory(enteredID, orderDatabase);
+                        globalSearchFood(restaurantDatabase, restaurant);
                         break;
                     case 3:
+                        viewOrderHistory(enteredID, orderDatabase);
+                        break;
+                    case 4:
                         System.out.println("Logging out from Customer portal");
                         break;
                     default:
