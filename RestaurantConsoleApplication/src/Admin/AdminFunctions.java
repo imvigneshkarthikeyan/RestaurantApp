@@ -84,7 +84,7 @@ public class AdminFunctions {
                                 restaurant.getRestaurantAvgCost(), restaurant.getLoginID(),
                                 restaurant.getLoginPassword()));
                 drawDoubleLine();
-                option = 2;
+                break;
             }
             drawDoubleLine();
         }
@@ -100,7 +100,7 @@ public class AdminFunctions {
             int index = scanner.nextInt();
             if (index <= restaurantDatabase.getRestaurantList().size() && index >= 1 ) {
                 restaurantDatabase.getRestaurantList().remove(index-1);
-                option = 2;
+                break;
             } else {
                 System.out.println("Enter a valid index number");
                 option = 1;
@@ -137,7 +137,7 @@ public class AdminFunctions {
                 drawDoubleLine();
                 System.out.println("The customer DB after deleting: ");
                 customerDatabase.printCustomerData();
-                option = 2;
+                break;
             }
         }
     }
