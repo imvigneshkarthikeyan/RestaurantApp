@@ -107,29 +107,92 @@ public class CustomerFunctions {
         drawDoubleLine();
     }
 
-    public void globalSearchFood(RestaurantDatabase restaurantDatabase, Restaurant restaurant) {
+    public void globalSearchFood(RestaurantDatabase restaurantDatabase, Restaurant restaurant, OrderDatabase orderDatabase, String enteredID, 
+            CustomerDatabase customerDatabase) {
         displayLineWithTitle("Global Food Search");
         scanner.nextLine();
-        System.out.println("Enter the food to search: ");
-        String searchedFood = scanner.nextLine();
-        for (String key : restaurantDatabase.getFoodMap().keySet()) {
-            if (restaurantDatabase.getFoodMap().get(key).stream().map(Food::getFoodName).anyMatch(f -> f.equalsIgnoreCase(searchedFood))) {
-                // Restaurant Name
-                String restaurantName = key.substring(0, key.indexOf("@"));
-                System.out.println("\nThe food is available at " + restaurantName);
-                // Food Details
-                System.out.println(restaurantDatabase.getFoodMap().get(key).stream()
-                        .filter(food -> food.getFoodName().equalsIgnoreCase(searchedFood))
-                        .findAny().get());
-                // getRestaurantNameForGlobalSearch(searchedFood);
+        int option = 1;
+        while (option == 1||option == 2) {
+            try {
+                drawDoubleLine();
+                System.out.println("Enter 1: Search for food and Add to cart\nEnter 2: View Cart \nEnter 3: Go back");
+                option = scanner.nextInt();
+                optionValidator(option, 1, 3);
+                switch (option) {
+                    case 1:
+                        searchGlobalFood(restaurantDatabase, restaurant, orderDatabase, enteredID, customerDatabase);
+                        break;
+                    case 2:
+                        viewCart(enteredID, customerDatabase, orderDatabase, restaurant);
+                        break;
+                    case 3:
+                        System.out.println("Going back");
+                        break;
+                    default:
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Add food and come to cart, Going back");
+                option = 3;
             }
         }
     }
 
-    // public void getRestaurantNameForGlobalSearch(String searchedFood) {
-    //     System.out.println("Enter the restaurant name from which " + searchedFood + " has to be ordered: ");
-    //     String restaurantName = scanner.nextLine();
-    // }
+    public void searchGlobalFood(RestaurantDatabase restaurantDatabase, Restaurant restaurant,
+            OrderDatabase orderDatabase, String enteredID, CustomerDatabase customerDatabase) {
+        scanner.nextLine();
+        drawDoubleLine();
+        while (true) {
+            System.out.println("Enter the food to search: ");
+            String searchedFood = scanner.nextLine();
+            drawLine();
+            ArrayList<Food> foodToSearch = new ArrayList<>();
+            for (String key : restaurantDatabase.getFoodMap().keySet()) {
+                if (restaurantDatabase.getFoodMap().get(key).stream().map(Food::getFoodName)
+                        .anyMatch(f -> f.equalsIgnoreCase(searchedFood))) {
+                    // Restaurant Name
+                    String restaurantName = key.substring(0, key.indexOf("@"));
+                    System.out.println("\nThe food is available at " + restaurantName);
+                    drawLine();
+                    // Food Details
+                    foodToSearch.add(restaurantDatabase.getFoodMap().get(key).stream()
+                            .filter(food -> food.getFoodName().equalsIgnoreCase(searchedFood))
+                            .findAny().get());
+                    System.out.println(restaurantDatabase.getFoodMap().get(key).stream()
+                            .filter(food -> food.getFoodName().equalsIgnoreCase(searchedFood))
+                            .findAny().get());
+                    drawDoubleLine();
+                }
+            }
+            if (foodToSearch.isEmpty()) {
+                System.out.println("Food not found, try again!");
+            } else {
+                getRestaurantNameForGlobalFoodSearch(restaurant, restaurantDatabase, enteredID, searchedFood,
+                        customerDatabase);
+                break;
+            }
+        }
+    }
+
+    public void getRestaurantNameForGlobalFoodSearch(Restaurant restaurant, RestaurantDatabase restaurantDatabase, String enteredID, String searchedFood, CustomerDatabase customerDatabase) {
+        System.out.println("Enter the restaurant name to order from: ");
+        restaurant.setRestaurantName(scanner.nextLine());
+        while (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getRestaurantName)
+                .anyMatch(r -> r.equalsIgnoreCase(restaurant.getRestaurantName())) == false) {
+            System.out.println("Try again from given list of restaurant: ");
+            restaurant.setRestaurantName(scanner.nextLine());
+        }
+        drawLine();
+        String restaurantToOrderID = restaurantDatabase.getRestaurantList().stream()
+                .filter(r -> r.getRestaurantName().equalsIgnoreCase(
+                        restaurant.getRestaurantName()))
+                .findAny().get().getLoginID();
+        restaurant.setLoginID(restaurantToOrderID);
+        restaurant.setRestaurantName(restaurant.getRestaurantName());
+        Food food = restaurantDatabase.getFoodMap().get(restaurantToOrderID).stream()
+                .filter(f -> f.getFoodName().equalsIgnoreCase(searchedFood)).findFirst().get();
+        addFoodToCart(enteredID, food, customerDatabase);
+    }
 
     public void searchRestaurant(String enteredID, RestaurantDatabase restaurantDatabase,
             CustomerDatabase customerDatabase, OrderDatabase orderDatabase) {
@@ -437,7 +500,7 @@ public class CustomerFunctions {
                         searchRestaurant(enteredID, restaurantDatabase, customerDatabase, orderDatabase);
                         break;
                     case 2:
-                        globalSearchFood(restaurantDatabase, restaurant);
+                        globalSearchFood(restaurantDatabase, restaurant, orderDatabase, enteredID, customerDatabase);
                         break;
                     case 3:
                         viewOrderHistory(enteredID, orderDatabase);
