@@ -52,7 +52,7 @@ public class RestaurantDatabase {
         put("a2b@abc.com", new ArrayList<Food>(){{
             add(new Food("Dosa", foodType1, 40, true));
             add(new Food("Chapathi", foodType2, 50, true));
-                    add(new Food("Noodles", foodType3, 120, false));
+            add(new Food("Noodles", foodType3, 120, true));
         }});
         put("kfc@abc.com", new ArrayList<Food>(){{
             add(new Food("Rice", foodType1, 300, true));
