@@ -157,12 +157,11 @@ public class CustomerFunctions {
                     System.out.println("\nThe food is available at " + restaurantName.toUpperCase() + " restaurant.");
                     drawLine();
                     // Food Details
-                    foodToSearch.add(restaurantDatabase.getFoodMap().get(key).stream()
+                    Food gettingFoodDetails = restaurantDatabase.getFoodMap().get(key).stream()
                             .filter(food -> food.getFoodName().equalsIgnoreCase(searchedFood))
-                            .findAny().get());
-                    System.out.println(restaurantDatabase.getFoodMap().get(key).stream()
-                            .filter(food -> food.getFoodName().equalsIgnoreCase(searchedFood))
-                            .findAny().get());
+                            .findAny().get();
+                    foodToSearch.add(gettingFoodDetails);
+                    System.out.println(gettingFoodDetails);
                     drawDoubleLine();
                 }
             }
