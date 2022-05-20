@@ -321,8 +321,7 @@ public class CustomerFunctions {
 
     public void addFoodToCart(String enteredID, Food food, CustomerDatabase customerDatabase) {
         drawLine();
-        int option = 1;
-        while (option == 1) {
+        while (true) {
             System.out.println("Enter the quantity to be added: ");
             int quantity = scanner.nextInt();
             if (quantity > 0) {
@@ -342,7 +341,6 @@ public class CustomerFunctions {
                 break;
             } else {
                 System.out.println("Enter a valid positive number.");
-                option = 1;
             }
         }
         
@@ -451,8 +449,7 @@ public class CustomerFunctions {
             i++;
         }
         drawLine();
-        int option = 1;
-        while (option == 1) {
+        while (true) {
             System.out.println("Enter the index number of the cart item to be removed: ");
             int index = scanner.nextInt();
             if (index <= customerDatabase.getCartItems().get(enteredID).size() && index >= 1 ) {
