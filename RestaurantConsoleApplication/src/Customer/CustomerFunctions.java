@@ -147,11 +147,13 @@ public class CustomerFunctions {
             String searchedFood = scanner.nextLine();
             drawLine();
             ArrayList<Food> foodToSearch = new ArrayList<>();
+            ArrayList<String> foodAvaialableRestaurants = new ArrayList<>();
             for (String key : restaurantDatabase.getFoodMap().keySet()) {
                 if (restaurantDatabase.getFoodMap().get(key).stream().map(Food::getFoodName)
                         .anyMatch(f -> f.equalsIgnoreCase(searchedFood))) {
                     // Restaurant Name
                     String restaurantName = key.substring(0, key.indexOf("@"));
+                    foodAvaialableRestaurants.add(restaurantName);
                     System.out.println("\nThe food is available at " + restaurantName);
                     drawLine();
                     // Food Details
@@ -168,17 +170,16 @@ public class CustomerFunctions {
                 System.out.println("Food not found, try again!");
             } else {
                 getRestaurantNameForGlobalFoodSearch(restaurant, restaurantDatabase, enteredID, searchedFood,
-                        customerDatabase);
+                        customerDatabase, foodAvaialableRestaurants);
                 break;
             }
         }
     }
 
-    public void getRestaurantNameForGlobalFoodSearch(Restaurant restaurant, RestaurantDatabase restaurantDatabase, String enteredID, String searchedFood, CustomerDatabase customerDatabase) {
+    public void getRestaurantNameForGlobalFoodSearch(Restaurant restaurant, RestaurantDatabase restaurantDatabase, String enteredID, String searchedFood, CustomerDatabase customerDatabase, ArrayList<String> foodAvaialableRestaurants) {
         System.out.println("Enter the restaurant name to order from: ");
         restaurant.setRestaurantName(scanner.nextLine());
-        while (restaurantDatabase.getRestaurantList().stream().map(Restaurant::getRestaurantName)
-                .anyMatch(r -> r.equalsIgnoreCase(restaurant.getRestaurantName())) == false) {
+            while(foodAvaialableRestaurants.stream().anyMatch(r->r.equalsIgnoreCase(restaurant.getRestaurantName()))==false) {
             System.out.println("Try again from given list of restaurant: ");
             restaurant.setRestaurantName(scanner.nextLine());
         }
