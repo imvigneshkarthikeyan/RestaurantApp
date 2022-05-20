@@ -154,7 +154,7 @@ public class CustomerFunctions {
                     // Restaurant Name
                     String restaurantName = key.substring(0, key.indexOf("@"));
                     foodAvaialableRestaurants.add(restaurantName);
-                    System.out.println("\nThe food is available at " + restaurantName);
+                    System.out.println("\nThe food is available at " + restaurantName.toUpperCase() + " restaurant.");
                     drawLine();
                     // Food Details
                     foodToSearch.add(restaurantDatabase.getFoodMap().get(key).stream()
