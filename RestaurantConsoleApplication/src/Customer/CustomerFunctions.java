@@ -457,7 +457,9 @@ public class CustomerFunctions {
             int index = scanner.nextInt();
             if (index <= customerDatabase.getCartItems().get(enteredID).size() && index >= 1 ) {
                 customerDatabase.getCartItems().get(enteredID).remove(index-1);
-                System.out.println("Cart after removal is: " + customerDatabase.getCartItems().get(enteredID));
+                System.out.println("Cart after removal is: " + customerDatabase.getCartItems().get(enteredID).toString()
+                        .replace("{", "")
+                        .replace("}", "").replace("[", "").replace("]", "").replace(",", ""));
                 break;
             } else {
                 System.out.println("Enter a valid index number");
